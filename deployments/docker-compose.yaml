@@ -1,0 +1,45 @@
+version: '3'
+services:
+  iot-device-mgmt-web:
+    image: 'diwise/iot-device-mgmt-web:latest'
+    build:
+      context: ..
+      dockerfile: ./deployments/Dockerfile
+    restart: always
+    depends_on:
+      - iot-device-mgmt
+    environment:
+      GUI_WEB_ROOT: '/opt/diwise/wwwroot/assets'
+      DEVICE_MGMT_URL: 'http://iot-device-mgmt:8080'
+      OTEL_EXPORTER_OTLP_ENDPOINT: 'http://otel-collector:4318'
+    ports:
+      - '8081:8080'
+
+  iot-device-mgmt:
+    image: 'ghcr.io/diwise/iot-device-mgmt:latest'
+    restart: always
+    depends_on:
+      - rabbitmq    
+    environment:
+      RABBITMQ_HOST: 'rabbitmq'
+      OTEL_EXPORTER_OTLP_ENDPOINT: 'http://otel-collector:4318'
+    ports:
+      - '8082:8080'
+
+  rabbitmq: 
+    image: 'bitnami/rabbitmq:3.8'
+    #image: 'arm64v8/rabbitmq:3.8'
+    environment:
+      RABBITMQ_DEFAULT_USER: 'user'
+      RABBITMQ_DEFAULT_PASS: 'bitnami'
+    ports:
+      - '4369'
+      - '5672'
+      - '25672'
+      - '15672'
+    volumes:
+      - 'rabbitmq_data:/bitnami'
+       
+volumes:
+  rabbitmq_data:
+    driver: local
