@@ -24,7 +24,7 @@ COPY --chown=1001 wwwroot /opt/diwise/wwwroot
 
 RUN chown 1001 /opt/diwise
 
-ENV "GUI_WEB_ROOT" : "/opt/diwise/wwwroot/assets"
+ENV GUI_WEB_ROOT=/opt/diwise/wwwroot/assets
 
 EXPOSE 8080
 USER 1001

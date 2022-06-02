@@ -30,32 +30,32 @@ func NewDeviceManagementClient(devMgmtUrl string) DeviceManagementClient {
 	return dmc
 }
 
-func (dmc *deviceManagementClient) GetAll(ctx context.Context) ([]Device, error) {		
+func (dmc *deviceManagementClient) GetAll(ctx context.Context) ([]Device, error) {
 	devices, err := dmc.fetchDevicesFromUrl("/api/v0/devices", ctx)
-	
+
 	if err != nil {
 		return nil, err
 	}
 
 	if len(devices) == 0 {
-		return nil, nil
-	}	
+		return []Device{}, nil
+	}
 
 	return devices, nil
 }
 
-func (dmc *deviceManagementClient) FindDeviceFromDevEUI(ctx context.Context, devEUI string) (Device, error) {	
+func (dmc *deviceManagementClient) FindDeviceFromDevEUI(ctx context.Context, devEUI string) (Device, error) {
 	u := "/api/v0/devices?devEUI=" + devEUI
-	
+
 	devices, err := dmc.fetchDevicesFromUrl(u, ctx)
-	
+
 	if err != nil {
 		return Device{}, err
 	}
 
 	if len(devices) == 0 {
 		return Device{}, nil
-	}	
+	}
 
 	return devices[0], nil
 }
@@ -71,12 +71,12 @@ func (dmc *deviceManagementClient) fetchDevicesFromUrl(url string, ctx context.C
 	}()
 
 	log := logging.GetFromContext(ctx)
-	
+
 	httpClient := http.Client{
 		Transport: otelhttp.NewTransport(http.DefaultTransport),
 	}
-	
-	request, err := http.NewRequestWithContext(ctx, http.MethodGet, dmc.url + url, nil)
+
+	request, err := http.NewRequestWithContext(ctx, http.MethodGet, dmc.url+url, nil)
 	if err != nil {
 		log.Error().Err(err).Msg("failed to create http request")
 		return nil, err
@@ -107,7 +107,7 @@ func (dmc *deviceManagementClient) fetchDevicesFromUrl(url string, ctx context.C
 		return nil, err
 	}
 
-	return devices, nil	
+	return devices, nil
 }
 
 type Device struct {
