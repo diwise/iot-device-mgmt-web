@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"time"
 
 	"github.com/diwise/service-chassis/pkg/infrastructure/o11y/logging"
 	"github.com/diwise/service-chassis/pkg/infrastructure/o11y/tracing"
@@ -102,10 +103,11 @@ func (dmc *deviceManagementClient) fetchDevicesFromUrl(url string, ctx context.C
 }
 
 type Device struct {
-	Identity    string   `json:"id"`
-	Latitude    float64  `json:"latitude"`
-	Longitude   float64  `json:"longitude"`
-	Environment string   `json:"environment"`
-	Types       []string `json:"types"`
-	SensorType  string   `json:"sensorType"`
+	Identity     string    `json:"id"`
+	Latitude     float64   `json:"latitude"`
+	Longitude    float64   `json:"longitude"`
+	Environment  string    `json:"environment"`
+	Types        []string  `json:"types"`
+	SensorType   string    `json:"sensorType"`
+	LastObserved time.Time `json:"lastObserved"`
 }

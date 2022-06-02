@@ -65,11 +65,11 @@ const templ string = `
                 About
               </a>
             </li>
-          </ul> 
+          </ul>
         </div>
       </nav>
 
-      <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">     
+      <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
         <h2>{{ .Title }}</h2>
         <div class="table-responsive">
           <table class="table table-striped table-sm">
@@ -81,6 +81,7 @@ const templ string = `
                 <th scope="col">Environment</th>
                 <th scope="col">Types</th>
                 <th scope="col">SensorType</th>
+                <th scope="col">LastObserved</th>
               </tr>
             </thead>
             <tbody>
@@ -89,13 +90,14 @@ const templ string = `
                 <td>{{ .Identity }}</td>
                 <td>{{ .Latitude }}</td>
                 <td>{{ .Longitude }}</td>
-                <td>{{ .Environment }}</td>				
+                <td>{{ .Environment }}</td>
                 <td>
                   {{ range .Types }}
                     {{ . }}<br/>
                   {{ end }}
                 </td>
                 <td>{{ .SensorType }}</td>
+                <td>{{ .LastObserved }}
               </tr>
               {{ end }}
             </tbody>
