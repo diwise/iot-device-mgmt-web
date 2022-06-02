@@ -8,12 +8,13 @@ import (
 	"net/http"
 
 	"github.com/diwise/service-chassis/pkg/infrastructure/o11y/logging"
+	"github.com/diwise/service-chassis/pkg/infrastructure/o11y/tracing"
 	"go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp"
 	"go.opentelemetry.io/otel"
 )
 
 type DeviceManagementClient interface {
-	FindDeviceFromDevEUI(ctx context.Context, devEUI string) (Device, error)
+	FindDeviceFromDevEUI(ctx context.Context, devEUI string) (*Device, error)
 	GetAll(ctx context.Context) ([]Device, error)
 }
 
@@ -32,43 +33,32 @@ func NewDeviceManagementClient(devMgmtUrl string) DeviceManagementClient {
 
 func (dmc *deviceManagementClient) GetAll(ctx context.Context) ([]Device, error) {
 	devices, err := dmc.fetchDevicesFromUrl("/api/v0/devices", ctx)
-
 	if err != nil {
 		return nil, err
-	}
-
-	if len(devices) == 0 {
-		return []Device{}, nil
 	}
 
 	return devices, nil
 }
 
-func (dmc *deviceManagementClient) FindDeviceFromDevEUI(ctx context.Context, devEUI string) (Device, error) {
+func (dmc *deviceManagementClient) FindDeviceFromDevEUI(ctx context.Context, devEUI string) (*Device, error) {
 	u := "/api/v0/devices?devEUI=" + devEUI
 
 	devices, err := dmc.fetchDevicesFromUrl(u, ctx)
-
 	if err != nil {
-		return Device{}, err
+		return nil, err
 	}
 
 	if len(devices) == 0 {
-		return Device{}, nil
+		return nil, nil
 	}
 
-	return devices[0], nil
+	return &devices[0], nil
 }
 
 func (dmc *deviceManagementClient) fetchDevicesFromUrl(url string, ctx context.Context) ([]Device, error) {
 	var err error
 	ctx, span := tracer.Start(ctx, "fetch-devices")
-	defer func() {
-		if err != nil {
-			span.RecordError(err)
-		}
-		span.End()
-	}()
+	defer func() { tracing.RecordAnyErrorAndEndSpan(err, span) }()
 
 	log := logging.GetFromContext(ctx)
 
@@ -84,9 +74,10 @@ func (dmc *deviceManagementClient) fetchDevicesFromUrl(url string, ctx context.C
 
 	response, err := httpClient.Do(request)
 	if err != nil {
-		log.Error().Msgf("failed to retrieve device information from iot-device-mgmt: %s", err.Error())
+		log.Error().Err(err).Msg("failed to retrieve device information from iot-device-mgmt")
 		return nil, err
 	}
+	defer response.Body.Close()
 
 	if response.StatusCode != http.StatusOK {
 		log.Error().Msgf("request failed with status code %d", response.StatusCode)
@@ -95,7 +86,7 @@ func (dmc *deviceManagementClient) fetchDevicesFromUrl(url string, ctx context.C
 
 	body, err := ioutil.ReadAll(response.Body)
 	if err != nil {
-		log.Error().Msgf("failed to read response body: %s", err.Error())
+		log.Error().Err(err).Msg("failed to read response body")
 		return nil, err
 	}
 
@@ -103,7 +94,7 @@ func (dmc *deviceManagementClient) fetchDevicesFromUrl(url string, ctx context.C
 
 	err = json.Unmarshal(body, &devices)
 	if err != nil {
-		log.Error().Msgf("failed to unmarshal response body: %s", err.Error())
+		log.Error().Err(err).Msg("failed to unmarshal response body")
 		return nil, err
 	}
 
