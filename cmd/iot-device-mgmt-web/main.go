@@ -41,5 +41,9 @@ func setup(log zerolog.Logger) *chi.Mux {
 
 	r.Use(otelchi.Middleware(serviceName, otelchi.WithChiRoutes(r)))
 
+	r.Get("/health", func(w http.ResponseWriter, r *http.Request) {
+		w.WriteHeader(http.StatusNoContent)
+	})
+
 	return r
 }
