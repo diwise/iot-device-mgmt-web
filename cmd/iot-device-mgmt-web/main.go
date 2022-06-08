@@ -24,7 +24,7 @@ func main() {
 	r := setup(logger)
 	handlers.RegisterHandlers(logger, r)
 
-	err := http.ListenAndServe(":18081", r)
+	err := http.ListenAndServe(":8080", r)
 	if err != nil {
 		logger.Fatal().Err(err).Msg("failed to start router")
 	}
