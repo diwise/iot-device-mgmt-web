@@ -104,10 +104,13 @@ func (dmc *deviceManagementClient) fetchDevicesFromUrl(url string, ctx context.C
 
 type Device struct {
 	Identity     string    `json:"id"`
+	Name         string    `json:"name"`
+	Description  string    `json:"description"`
 	Latitude     float64   `json:"latitude"`
 	Longitude    float64   `json:"longitude"`
 	Environment  string    `json:"environment"`
 	Types        []string  `json:"types"`
 	SensorType   string    `json:"sensorType"`
 	LastObserved time.Time `json:"lastObserved"`
+	Active       bool      `json:"active"`
 }

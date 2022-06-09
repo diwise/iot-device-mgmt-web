@@ -33,14 +33,11 @@ const templ string = `
 </head>
 
 <body>
-
   <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Diwise</a>
-    <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse"
-      data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#"><img src="./assets/brand/diwise-white-alpha+tight.png" style="height:30px"></a>
+    <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
     <div class="navbar-nav">
       <div class="nav-item text-nowrap">
         <a class="nav-link px-3" href="#">Sign out</a>
@@ -71,42 +68,54 @@ const templ string = `
 
       <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
         <h2>{{ .Title }}</h2>
-        <div class="table-responsive">
-          <table class="table table-striped table-sm">
-            <thead>
-              <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Latitude</th>
-                <th scope="col">Longitude</th>
-                <th scope="col">Environment</th>
-                <th scope="col">Types</th>
-                <th scope="col">SensorType</th>
-                <th scope="col">LastObserved</th>
-              </tr>
-            </thead>
-            <tbody>
-              {{ range .Items }}
-              <tr>
-                <td>{{ .Identity }}</td>
-                <td>{{ .Latitude }}</td>
-                <td>{{ .Longitude }}</td>
-                <td>{{ .Environment }}</td>
-                <td>
-                  {{ range .Types }}
-                    {{ . }}<br/>
-                  {{ end }}
-                </td>
-                <td>{{ .SensorType }}</td>
-                <td>{{ .LastObserved }}
-              </tr>
-              {{ end }}
-            </tbody>
-          </table>
+        <div class="accordion" id="accordionExample">
+          {{ range .Items }}
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="panelsStayOpen-heading-{{ .Identity }}">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse-{{ .Identity }}" aria-expanded="false" aria-controls="panelsStayOpen-collapse-{{ .Identity }}">
+                <div class="row align-items-center">
+                  <div class="col">
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" id="flexSwitchCheckCheckedDisabled" {{ if .Active }} checked {{ end }} disabled>
+                      <label class="form-check-label" for="flexSwitchCheckCheckedDisabled">Aktiv</label>
+                    </div>
+                  </div>
+                  <div class="col">
+                    {{ .Name }}
+                  </div>
+                  <div class="col">
+                    {{ .LastObserved }}
+                  </div>
+                </div>
+              </button>
+            </h2>
+            <div id="panelsStayOpen-collapse-{{ .Identity }}" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-heading-{{ .Identity }}">
+              <div class="accordion-body">
+                <table class="table table-striped table-sm">
+                  <tbody>
+                    <tr><td>ID</td><td>{{ .Identity }}</td></tr>
+                    <tr><td>Namn</td><td>{{ .Name }}</td></tr>
+                    <tr><td>Beskrivning</td><td>{{ .Description }}</td></tr>
+                    <tr><td>Latitud</td><td>{{ .Latitude }}</td></tr>
+                    <tr><td>Longitud</td><td>{{ .Longitude }}</td></tr>
+                    <tr><td>Miljö</td><td>{{ .Environment }}</td></tr>
+                    <tr><td>Typ</td><td>
+                      {{ range .Types }}
+                        {{ . }}<br/>
+                      {{ end }}</td></tr>
+                    <tr><td>Sensortyp</td><td>{{ .SensorType }}</td></tr>
+                    <tr><td>Senast observerad</td><td>{{ .LastObserved }}</td></tr>
+                    <tr><td>Aktiv</td><td>{{ .Active }}</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          {{ end }}
         </div>
       </main>
     </div>
   </div>
-
 
   <script src="./assets/dist/js/bootstrap.bundle.min.js"></script>
 
