@@ -69,10 +69,10 @@ const templ string = `
       <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
         <h2>{{ .Title }}</h2>
         <div class="accordion" id="accordionExample">
-          {{ range .Items }}
+          {{ range $index, $element := .Items }}
           <div class="accordion-item">
-            <h2 class="accordion-header" id="panelsStayOpen-heading-{{ .Identity }}">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse-{{ .Identity }}" aria-expanded="false" aria-controls="panelsStayOpen-collapse-{{ .Identity }}">
+            <h2 class="accordion-header" id="panelsStayOpen-heading-{{ $index }}">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse-{{ $index }}" aria-expanded="false" aria-controls="panelsStayOpen-collapse-{{ $index }}">
                 <div class="row align-items-center">
                   <div class="col">
                     <div class="form-check form-switch">
@@ -84,12 +84,16 @@ const templ string = `
                     {{ .Name }}
                   </div>
                   <div class="col">
-                    {{ .LastObserved }}
+                    {{ if .LastObserved.IsZero }}
+                      &nbsp;
+                    {{ else }}
+                      {{ .LastObserved.Format "2006-01-02 15:04:05" }}
+                    {{ end }}
                   </div>
                 </div>
               </button>
             </h2>
-            <div id="panelsStayOpen-collapse-{{ .Identity }}" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-heading-{{ .Identity }}">
+            <div id="panelsStayOpen-collapse-{{ $index }}" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-heading-{{ $index }}">
               <div class="accordion-body">
                 <table class="table table-striped table-sm">
                   <tbody>
@@ -104,7 +108,7 @@ const templ string = `
                         {{ . }}<br/>
                       {{ end }}</td></tr>
                     <tr><td>Sensortyp</td><td>{{ .SensorType }}</td></tr>
-                    <tr><td>Senast observerad</td><td>{{ .LastObserved }}</td></tr>
+                    <tr><td>Senast observerad</td><td>{{ .LastObserved.Format "2006-01-02 15:04:05" }}</td></tr>
                     <tr><td>Aktiv</td><td>{{ .Active }}</td></tr>
                   </tbody>
                 </table>
