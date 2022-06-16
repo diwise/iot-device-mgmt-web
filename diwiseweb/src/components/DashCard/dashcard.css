@@ -1,22 +1,16 @@
-.dashboard {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 .dashCard {
   width: 310px;
   height: 310px;
+  padding-bottom: 28px;
   border-radius: 20px;
-  font-size: 32px;
-  padding: 28px;
-  margin: 20px 0px 20px 0px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.numbers {
   font-size: 128px;
+  margin: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+.dashText {
+  font-size: 32px;
+  text-align: center;
 }
