@@ -4,7 +4,11 @@ function Footer() {
   return (
     <>
       <div className="footer">
-        <div className="footerDiwise"></div>
+        <div className="footerDiwise">
+          <ul>
+            <li></li>
+          </ul>
+        </div>
         <div className="footerCust"></div>
       </div>
     </>
