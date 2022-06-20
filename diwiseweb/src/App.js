@@ -2,14 +2,14 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
-import OffcanvasExample from "./components/Navigation";
+import MainNav from "./components/Navigation";
 
-function App() {
+function app() {
   return (
     <>
       <div className="background"></div>
-      <div className="App">
-        <OffcanvasExample />
+      <div className="app">
+        <MainNav />
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Dashboard />} />
@@ -20,4 +20,4 @@ function App() {
   );
 }
 
-export default App;
+export default app;

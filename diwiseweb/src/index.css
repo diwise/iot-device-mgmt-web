@@ -15,7 +15,7 @@
 
 #root {
   font-family: "Montsterrat";
-  font-size: 14px;
+  font-size: 0.875em;
   background-color: #282828;
   position: relative;
   z-index: 1;
@@ -49,11 +49,11 @@ body {
 }
 
 h1 {
-  font-size: 32px;
+  font-size: 2em;
 }
 
 h2 {
-  font-size: 20px;
+  font-size: 1.25em;
 }
 
 .eyecatcher {
@@ -70,6 +70,10 @@ h2 {
 
 .inactive {
   color: #de1313;
+}
+
+.warning {
+  color: #ff9900;
 }
 
 .snow {
