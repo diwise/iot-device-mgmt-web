@@ -1,5 +1,4 @@
 import "./dashcard.css";
-import styled from "styled-components";
 
 const DashCard = (props) => {
   return (

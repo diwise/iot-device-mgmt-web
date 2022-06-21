@@ -4,7 +4,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
 import MainNav from "./components/Navigation";
 import Footer from "./components/Footer";
-import { useState, useEffect } from "react";
 
 function App() {
   return (
@@ -18,7 +17,13 @@ function App() {
               <Route path="/" element={<Dashboard />} />
             </Routes>
           </BrowserRouter>
-          <Footer />
+          <Footer
+            customerLogoUrl="url here"
+            customerLogoDescription="alt text here"
+            customerPhoneNumber="08-123456"
+            customerEmail="support@support.se"
+            customerWebsite="https://google.com"
+          />
         </div>
       </div>
     </>
