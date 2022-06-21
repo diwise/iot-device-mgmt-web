@@ -14,3 +14,11 @@
   font-size: 32px;
   text-align: center;
 }
+
+.darkTheme div[class*="dashCard"] {
+  background: #282828;
+}
+
+.lightTheme div[class*="dashCard"] {
+  background: #ffffff;
+}
