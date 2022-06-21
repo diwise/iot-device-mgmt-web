@@ -11,6 +11,11 @@
   color: white !important;
 }
 
+.nav-link:hover {
+  fill: #ffa500 !important;
+  color: #ffa500 !important;
+}
+
 .navbar-brand {
   color: white !important;
 }

@@ -1,6 +1,7 @@
 .footer {
   display: flex;
   flex-direction: column-reverse;
+  margin-top: auto;
 }
 
 .footer img {
@@ -38,7 +39,7 @@
 }
 
 .footerCust a:hover {
-  color: #c3682a;
+  color: #ffa500;
 }
 
 .darkTheme div[class*="footerCust"] {

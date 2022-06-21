@@ -1,0 +1,48 @@
+.searchWrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.searchContainer {
+  width: 90%;
+  max-width: 83.5rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.searchTitle {
+  background: rgba(40, 40, 40, 0.5);
+  border-radius: 0.313em 0.313em 0 0;
+}
+
+.search {
+  background: #282828;
+  border-radius: 0 0 0.313em 0.313em;
+  display: flex;
+  justify-content: center;
+  padding: 1em 0 1em 0;
+}
+
+.search form {
+  width: 90%;
+}
+
+@media only screen and (min-width: 575px) {
+  .search form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
+
+  form > div {
+    width: 15em;
+    margin: 0 1em 0 1em;
+  }
+
+  form div:last-child {
+    flex-basis: 100%;
+    display: flex;
+    justify-content: center;
+  }
+}

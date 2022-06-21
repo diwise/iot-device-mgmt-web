@@ -7,21 +7,26 @@ function Footer(props) {
         <div className="footerDiwise">
           <ul>
             <li>
-              <a href="">FAQ</a>
+              <a href="/">FAQ</a>
             </li>
             <li>
-              <a href="">Diwise</a>
+              <a href="/">Diwise</a>
             </li>
             <li>
-              <a href="">GitHub</a>
+              <a href="/">GitHub</a>
             </li>
             <li>
-              <a href="">Rapportera en bugg</a>
+              <a href="/">Rapportera en bugg</a>
             </li>
           </ul>
         </div>
         <div className="footerCust">
-          <a className="custLogo" href={props.customerWebsite} target="_blank">
+          <a
+            className="custLogo"
+            href={props.customerWebsite}
+            target="_blank"
+            rel="noreferrer"
+          >
             <img
               src={props.customerLogoUrl}
               alt={props.customerLogoDescription}
