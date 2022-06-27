@@ -3,7 +3,7 @@ import "./footer.css";
 function Footer(props) {
   return (
     <>
-      <footer class="footer">
+      <footer className="footer">
         <div className="footerDiwise">
           <ul>
             <li>
