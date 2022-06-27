@@ -15,6 +15,10 @@
   padding: 1.87em 0 1.87em 0;
 }
 
+.footerDiwise {
+  background: #c3682a;
+}
+
 .support {
   font-weight: 900;
 }
@@ -28,27 +32,38 @@
   padding: 0;
 }
 
-.footer a {
+.footerDiwise a {
   color: #ffffff;
-  text-decoration: none;
 }
 
 .footerDiwise a:hover {
   color: #000000;
-  text-decoration: none;
 }
 
-.footerCust a:hover {
-  color: #ffa500;
-}
-
-.darkTheme div[class*="footerCust"] {
+.darkTheme div[class="footerCust"] {
   background: #282828;
 }
 
-.darkTheme div[class*="footerDiwise"] {
-  background: #c3682a;
+.darkTheme div[class="footerCust"] a {
+  color: #ffffff;
 }
+
+.darkTheme div[class="footerCust"] a:hover,
+.lightTheme div[class="footerCust"] a:hover {
+  color: #ffa500;
+}
+
+.lightTheme div[class="footerCust"] {
+  background: #ffffff;
+}
+
+.lightTheme div[class="footerCust"] a {
+  color: #000000;
+}
+
+/* .lightTheme div[class="footerCust"] a:hover {
+  color: #ffa500;
+} */
 
 @media only screen and (min-width: 575px) {
   .footer {

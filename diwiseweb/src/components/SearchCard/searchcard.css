@@ -1,9 +1,9 @@
-.searchWrapper {
+.blockWrapper {
   display: flex;
   justify-content: center;
 }
 
-.searchContainer {
+.blockContainer {
   width: 90%;
   max-width: 83.5rem;
   display: flex;
@@ -11,12 +11,11 @@
   flex-direction: column;
 }
 
-.searchTitle {
-  background: rgba(40, 40, 40, 0.5);
+.blockTitle {
   border-radius: 0.313em 0.313em 0 0;
 }
 
-.search {
+.blockContent {
   background: #282828;
   border-radius: 0 0 0.313em 0.313em;
   display: flex;
@@ -24,25 +23,41 @@
   padding: 1em 0 1em 0;
 }
 
-.search form {
+.searchForm {
   width: 90%;
 }
 
 @media only screen and (min-width: 575px) {
-  .search form {
+  .searchForm form {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
   }
 
-  form > div {
+  .searchForm form > div {
     width: 15em;
     margin: 0 1em 0 1em;
   }
 
-  form div:last-child {
+  .searchForm form div:last-child {
     flex-basis: 100%;
     display: flex;
     justify-content: center;
   }
+}
+
+.darkTheme div[class="blockTitle"] {
+  background: rgba(40, 40, 40, 0.5);
+}
+
+.lightTheme div[class="blockTitle"] {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.darkTheme div[class="blockContent"] {
+  background: #282828;
+}
+
+.lightTheme div[class="blockContent"] {
+  background: #ffffff;
 }

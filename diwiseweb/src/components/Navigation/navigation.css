@@ -1,15 +1,32 @@
-.navbar {
-  background-color: #282828 !important;
+.lightTheme div[class*="navbar"],
+.lightTheme div[class*="container-f"],
+.lightTheme div[class*="navbar"] svg {
+  background: #ffffff !important;
+  fill: black !important;
+  color: black !important;
+}
+
+.darkTheme div[class*="navbar"],
+.darkTheme div[class*="container-f"],
+.darkTheme div[class*="navbar"] svg {
+  background: #282828 !important;
+  fill: white !important;
+  color: white !important;
+}
+
+.mb-3 {
+  padding: 0;
 }
 
 .navbar svg {
   margin: 0rem 1rem 0rem 1rem;
+  /* fill: black; */
 }
 
-.nav-link {
+/* .nav-link {
   fill: white !important;
   color: white !important;
-}
+} */
 
 .nav-link:hover {
   fill: #ffa500 !important;
@@ -20,8 +37,12 @@
   color: white !important;
 }
 
-.offcanvas {
-  background-color: #282828 !important;
+.darkTheme div[class="offcanvas"] {
+  background: #282828 !important;
+}
+
+.lightTheme div[class="offcanvas"] {
+  background: #ffffff !important;
 }
 
 .offcanvas-end {

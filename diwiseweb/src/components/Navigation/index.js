@@ -11,8 +11,8 @@ function MainNav() {
       {["sm"].map((expand) => (
         <Navbar
           key={expand}
-          bg="dark"
-          variant="dark"
+          bg="diwise"
+          variant="diwise"
           expand={expand}
           className="mb-3"
         >

@@ -23,10 +23,8 @@
 #root {
   font-family: "Montsterrat";
   font-size: 0.875em;
-  background-color: #282828;
   position: relative;
   z-index: 1;
-  color: white;
   min-height: 100vh;
 }
 
@@ -65,6 +63,7 @@ h1 {
 h2 {
   font-size: 1.25em !important;
   font-weight: 500;
+  margin: 0.2em 0 0.2em 0.2em !important;
 }
 
 li {
@@ -75,12 +74,8 @@ ul {
   margin: 0;
 }
 
-.eyecatcher {
-  color: #c3682a;
-}
-
-.subtle {
-  color: #282828;
+a {
+  text-decoration: none !important;
 }
 
 .active {
@@ -93,12 +88,4 @@ ul {
 
 .warning {
   color: #ff9900;
-}
-
-.snow {
-  color: #ffffff;
-}
-
-.slate {
-  color: #000000;
 }
