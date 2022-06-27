@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import "./themebutton.css";
 
 function ThemeButton() {
+  const themeDiv = document.getElementById("diwiseTheme");
   const [darkTheme, setDarkTheme] = useState(getInitialTheme());
   useEffect(() => {
     localStorage.setItem("dark", JSON.stringify(darkTheme));
@@ -48,7 +49,7 @@ function ThemeButton() {
             xmlns="http://www.w3.org/2000/svg"
             width="25"
             height="25"
-            fill="white"
+            fill="black"
             class="bi bi-moon"
             viewBox="0 0 16 16"
           >

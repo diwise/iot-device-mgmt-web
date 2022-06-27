@@ -8,23 +8,21 @@ import Footer from "./components/Footer";
 function App() {
   return (
     <>
-      <div className="darkTheme">
-        <div className="background"></div>
-        <div className="app">
-          <MainNav />
-          <BrowserRouter>
-            <Routes>
-              <Route path="/" element={<Dashboard />} />
-            </Routes>
-          </BrowserRouter>
-          <Footer
-            customerLogoUrl="url here"
-            customerLogoDescription="alt text here"
-            customerPhoneNumber="08-123456"
-            customerEmail="support@support.se"
-            customerWebsite="https://google.com"
-          />
-        </div>
+      <div className="background"></div>
+      <div className="app">
+        <MainNav />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Dashboard />} />
+          </Routes>
+        </BrowserRouter>
+        <Footer
+          customerLogoUrl="url here"
+          customerLogoDescription="alt text here"
+          customerPhoneNumber="08-123456"
+          customerEmail="support@support.se"
+          customerWebsite="https://google.com"
+        />
       </div>
     </>
   );
