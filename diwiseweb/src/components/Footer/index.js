@@ -1,4 +1,5 @@
 import "./footer.css";
+import ThemeButton from "../ThemeButton";
 
 function Footer(props) {
   return (
@@ -7,16 +8,16 @@ function Footer(props) {
         <div className="footerDiwise">
           <ul>
             <li>
-              <a href="/">FAQ</a>
+              <a href={props.faqUrl}>{props.faqText}</a>
             </li>
             <li>
-              <a href="/">Diwise</a>
+              <a href={props.diwiseUrl}>{props.diwiseText}</a>
             </li>
             <li>
-              <a href="/">GitHub</a>
+              <a href={props.githubUrl}>{props.githubText}</a>
             </li>
             <li>
-              <a href="/">Rapportera en bugg</a>
+              <a href={props.bugReportUrl}>{props.bugReportText}</a>
             </li>
           </ul>
         </div>
@@ -42,6 +43,9 @@ function Footer(props) {
             <div>
               <a href={"email:" + props.customerEmail}>{props.customerEmail}</a>
             </div>
+          </div>
+          <div>
+            <ThemeButton />
           </div>
         </div>
       </footer>

@@ -1,5 +1,6 @@
 .darkTheme nav {
   background: #282828 !important;
+  color: #ffffff;
 }
 
 .lightTheme nav {
@@ -10,13 +11,23 @@
   margin: 0rem 1rem 0rem 1rem;
 }
 
-.lightTheme a[class*="nav-link"] {
-  fill: rgb(0, 0, 0) !important;
+.lightTheme nav a {
   color: rgb(0, 0, 0) !important;
 }
-.darkTheme a[class*="nav-link"] {
-  fill: rgb(255, 255, 255) !important;
+.darkTheme nav a {
   color: rgb(255, 255, 255) !important;
+}
+
+nav a:hover {
+  color: orange !important;
+}
+
+.darkTheme .dropdown-menu {
+  --bs-dropdown-link-hover-bg: #35393e;
+}
+
+.lightTheme .dropdown-menu {
+  --bs-dropdown-link-hover-bg: #f0f0f0;
 }
 
 .darkTheme nav[class*="navbar-diwise"] {
@@ -46,7 +57,7 @@
   color: #ffa500 !important;
 }
 
-.darkTheme a[class*="nav-link"]:hover {
+.darkTheme nav a[class*="nav-link"]:hover {
   fill: #ffa500 !important;
   color: #ffa500 !important;
 }
@@ -85,45 +96,12 @@
 .navbar-nav a {
   margin: 2em 0em 2em 0em !important;
 }
-
-/* .lightTheme div[class*="navbar"],
-.lightTheme div[class*="container-f"],
-.lightTheme div[class*="navbar"] svg {
-  background: #ffffff !important;
-  fill: black !important;
-  color: black !important;
+.dropdown-menu {
+  right: 0 !important;
+  left: auto !important;
 }
 
-.darkTheme div[class*="navbar"],
-.darkTheme div[class*="container-f"],
-.darkTheme div[class*="navbar"] svg {
-  background: #282828 !important;
-  fill: white !important;
-  color: white !important;
+.darkTheme div[class*="dropdown-menu"] {
+  background: #282828;
+  color: #ffffff !important;
 }
-
-.mb-3 {
-  padding: 0;
-}
-
-.navbar svg {
-  margin: 0rem 1rem 0rem 1rem;
-}
-
-.nav-link:hover {
-  fill: #ffa500 !important;
-  color: #ffa500 !important;
-}
-
-.navbar-brand {
-  color: white !important;
-}
-
-.darkTheme div[class="offcanvas"] {
-  background: #282828 !important;
-}
-
-.lightTheme div[class="offcanvas"] {
-  background: #ffffff !important;
-}
- */

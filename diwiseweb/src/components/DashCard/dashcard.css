@@ -1,13 +1,13 @@
 .dashCard {
   width: 19rem;
   height: 19rem;
-  padding-bottom: 1.75rem;
+  padding-top: 1.75rem;
   border-radius: 1.25rem;
   font-size: 8em;
   margin: 1.25rem;
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: flex-start;
   flex-wrap: wrap;
   flex-direction: column;
   cursor: pointer;

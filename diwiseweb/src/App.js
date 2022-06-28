@@ -22,6 +22,14 @@ function App() {
           customerPhoneNumber="08-123456"
           customerEmail="support@support.se"
           customerWebsite="https://google.com"
+          faqUrl="/"
+          faqText="FAQ"
+          diwiseUrl="/"
+          diwiseText="Diwise"
+          githubUrl="/"
+          githubText="GitHub"
+          bugReportUrl="/"
+          bugReportText="Rapportera en bugg"
         />
       </div>
     </>
