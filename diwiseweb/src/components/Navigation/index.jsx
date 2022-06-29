@@ -22,7 +22,7 @@ function MainNav() {
         >
           <Container fluid>
             <Navbar.Brand href="/">
-              <DiwiseLogo />
+              <DiwiseLogo /> Sundsvall
             </Navbar.Brand>
             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
             <Navbar.Offcanvas
@@ -37,7 +37,7 @@ function MainNav() {
               </Offcanvas.Header>
               <Offcanvas.Body>
                 <Nav className="justify-content-end flex-grow-1 pe-3">
-                  <Nav.Link href="/">
+                  <Nav.Link href="/search">
                     <SearchIcon />
                   </Nav.Link>
                   <Nav.Link href="/">

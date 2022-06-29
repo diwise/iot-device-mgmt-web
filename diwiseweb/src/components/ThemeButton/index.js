@@ -1,4 +1,3 @@
-import React from "react";
 import { useState, useEffect } from "react";
 import "./themebutton.css";
 
@@ -29,34 +28,31 @@ function ThemeButton() {
 
   return (
     <div className={darkMode ? "dark-mode" : "light-mode"}>
-      <nav>
-        <div className="toggle-container">
-          <span style={{ color: darkMode ? "grey" : "orange" }}>☀︎</span>
-          <span className="toggle">
-            <input
-              checked={darkMode}
-              onChange={() => setDarkMode((prevMode) => !prevMode)}
-              id="checkbox"
-              className="checkbox"
-              type="checkbox"
-            />
-            <label htmlFor="checkbox" />
-          </span>
+      <div className="toggle-container">
+        <span style={{ color: darkMode ? "grey" : "orange" }}>☀︎</span>
+        <span className="toggle">
+          <input
+            checked={darkMode}
+            onChange={() => setDarkMode((prevMode) => !prevMode)}
+            id="checkbox"
+            className="checkbox"
+            type="checkbox"
+          />
+          <label htmlFor="checkbox" />
+        </span>
 
-          <span
-            style={{
-              color: darkMode
-                ? document.body.classList.add("darkTheme") +
-                  document.body.classList.remove("lightTheme")
-                : document.body.classList.add("lightTheme") +
-                  document.body.classList.remove("darkTheme"),
-            }}
-          >
-            ☾
-          </span>
-        </div>
-      </nav>
-      <main></main>
+        <span
+          style={{
+            color: darkMode
+              ? document.body.classList.add("darkTheme") +
+                document.body.classList.remove("lightTheme")
+              : document.body.classList.add("lightTheme") +
+                document.body.classList.remove("darkTheme"),
+          }}
+        >
+          ☾
+        </span>
+      </div>
     </div>
   );
 }

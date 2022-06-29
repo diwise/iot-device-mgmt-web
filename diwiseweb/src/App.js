@@ -4,6 +4,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
 import MainNav from "./components/Navigation";
 import Footer from "./components/Footer";
+import SearchPage from "./pages/Search";
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (
@@ -13,7 +15,9 @@ function App() {
         <MainNav />
         <BrowserRouter>
           <Routes>
+            <Route path="*" element={<NotFound />} />
             <Route path="/" element={<Dashboard />} />
+            <Route path="/search" element={<SearchPage />} />
           </Routes>
         </BrowserRouter>
         <Footer
