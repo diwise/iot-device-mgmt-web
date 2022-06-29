@@ -13,10 +13,25 @@ const Dashboard = () => {
   return (
     <>
       <Dash>
-        <DashCard stylename="inactive" number="2" text="enheter med fel" />
-        <DashCard stylename="warning" number="3" text="enheter med varningar" />
-        <DashCard stylename="active" number="104" text="enheter online" />
-        <DashCard stylename="" number="109" text="enheter totalt" />
+        <DashCard
+          stylename="inactive"
+          number="2"
+          url="fel"
+          text="enheter med fel"
+        />
+        <DashCard
+          stylename="warning"
+          number="3"
+          url="varningar"
+          text="enheter med varningar"
+        />
+        <DashCard
+          stylename="active"
+          number="104"
+          url="online"
+          text="enheter online"
+        />
+        <DashCard stylename="" number="109" url="total" text="enheter totalt" />
       </Dash>
       <SearchCard />
     </>

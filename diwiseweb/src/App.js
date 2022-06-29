@@ -1,4 +1,5 @@
 import "./App.css";
+import "./components/CardTemplate/cardtemplate.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
@@ -6,6 +7,7 @@ import MainNav from "./components/Navigation";
 import Footer from "./components/Footer";
 import SearchPage from "./pages/Search";
 import NotFound from "./pages/NotFound";
+import SearchResultsErrorsOnly from "./pages/SearchresultErrorsOnly";
 
 function App() {
   return (
@@ -13,13 +15,16 @@ function App() {
       <div className="background"></div>
       <div className="app">
         <MainNav />
-        <BrowserRouter>
-          <Routes>
-            <Route path="*" element={<NotFound />} />
-            <Route path="/" element={<Dashboard />} />
-            <Route path="/search" element={<SearchPage />} />
-          </Routes>
-        </BrowserRouter>
+        <main>
+          <BrowserRouter>
+            <Routes>
+              <Route path="*" element={<NotFound />} />
+              <Route path="/" element={<Dashboard />} />
+              <Route path="/search" element={<SearchPage />} />
+              <Route path="/fel" element={<SearchResultsErrorsOnly />} />
+            </Routes>
+          </BrowserRouter>
+        </main>
         <Footer
           customerLogoUrl="url here"
           customerLogoDescription="alt text here"

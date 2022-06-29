@@ -1,0 +1,66 @@
+.deviceWrapper {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 95%;
+  max-width: 83.5rem;
+  margin: auto;
+}
+
+.deviceContainer {
+  width: 100%;
+  max-width: 83.5rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: normal;
+  justify-content: flex-start;
+  height: 5em;
+  border-radius: 0.313em 0.313em 0.313em 0.313em;
+}
+
+.deviceStatus {
+  border-radius: 0.313em 0 0 0.313em;
+  width: 0.8em;
+  background: red;
+}
+
+.device {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-basis: 30%;
+}
+
+.device :first-child {
+  margin-left: 1em;
+}
+
+.device > * {
+  margin-right: 3em;
+  text-align: center;
+}
+
+.collapsible {
+  display: flex;
+}
+
+.deviceContent {
+  margin-left: 1em;
+}
+
+.collapsible {
+  width: 100%;
+}
+
+.darkTheme div[class="deviceContainer"] {
+  background: #282828;
+}
+
+.lightTheme div[class="deviceContainer"] {
+  background: #ffffff;
+}
+
+.lightTheme div[class="collapsible"] {
+  background: #ffffff;
+}

@@ -3,12 +3,12 @@
   height: 19rem;
   padding-top: 1.75rem;
   border-radius: 1.25rem;
-  font-size: 8em;
+  font-size: 7rem;
   margin: 1.25rem;
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   flex-direction: column;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
@@ -20,14 +20,30 @@
   border-width: 3px;
 }
 .dashText {
-  font-size: 32px;
+  font-size: 2rem;
   text-align: center;
 }
 
 .darkTheme div[class*="dashCard"] {
   background: #282828;
+  color: #ffffff;
 }
 
 .lightTheme div[class*="dashCard"] {
   background: #ffffff;
+  color: #000000;
+}
+
+@media only screen and (max-width: 575px) {
+  .dashCard {
+    width: 10rem;
+    height: 10rem;
+    font-size: 3rem;
+    padding-top: 1rem;
+  }
+
+  .dashText {
+    font-size: 1rem;
+    text-align: center;
+  }
 }
