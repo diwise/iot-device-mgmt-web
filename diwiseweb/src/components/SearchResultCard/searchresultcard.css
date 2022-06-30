@@ -1,14 +1,32 @@
+.deviceWrapperError {
+  border: 0.8em solid #de1313;
+}
+
+.deviceWrapperWarning {
+  border: 0.8em solid #ff9900;
+}
+
+.deviceWrapperActive {
+  border: 0.8em solid #27c01a;
+}
+
 .deviceWrapper {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   flex-direction: column;
   width: 95%;
   max-width: 83.5rem;
   margin: auto;
+  margin-bottom: 1em;
+  border-radius: 0.313em 0.313em 0.313em 0.313em;
+  border-top: none;
+  border-right: none;
+  border-bottom: none;
 }
 
 .deviceContainer {
   width: 100%;
+  height: 200px;
   max-width: 83.5rem;
   display: flex;
   flex-direction: row;
@@ -16,20 +34,14 @@
   align-content: normal;
   justify-content: flex-start;
   height: 5em;
-  border-radius: 0.313em 0.313em 0.313em 0.313em;
-}
-
-.deviceStatus {
-  border-radius: 0.313em 0 0 0.313em;
-  width: 0.8em;
-  background: red;
 }
 
 .device {
   display: flex;
+  height: 100%;
+  width: 100%;
   align-items: center;
   justify-content: flex-start;
-  flex-basis: 30%;
 }
 
 .device :first-child {
@@ -37,30 +49,48 @@
 }
 
 .device > * {
-  margin-right: 3em;
+  max-width: fit-content;
   text-align: center;
+  margin-right: 5em;
 }
 
-.collapsible {
-  display: flex;
+.device :last-child {
+  margin-right: 1em;
 }
 
 .deviceContent {
-  margin-left: 1em;
+  padding: 0 1em 0 1em;
+  display: flex;
+  width: 100%;
+  padding-bottom: 2em;
+}
+
+.deviceStatus {
+  flex-basis: 20em;
+  font-weight: 700;
+}
+
+.deviceDescription {
+  flex-basis: 50%;
+  font-weight: 700;
+}
+
+.deviceDescription > *,
+.deviceStatus > * {
+  font-weight: normal;
 }
 
 .collapsible {
+  position: relative !important;
+  display: block !important;
   width: 100%;
+  margin-left: 20px;
 }
 
-.darkTheme div[class="deviceContainer"] {
+.darkTheme div[class*="deviceWrapper"] {
   background: #282828;
 }
 
-.lightTheme div[class="deviceContainer"] {
-  background: #ffffff;
-}
-
-.lightTheme div[class="collapsible"] {
+.lightTheme div[class*="deviceWrapper"] {
   background: #ffffff;
 }

@@ -14,7 +14,7 @@ const Dashboard = () => {
     <>
       <Dash>
         <DashCard
-          stylename="inactive"
+          stylename="error"
           number="2"
           url="fel"
           text="enheter med fel"
