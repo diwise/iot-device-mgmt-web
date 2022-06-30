@@ -7,7 +7,9 @@ import MainNav from "./components/Navigation";
 import Footer from "./components/Footer";
 import SearchPage from "./pages/Search";
 import NotFound from "./pages/NotFound";
-import SearchResultsErrorsOnly from "./pages/SearchresultErrorsOnly";
+import SearchResultsErrorsOnly from "./pages/SearchresultsErrorsOnly";
+import SearchResultsWarningsOnly from "./pages/SearchresultsWarningsOnly";
+import SearchresultsOnlineOnly from "./pages/SearchresultsOnlineOnly";
 
 function App() {
   return (
@@ -22,6 +24,11 @@ function App() {
               <Route path="/" element={<Dashboard />} />
               <Route path="/search" element={<SearchPage />} />
               <Route path="/fel" element={<SearchResultsErrorsOnly />} />
+              <Route
+                path="/varningar"
+                element={<SearchResultsWarningsOnly />}
+              />
+              <Route path="/online" element={<SearchresultsOnlineOnly />} />
             </Routes>
           </BrowserRouter>
         </main>
