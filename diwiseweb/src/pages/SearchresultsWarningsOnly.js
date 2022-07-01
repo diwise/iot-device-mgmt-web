@@ -1,5 +1,6 @@
 import SearchCard from "../components/SearchCard";
 import SearchResultCard from "../components/SearchResultCard";
+import SearchResultTop from "../components/SearchResultTop";
 
 let objects = 3;
 
@@ -7,7 +8,7 @@ export default function SearchResultsWarningsOnly() {
   const listedObjects = [...Array(objects)].map((e, i) => (
     <SearchResultCard
       key={i}
-      deviceStatus="deviceWrapperWarning"
+      deviceStatus="warning"
       deviceName="Enhet 1"
       deviceEnvironment="Vatten"
       deviceDate="05/06/2022, 16:33"
@@ -18,5 +19,10 @@ export default function SearchResultsWarningsOnly() {
     congue nunc sit amet arcu tincidunt faucibus vel non dolor."
     />
   ));
-  return <>{listedObjects}</>;
+  return (
+    <>
+      <SearchResultTop />
+      {listedObjects}
+    </>
+  );
 }

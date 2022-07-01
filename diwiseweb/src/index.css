@@ -36,10 +36,8 @@
   opacity: 50%;
   z-index: 19;
   top: 0;
-  background-image: url("./assets/images/diwise_case_8.jpeg");
+  background: url("./assets/images/diwise_case_8.jpeg") no-repeat center fixed;
   background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
 }
 
 .darkTheme {
@@ -55,6 +53,12 @@
 body {
   margin: 0;
   min-height: 100vh;
+}
+main {
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1400px;
 }
 
 h1 {
@@ -80,15 +84,4 @@ a {
 }
 main > * {
   margin-bottom: 2em;
-}
-.active {
-  color: #27c01a;
-}
-
-.error {
-  color: #de1313;
-}
-
-.warning {
-  color: #ff9900;
 }

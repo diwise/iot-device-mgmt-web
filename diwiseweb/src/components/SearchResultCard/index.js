@@ -8,35 +8,23 @@ function SearchResultCard(props) {
   };
   const { getCollapseProps, getToggleProps, isExpanded } = useCollapse(config);
   return (
-    <div className={`deviceWrapper ${props.deviceStatus}`}>
-      <div className="deviceContainer" {...getToggleProps()}>
-        <div className="device">
-          <div className="deviceDate">{props.deviceDate}</div>
-          <div className="deviceEnvironment">{props.deviceEnvironment}</div>
-          <div className="deviceName">{props.deviceName}</div>
-        </div>
-        {/* <div className="icon">
-          <i
-            className={"fas fa-chevron-circle-" + (isExpanded ? "up" : "down")}
-          ></i>
-        </div> */}
-      </div>
-      <div {...getCollapseProps()}>
-        <div className="deviceContent">
-          <div className="deviceStatus">
-            Status
-            <div>
-              {props.errorMessage}
-              {props.warningMessage}
-            </div>
+    <>
+      <div className={`deviceWrapper ${props.deviceStatus}`}>
+        <div className="deviceContainer">
+          <div class="grid device" {...getToggleProps()}>
+            <div>{props.deviceName}</div>
+            <div>{props.deviceEnvironment}</div>
+            <div>{props.deviceDate}</div>
           </div>
-          <div className="deviceDescription">
-            Beskrivning
+          <div class="content" {...getCollapseProps()}>
+            <strong>Status</strong>
+            {props.errorMessage}
+            {props.warningMessage}
             <div>{props.deviceDescription}</div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 export default SearchResultCard;
