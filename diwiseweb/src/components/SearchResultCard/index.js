@@ -1,5 +1,7 @@
 import "./searchresultcard.css";
 import useCollapse from "react-collapsed";
+import DeviceIcon from "./deviceicon";
+import StatusIcon from "./statusicon";
 
 function SearchResultCard(props) {
   const config = {
@@ -12,15 +14,28 @@ function SearchResultCard(props) {
       <div className={`deviceWrapper ${props.deviceStatus}`}>
         <div className="deviceContainer">
           <div class="grid device" {...getToggleProps()}>
-            <div>{props.deviceName}</div>
-            <div>{props.deviceEnvironment}</div>
-            <div>{props.deviceDate}</div>
+            <strong>{props.deviceName}</strong>
+            <strong>{props.deviceEnvironment}</strong>
+            <strong>{props.deviceDate}</strong>
           </div>
-          <div class="content" {...getCollapseProps()}>
-            <strong>Status</strong>
-            {props.errorMessage}
-            {props.warningMessage}
-            <div>{props.deviceDescription}</div>
+          <div class="contentWrapper" {...getCollapseProps()}>
+            <div class="content">
+              <div className={`status ${props.deviceStatus}`}>
+                <div className={`statusIcon ${props.deviceStatus}`}>
+                  <StatusIcon />
+                </div>
+                <div>
+                  {props.errorMessage} {props.warningMessage}
+                </div>
+              </div>
+              <div class="description">
+                <strong>Beskrivning:</strong>
+                <div>{props.deviceDescription}</div>
+              </div>
+              <a href={props.deviceUrl}>
+                <DeviceIcon />
+              </a>
+            </div>
           </div>
         </div>
       </div>

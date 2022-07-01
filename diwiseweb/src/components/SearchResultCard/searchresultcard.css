@@ -2,6 +2,21 @@
   border: 0.8em solid #de1313;
 }
 
+.statusIcon.error {
+  color: #de1313;
+}
+
+.statusIcon.warning {
+  color: #ff9900;
+}
+
+.statusIcon.active {
+  display: none;
+}
+.status.active:first-child {
+  display: none;
+}
+
 .deviceWrapper.warning {
   border: 0.8em solid #ff9900;
 }
@@ -11,16 +26,9 @@
 }
 .grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
 }
 
-.content {
-  grid-column: 1/-1;
-}
-
-.content:last-child {
-  padding-bottom: 2em;
-}
 .deviceWrapper.error,
 .deviceWrapper.warning,
 .deviceWrapper.active {
@@ -36,6 +44,31 @@
 .device {
   min-height: 5rem;
   align-items: center;
+}
+
+.content a {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 2em;
+  color: inherit;
+}
+
+.contentWrapper {
+  grid-column: 1/-1;
+}
+.content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.content:last-child {
+  padding-bottom: 2em;
+}
+.status {
+  flex-basis: 20%;
+}
+.description {
+  flex-basis: 64%;
 }
 
 .darkTheme div[class*="searchResultTop"] {

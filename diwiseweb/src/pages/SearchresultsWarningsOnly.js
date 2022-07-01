@@ -17,6 +17,7 @@ export default function SearchResultsWarningsOnly() {
     diam magna. Nam ultrices dolor ut nunc tempor semper. Vestibulum
     finibus tempus tempus. Quisque suscipit maximus faucibus. In
     congue nunc sit amet arcu tincidunt faucibus vel non dolor."
+      deviceUrl="device"
     />
   ));
   return (

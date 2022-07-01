@@ -10,6 +10,7 @@ import NotFound from "./pages/NotFound";
 import SearchResultsErrorsOnly from "./pages/SearchresultsErrorsOnly";
 import SearchResultsWarningsOnly from "./pages/SearchresultsWarningsOnly";
 import SearchresultsOnlineOnly from "./pages/SearchresultsOnlineOnly";
+import Device from "./pages/Device";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
                 element={<SearchResultsWarningsOnly />}
               />
               <Route path="/online" element={<SearchresultsOnlineOnly />} />
+              <Route path="/device" element={<Device />} />
             </Routes>
           </BrowserRouter>
         </main>
