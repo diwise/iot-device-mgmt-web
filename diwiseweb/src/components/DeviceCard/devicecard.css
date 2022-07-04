@@ -1,0 +1,38 @@
+.deviceContent {
+  padding: 2em 0.5em 2em 0.5em;
+  width: 100%;
+  display: block;
+}
+
+.hojs {
+  display: flex;
+  justify-content: space-between;
+}
+
+.hejs {
+  padding-right: 2em;
+}
+
+.deviceGrid {
+  max-width: 20em;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+  text-align: left;
+  overflow-x: auto;
+}
+
+.deviceGrid * {
+  height: 3em;
+}
+
+@media only screen and (max-width: 575px) {
+  .hojs {
+    flex-direction: column;
+    max-width: 90%;
+  }
+
+  .deviceGrid {
+    padding-top: 1em;
+  }
+}

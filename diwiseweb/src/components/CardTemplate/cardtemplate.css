@@ -1,20 +1,21 @@
-.darkTheme div[class="blockTitle"] {
+.darkTheme div[class*="blockTitle"] {
   background: rgba(40, 40, 40, 0.5);
 }
 
-.lightTheme div[class="blockTitle"] {
+.lightTheme div[class*="blockTitle"] {
   background: rgba(255, 255, 255, 0.5);
 }
 
-.darkTheme div[class="blockContent"] {
+.darkTheme div[class*="blockContent"] {
   background: #282828;
 }
 
-.lightTheme div[class="blockContent"] {
+.lightTheme div[class*="blockContent"] {
   background: #ffffff;
 }
 .blockTitle {
   border-radius: 0.313em 0.313em 0 0;
+  padding-left: 0.5em;
 }
 
 .blockWrapper {
@@ -34,6 +35,5 @@
   background: #282828;
   border-radius: 0 0 0.313em 0.313em;
   display: flex;
-  justify-content: center;
   padding: 1em 0 1em 0;
 }

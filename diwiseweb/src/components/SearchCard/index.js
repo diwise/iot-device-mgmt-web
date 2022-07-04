@@ -10,7 +10,7 @@ function SearchCard() {
           <div className="blockTitle">
             <h2>Sök enhet</h2>
           </div>
-          <div className="blockContent">
+          <div className="blockContent search">
             <div className="searchForm">
               <Form>
                 <Form.Group className="mb-3" controlId="name">
