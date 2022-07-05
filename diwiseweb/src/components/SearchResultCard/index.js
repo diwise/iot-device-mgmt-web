@@ -13,13 +13,13 @@ function SearchResultCard(props) {
     <>
       <div className={`deviceWrapper ${props.deviceStatus}`}>
         <div className="deviceContainer">
-          <div class="grid device" {...getToggleProps()}>
+          <div className="grid device" {...getToggleProps()}>
             <strong>{props.deviceName}</strong>
             <strong>{props.deviceEnvironment}</strong>
             <strong>{props.deviceDate}</strong>
           </div>
-          <div class="contentWrapper" {...getCollapseProps()}>
-            <div class="content">
+          <div className="contentWrapper" {...getCollapseProps()}>
+            <div className="content">
               <div className={`status ${props.deviceStatus}`}>
                 <div className={`statusIcon ${props.deviceStatus}`}>
                   <StatusIcon />
@@ -28,7 +28,7 @@ function SearchResultCard(props) {
                   {props.errorMessage} {props.warningMessage}
                 </div>
               </div>
-              <div class="description">
+              <div className="description">
                 <strong>Beskrivning:</strong>
                 <div>{props.deviceDescription}</div>
               </div>

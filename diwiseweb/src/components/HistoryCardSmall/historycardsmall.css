@@ -1,0 +1,7 @@
+.historyCard {
+  display: flex;
+  justify-content: space-between;
+  grid-area: 2 / 1 / 3 / 2;
+  height: 15rem;
+  max-width: 35rem;
+}

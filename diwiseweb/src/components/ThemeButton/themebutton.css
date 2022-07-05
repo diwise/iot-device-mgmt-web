@@ -11,8 +11,6 @@ input[type="checkbox"].checkbox {
   background: #555;
   position: relative;
   border-radius: 5px;
-  -webkit-appearance: none;
-  -moz-appearance: none;
   appearance: none;
   cursor: pointer;
   vertical-align: 2px;
@@ -38,7 +36,7 @@ input[type="checkbox"].checkbox + label {
   left: 2px;
   background: #fff;
   opacity: 0.9;
-  background-color: #c3682a;
+  background: #c3682a;
 }
 
 .toggle-container {

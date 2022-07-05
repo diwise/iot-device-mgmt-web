@@ -7,22 +7,22 @@ function SubNavigation(props) {
         <h2>{props.deviceName}</h2>
         <ul>
           <li>
-            <a href="/">Visa på karta</a>
+            <a href="#">Visa på karta</a>
           </li>
         </ul>
         <ul>
           <li>
-            <a href="/">Rapporter</a>
+            <a href="#">Rapporter</a>
           </li>
         </ul>
         <ul>
           <li>
-            <a href="/">Historik</a>
+            <a href="#">Historik</a>
           </li>
         </ul>
         <ul>
           <li>
-            <a href="/">Uppdatera</a>
+            <a href="#">Uppdatera</a>
           </li>
         </ul>
       </div>

@@ -1,5 +1,3 @@
-.blockWrapper.device {
-}
 .deviceContent {
   padding: 2em 0.5em 2em 0.5em;
   width: 100%;
@@ -7,6 +5,7 @@
 }
 
 .deviceCard {
+  grid-area: 1 / 1 / 2 / 2;
   display: flex;
   justify-content: space-between;
 }
@@ -23,13 +22,13 @@
   text-align: left;
   overflow-x: auto;
 }
-
-.deviceCard {
-  max-width: 40rem;
-}
-
 .deviceGrid * {
   height: 3em;
+}
+
+.deviceCard {
+  min-width: 20rem;
+  max-width: 35rem;
 }
 
 @media only screen and (max-width: 575px) {

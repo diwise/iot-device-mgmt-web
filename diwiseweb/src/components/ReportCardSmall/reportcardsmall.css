@@ -1,0 +1,7 @@
+.reportCard {
+  display: flex;
+  justify-content: space-between;
+  grid-area: 2 / 2 / 3 / 3;
+  height: 15rem;
+  max-width: 35rem;
+}

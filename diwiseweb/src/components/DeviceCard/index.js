@@ -13,7 +13,10 @@ const DeviceCard = (props) => {
               <div>
                 <strong>Beskrivning:</strong>
               </div>
-              <div>akjfhakfhkahfkahfkdddhfkajs</div>
+              <div>
+                faowjkfaf as fas fa f flwn rfw qölfnwlörfnmöwmjrpqwk qwe wr wqr
+                w r
+              </div>
             </div>
             <div className="deviceGrid">
               <div>
@@ -39,7 +42,6 @@ const DeviceCard = (props) => {
               </div>
             </div>
           </div>
-          <div></div>
         </div>
       </div>
     </div>
