@@ -46,7 +46,20 @@
   color: #000000;
 }
 
-@media only screen and (max-width: 575px) {
+@media only screen and (max-width: 685px) {
+  .dashCard {
+    width: 15rem;
+    height: 15rem;
+    font-size: 5rem;
+    padding-top: 1rem;
+  }
+
+  .dashText {
+    font-size: 1.5rem;
+  }
+}
+
+@media only screen and (max-width: 546px) {
   .dashCard {
     width: 10rem;
     height: 10rem;
@@ -55,7 +68,19 @@
   }
 
   .dashText {
-    font-size: 1rem;
-    text-align: center;
+    font-size: 1.2rem;
+  }
+}
+
+@media only screen and (max-width: 399px) {
+  .dashCard {
+    width: 7rem;
+    height: 7rem;
+    font-size: 2rem;
+    padding-top: 1rem;
+  }
+
+  .dashText {
+    font-size: 0.9rem;
   }
 }

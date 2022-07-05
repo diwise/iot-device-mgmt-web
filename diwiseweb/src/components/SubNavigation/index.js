@@ -1,32 +1,28 @@
 import "./subnav.css";
 
-function SubNavigation() {
+function SubNavigation(props) {
   return (
     <div className="subNavigationContainer">
       <div className="navLinks">
+        <h2>{props.deviceName}</h2>
         <ul>
           <li>
-            <a href="/">Link</a>
+            <a href="/">Visa på karta</a>
           </li>
         </ul>
         <ul>
           <li>
-            <a href="/">Link</a>
+            <a href="/">Rapporter</a>
           </li>
         </ul>
         <ul>
           <li>
-            <a href="/">Link</a>
+            <a href="/">Historik</a>
           </li>
         </ul>
         <ul>
           <li>
-            <a href="/">Link</a>
-          </li>
-        </ul>
-        <ul>
-          <li>
-            <a href="/">Link</a>
+            <a href="/">Uppdatera</a>
           </li>
         </ul>
       </div>

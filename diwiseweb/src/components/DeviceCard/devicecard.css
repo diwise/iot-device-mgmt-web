@@ -24,13 +24,17 @@
   overflow-x: auto;
 }
 
+.deviceCard {
+  max-width: 40rem;
+}
+
 .deviceGrid * {
   height: 3em;
 }
 
 @media only screen and (max-width: 575px) {
   .deviceCard {
-    flex-direction: column;
+    flex-direction: row;
     max-width: 90%;
   }
 

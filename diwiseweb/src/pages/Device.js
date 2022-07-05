@@ -11,7 +11,7 @@ const DeviceContainer = styled.div`
 const Device = () => {
   return (
     <DeviceContainer>
-      <SubNavigation />
+      <SubNavigation deviceName="Enhetsnamn" />
       <DeviceCard deviceName="Enhetsnamn" />
       <DeviceCard deviceName="Enhetsnamn" />
       <DeviceCard deviceName="Enhetsnamn" />
