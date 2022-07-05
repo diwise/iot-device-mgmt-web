@@ -1,6 +1,7 @@
 import SearchCard from "../components/SearchCard";
 import SearchResultCard from "../components/SearchResultCard";
 import SearchResultTop from "../components/SearchResultTop";
+import styled from "styled-components";
 
 let objects = 104;
 
@@ -20,10 +21,16 @@ export default function SearchResultsOnlineOnly() {
       deviceUrl="device"
     />
   ));
+
+  const SearchResultContainer = styled.div`
+    width: 95%;
+    margin-right: auto;
+    margin-left: auto;
+  `;
   return (
-    <>
+    <SearchResultContainer>
       <SearchResultTop />
       {listedObjects}
-    </>
+    </SearchResultContainer>
   );
 }

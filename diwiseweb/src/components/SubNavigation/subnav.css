@@ -1,0 +1,26 @@
+.darkTheme div[class*="subNavigationContainer"] {
+  background: rgba(40, 40, 40, 0.9);
+}
+
+.lightTheme div[class*="subNavigationContainer"] {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+@media only screen and (min-width: 772px) {
+  .subNavigationWrapper,
+  .subNavigationContainer {
+    width: 15rem;
+  }
+
+  .subNavigationContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    z-index: -1;
+  }
+
+  .navLinks {
+    margin: 8rem 0 0 2rem;
+  }
+}

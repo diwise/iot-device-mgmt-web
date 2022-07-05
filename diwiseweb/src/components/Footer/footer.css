@@ -61,13 +61,14 @@
   color: #000000;
 }
 
-@media only screen and (min-width: 575px) {
+@media only screen and (min-width: 772px) {
   .footer {
     flex-direction: row;
   }
 
   .footerDiwise {
-    width: 18rem;
+    min-width: 15rem;
+    max-width: 15rem;
     text-align: left;
   }
 

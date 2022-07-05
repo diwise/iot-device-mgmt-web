@@ -18,22 +18,17 @@ function App() {
       <div className="background"></div>
       <div className="app">
         <MainNav />
-        <main>
-          <BrowserRouter>
-            <Routes>
-              <Route path="*" element={<NotFound />} />
-              <Route path="/" element={<Dashboard />} />
-              <Route path="/search" element={<SearchPage />} />
-              <Route path="/fel" element={<SearchResultsErrorsOnly />} />
-              <Route
-                path="/varningar"
-                element={<SearchResultsWarningsOnly />}
-              />
-              <Route path="/online" element={<SearchresultsOnlineOnly />} />
-              <Route path="/device" element={<Device />} />
-            </Routes>
-          </BrowserRouter>
-        </main>
+        <BrowserRouter>
+          <Routes>
+            <Route path="*" element={<NotFound />} />
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/search" element={<SearchPage />} />
+            <Route path="/fel" element={<SearchResultsErrorsOnly />} />
+            <Route path="/varningar" element={<SearchResultsWarningsOnly />} />
+            <Route path="/online" element={<SearchresultsOnlineOnly />} />
+            <Route path="/device" element={<Device />} />
+          </Routes>
+        </BrowserRouter>
         <Footer
           customerLogoUrl="url here"
           customerLogoDescription="alt text here"

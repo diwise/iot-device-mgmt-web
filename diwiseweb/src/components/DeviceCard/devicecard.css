@@ -1,15 +1,17 @@
+.blockWrapper.device {
+}
 .deviceContent {
   padding: 2em 0.5em 2em 0.5em;
   width: 100%;
   display: block;
 }
 
-.hojs {
+.deviceCard {
   display: flex;
   justify-content: space-between;
 }
 
-.hejs {
+.deviceCardContent {
   padding-right: 2em;
 }
 
@@ -27,7 +29,7 @@
 }
 
 @media only screen and (max-width: 575px) {
-  .hojs {
+  .deviceCard {
     flex-direction: column;
     max-width: 90%;
   }

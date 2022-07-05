@@ -2,14 +2,14 @@ import "./devicecard.css";
 
 const DeviceCard = (props) => {
   return (
-    <div className="blockWrapper">
+    <div className="blockWrapper device">
       <div className="blockContainer">
         <div className="blockTitle">
           <h2>{props.deviceName}</h2>
         </div>
         <div className="blockContent deviceContent">
-          <div className="hojs">
-            <div className="hejs">
+          <div className="deviceCard">
+            <div className="deviceCardContent">
               <div>
                 <strong>Beskrivning:</strong>
               </div>
