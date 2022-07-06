@@ -15,5 +15,6 @@
 # vendor/
 
 .vscode
+diwiseweb/build
 diwiseweb/node_modules
 diwiseweb/src/components/test
