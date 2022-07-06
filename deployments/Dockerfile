@@ -1,32 +1,21 @@
-FROM golang:1.18 AS builder
+FROM registry.access.redhat.com/ubi8/nodejs-16 AS builder
 
-# Set the Current Working Directory inside the container
-WORKDIR /app
+# Copy package json and install dependencies
+COPY ./diwiseweb/package.json .
+RUN npm install
 
-COPY go.mod .
-COPY go.sum .
+# Copy app resources and build the static files
+COPY ./diwiseweb/public public
+COPY ./diwiseweb/src src
+RUN npm run build
 
-RUN go mod download
+FROM registry.access.redhat.com/ubi8/nginx-118 AS runner
 
-COPY . .
-
-RUN go test -v ./...
-
-WORKDIR /app/cmd/iot-device-mgmt-web
-
-RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build
-
-FROM registry.access.redhat.com/ubi8/ubi-minimal
-WORKDIR /opt/diwise
-
-COPY --from=builder --chown=1001 /app/cmd/iot-device-mgmt-web/iot-device-mgmt-web /opt/diwise
-COPY --chown=1001 wwwroot /opt/diwise/wwwroot
-
-RUN chown 1001 /opt/diwise
-
-ENV GUI_WEB_ROOT=/opt/diwise/wwwroot/assets
+# Copy nginx conf and the app files created by the builder stage
+COPY ./deployments/conf/nginx.conf /etc/nginx/nginx.conf
+COPY --from=builder --chown=1001 /opt/app-root/src/build .
 
 EXPOSE 8080
 USER 1001
 
-ENTRYPOINT ["/opt/diwise/iot-device-mgmt-web"]
+ENTRYPOINT ["nginx", "-g", "daemon off;"]
