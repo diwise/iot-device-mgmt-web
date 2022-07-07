@@ -1,11 +1,11 @@
 .reportSmall.device {
   display: grid;
-  grid-template-columns: repeat(2, 0.5fr);
-  height: 5px;
+  grid-template-columns: repeat(2, 1fr);
+  width: 500px;
 }
 
 .deviceWrapperSmall {
-  margin-top: 1rem;
+  cursor: pointer;
 }
 
 .reportSmallContainer {

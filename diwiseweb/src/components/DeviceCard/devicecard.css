@@ -13,6 +13,10 @@
   max-width: 20rem;
 }
 
+.deviceCardContent :nth-child(even) {
+  margin-bottom: 1em;
+}
+
 .deviceGrid {
   max-width: 17rem;
   display: grid;
@@ -32,7 +36,7 @@
 
 @media only screen and (max-width: 575px) {
   .deviceCard {
-    flex-direction: row;
+    flex-direction: column;
     max-width: 90%;
   }
 

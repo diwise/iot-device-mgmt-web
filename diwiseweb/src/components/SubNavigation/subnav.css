@@ -16,11 +16,35 @@
 
 .navLinks ul {
   padding: 0;
+  display: inline-block;
 }
 
 .navLinks h2 {
   padding: 0;
   margin: 0 0 2rem 0 !important;
+}
+.subNavigationWrapper,
+.subNavigationContainer {
+  width: 100vw;
+}
+
+.navLinks {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.navTitle {
+  flex-basis: 100%;
+  text-align: center;
+}
+
+.subnavMobile {
+  display: none;
+}
+.subnavDesktop {
+  display: block;
 }
 
 @media only screen and (min-width: 772px) {
@@ -37,7 +61,24 @@
     z-index: -1;
   }
 
+  .navLinks ul {
+    display: block;
+  }
+
   .navLinks {
     margin: 8rem 0 0 2rem;
+    display: block;
+  }
+  .navTitle {
+    text-align: left;
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  .subnavMobile {
+    display: block;
+  }
+  .subnavDesktop {
+    display: none;
   }
 }

@@ -1,7 +1,22 @@
-.historyCard {
-  display: flex;
-  justify-content: space-between;
-  grid-area: 2 / 1 / 3 / 2;
-  height: 15rem;
-  max-width: 35rem;
+.historySmallContainer {
+  padding-left: 1em;
+  height: 50px;
+}
+
+.historyWrapperSmall {
+  border-top: none;
+  border-right: none;
+  border-bottom: none;
+  padding-left: 1em;
+  display: grid;
+  border-radius: 0.6rem;
+  margin-bottom: 0.5em;
+}
+
+.darkTheme div[class*="historyWrapperSmall"] {
+  background: rgb(40, 40, 40);
+}
+
+.lightTheme div[class*="historyWrapperSmall"] {
+  background: rgb(255, 255, 255);
 }

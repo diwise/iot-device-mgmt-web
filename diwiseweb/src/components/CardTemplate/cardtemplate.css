@@ -24,7 +24,6 @@
 }
 
 .blockContainer {
-  width: 95%;
   max-width: 83.5rem;
   display: flex;
   justify-content: center;
@@ -34,5 +33,5 @@
 
 .blockContent {
   border-radius: 0 0 0.313em 0.313em;
-  padding: 1em 0 1em 0;
+  /* padding: 1em 0 1em 0; */
 }

@@ -6,7 +6,8 @@ const ReportCardSmall = (props) => {
       <div className="reportSmallContainer">
         <div className="reportSmall device">
           <strong>{props.deviceDate}</strong>
-          <strong>{props.deviceMessage}</strong>
+
+          <strong>{props.errorMessage}</strong>
         </div>
       </div>
     </div>

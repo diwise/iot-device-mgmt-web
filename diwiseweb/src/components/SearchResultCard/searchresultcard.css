@@ -42,7 +42,8 @@
 }
 
 .device {
-  height: 3rem;
+  height: fit-content;
+  min-height: 3rem;
   align-items: center;
 }
 

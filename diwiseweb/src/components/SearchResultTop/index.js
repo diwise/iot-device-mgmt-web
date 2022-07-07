@@ -1,17 +1,17 @@
 import "./searchresulttop.css";
 
-const SearchResultTop = () => {
+const SearchResultTop = (props) => {
   return (
     <>
-      <div class="grid searchResultTop">
+      <div className="grid searchResultTop">
         <div>
-          <strong>Namn</strong>
+          <strong>{props.columnOne}</strong>
         </div>
         <div>
-          <strong>Miljö</strong>
+          <strong>{props.columnTwo}</strong>
         </div>
         <div>
-          <strong>Senast observerad</strong>
+          <strong>{props.columnThree}</strong>
         </div>
       </div>
     </>

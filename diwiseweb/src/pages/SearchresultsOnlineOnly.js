@@ -10,7 +10,7 @@ export default function SearchResultsOnlineOnly() {
     <SearchResultCard
       key={i}
       deviceStatus="active"
-      deviceName="Enhet 1"
+      deviceName="Namn på enhet"
       deviceEnvironment="Vatten"
       deviceDate="05/06/2022, 16:33"
       errorMessage="Fungerar"
@@ -29,7 +29,7 @@ export default function SearchResultsOnlineOnly() {
   `;
   return (
     <SearchResultContainer>
-      <SearchResultTop />
+      <SearchResultTop columnOne="Namn" columnTwo="Miljö" columnThree="Datum" />
       {listedObjects}
     </SearchResultContainer>
   );

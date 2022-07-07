@@ -10,7 +10,7 @@ export default function SearchResultsWarningsOnly() {
     <SearchResultCard
       key={i}
       deviceStatus="error"
-      deviceName="Enhet 1"
+      deviceName="Namn på enhet"
       deviceEnvironment="Vatten"
       deviceDate="05/06/2022, 16:33"
       errorMessage="Detta är ett error meddelande"
@@ -29,7 +29,7 @@ export default function SearchResultsWarningsOnly() {
   `;
   return (
     <SearchResultContainer>
-      <SearchResultTop />
+      <SearchResultTop columnOne="Namn" columnTwo="Miljö" columnThree="Datum" />
       {listedObjects}
     </SearchResultContainer>
   );

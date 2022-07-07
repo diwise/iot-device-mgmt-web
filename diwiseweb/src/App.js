@@ -11,6 +11,8 @@ import SearchResultsErrorsOnly from "./pages/SearchresultsErrorsOnly";
 import SearchResultsWarningsOnly from "./pages/SearchresultsWarningsOnly";
 import SearchresultsOnlineOnly from "./pages/SearchresultsOnlineOnly";
 import Device from "./pages/Device";
+import History from "./pages/History";
+import Reports from "./pages/Reports";
 
 function App() {
   return (
@@ -27,6 +29,8 @@ function App() {
             <Route path="/varningar" element={<SearchResultsWarningsOnly />} />
             <Route path="/online" element={<SearchresultsOnlineOnly />} />
             <Route path="/device" element={<Device />} />
+            <Route path="/historik" element={<History />} />
+            <Route path="/rapporter" element={<Reports />} />
           </Routes>
         </BrowserRouter>
         <Footer

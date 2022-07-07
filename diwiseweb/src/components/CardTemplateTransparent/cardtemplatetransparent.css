@@ -17,8 +17,7 @@
 }
 
 .TransparentCardContainer {
-  width: 95%;
-  max-width: 83.5rem;
+  width: 60%;
   display: flex;
   justify-content: center;
   flex-direction: column;
