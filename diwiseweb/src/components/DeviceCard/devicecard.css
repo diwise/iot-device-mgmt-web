@@ -3,33 +3,32 @@
   width: 100%;
   display: block;
 }
-
 .deviceCard {
-  grid-area: 1 / 1 / 2 / 2;
+  /* grid-area: 1 / 1 / 2 / 2; */
   display: flex;
-  justify-content: space-between;
 }
 
 .deviceCardContent {
   padding-right: 2em;
+  max-width: 20rem;
 }
 
 .deviceGrid {
-  max-width: 20em;
+  max-width: 17rem;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   align-items: center;
   text-align: left;
   overflow-x: auto;
 }
-.deviceGrid * {
-  height: 3em;
+.deviceGrid div {
+  height: 3rem;
 }
 
-.deviceCard {
+/* .deviceCard {
   min-width: 20rem;
   max-width: 35rem;
-}
+} */
 
 @media only screen and (max-width: 575px) {
   .deviceCard {

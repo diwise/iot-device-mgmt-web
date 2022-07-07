@@ -1,29 +1,22 @@
-.darkTheme div[class*="blockTitle"] {
+.darkTheme div[class*="TransparentCardTitle"] {
   background: rgba(40, 40, 40, 0.5);
 }
 
-.lightTheme div[class*="blockTitle"] {
+.lightTheme div[class*="TransparentCardTitle"] {
   background: rgba(255, 255, 255, 0.5);
 }
 
-.darkTheme div[class*="blockContent"] {
-  background: #282828;
-}
-
-.lightTheme div[class*="blockContent"] {
-  background: #ffffff;
-}
-.blockTitle {
-  border-radius: 0.313em 0.313em 0 0;
+.TransparentCardTitle {
+  border-radius: 0.313em 0.313em 0.313em 0.313em;
   padding-left: 0.5em;
 }
 
-.blockWrapper {
+.TransparentCardWrapper {
   display: flex;
   justify-content: center;
 }
 
-.blockContainer {
+.TransparentCardContainer {
   width: 95%;
   max-width: 83.5rem;
   display: flex;
@@ -32,7 +25,8 @@
   margin-bottom: 2rem;
 }
 
-.blockContent {
+.TransparentCardContent {
+  background: transparent;
   border-radius: 0 0 0.313em 0.313em;
   padding: 1em 0 1em 0;
 }

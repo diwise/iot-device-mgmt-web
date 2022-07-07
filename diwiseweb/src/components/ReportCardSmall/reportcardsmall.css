@@ -1,7 +1,36 @@
-.reportCard {
-  display: flex;
-  justify-content: space-between;
-  grid-area: 2 / 2 / 3 / 3;
-  height: 15rem;
-  max-width: 35rem;
+.reportSmall.device {
+  display: grid;
+  grid-template-columns: repeat(2, 0.5fr);
+  height: 5px;
+}
+
+.deviceWrapperSmall {
+  margin-top: 1rem;
+}
+
+.reportSmallContainer {
+  height: 50px;
+}
+
+.deviceWrapperSmall.error {
+  border: 0.8em solid #de1313;
+}
+
+.deviceWrapperSmall.warning {
+  border: 0.8em solid #ff9900;
+}
+
+.deviceWrapperSmall.active {
+  border: 0.8em solid #27c01a;
+}
+.deviceWrapperSmall.error,
+.deviceWrapperSmall.warning,
+.deviceWrapperSmall.active {
+  border-top: none;
+  border-right: none;
+  border-bottom: none;
+  padding-left: 1em;
+  display: grid;
+  border-radius: 0.6rem;
+  margin-bottom: 0.5em;
 }

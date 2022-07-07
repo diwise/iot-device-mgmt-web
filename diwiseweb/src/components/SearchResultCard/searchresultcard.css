@@ -1,7 +1,3 @@
-.deviceWrapper.error {
-  border: 0.8em solid #de1313;
-}
-
 .statusIcon.error {
   color: #de1313;
 }
@@ -15,6 +11,10 @@
 }
 .status.active:first-child {
   display: none;
+}
+
+.deviceWrapper.error {
+  border: 0.8em solid #de1313;
 }
 
 .deviceWrapper.warning {
@@ -42,7 +42,7 @@
 }
 
 .device {
-  min-height: 5rem;
+  height: 3rem;
   align-items: center;
 }
 
