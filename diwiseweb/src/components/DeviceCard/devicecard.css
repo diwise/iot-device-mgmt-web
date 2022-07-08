@@ -1,6 +1,5 @@
 .deviceContent {
   padding: 2em 0.5em 2em 0.5em;
-  width: 100%;
   display: block;
 }
 .deviceCard {
@@ -33,11 +32,24 @@
   min-width: 20rem;
   max-width: 35rem;
 } */
+@media only screen and (max-width: 866px) {
+  .deviceCard {
+    flex-direction: column;
+    width: 32rem;
+  }
+}
+
+@media only screen and (max-width: 765px) {
+  .deviceCard {
+    flex-direction: row;
+    width: 95vw;
+  }
+}
 
 @media only screen and (max-width: 575px) {
   .deviceCard {
     flex-direction: column;
-    max-width: 90%;
+    width: 95vw;
   }
 
   .deviceGrid {

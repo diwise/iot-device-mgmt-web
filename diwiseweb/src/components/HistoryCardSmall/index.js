@@ -5,7 +5,7 @@ const HistoryCardSmall = (props) => {
   return (
     <div className="historyWrapperSmall">
       <div className="historySmallContainer">
-        <div className="historySmall device grid">
+        <div className="historySmall device">
           <strong>{props.date}</strong>
           <strong>{props.updatedField}</strong>
           <strong>{props.name}</strong>

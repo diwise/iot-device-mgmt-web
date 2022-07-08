@@ -4,10 +4,15 @@ import ReportCardSmall from "../components/ReportCardSmall";
 import DeviceCardTransparent from "../components/CardTemplateTransparent";
 
 const DeviceContainer = styled.div`
-  @media only screen and (min-width: 1235px) {
-    margin-left: 14.5rem;
+  @media only screen and (min-width: 772px) {
+    margin-left: 16rem;
   }
-  width: 1000px;
+
+  @media only screen and (max-width: 771px) {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  max-width: 1000px;
   display: flex;
   flex-direction: column;
 `;

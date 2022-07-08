@@ -43,7 +43,7 @@ const Device = () => {
             environment="Vatten"
           />
         </CardTemplate>
-        {/* <DeviceCardTransparent header="Rapporter">
+        <DeviceCardTransparent header="Rapporter">
           <ReportCardSmall
             deviceStatus="error"
             deviceDate="05/06/2022, 16:33"
@@ -53,13 +53,13 @@ const Device = () => {
           <ReportCardSmall
             deviceStatus="warning"
             deviceDate="05/06/2022, 16:33"
-            errorMessage="Detta är ett error meddelande"
+            errorMessage="Varningmeddelande"
             deviceUrl="device"
           />
           <ReportCardSmall
             deviceStatus="warning"
             deviceDate="05/06/2022, 16:33"
-            errorMessage="Detta är ett error meddelande"
+            errorMessage="Varningmeddelande"
             deviceUrl="device"
           />
         </DeviceCardTransparent>
@@ -76,7 +76,7 @@ const Device = () => {
             date="06/09/2022, 14:23"
             updatedField="Beskrivning"
           />
-        </DeviceCardTransparent> */}
+        </DeviceCardTransparent>
       </DeviceContainer>
     </>
   );

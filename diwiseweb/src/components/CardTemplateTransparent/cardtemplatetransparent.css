@@ -13,19 +13,37 @@
 
 .TransparentCardWrapper {
   display: flex;
-  justify-content: center;
 }
 
 .TransparentCardContainer {
-  width: 60%;
   display: flex;
   justify-content: center;
   flex-direction: column;
   margin-bottom: 2rem;
+  width: 100%;
 }
 
 .TransparentCardContent {
   background: transparent;
   border-radius: 0 0 0.313em 0.313em;
-  padding: 1em 0 1em 0;
+  padding: 0.5em 0 1em 0;
+}
+
+.TransparentCardWrapper {
+  width: 95vw;
+}
+
+@media only screen and (min-width: 772px) {
+  .TransparentCardWrapper {
+    width: 100%;
+  }
+  /* width: 36rem;
+}
+
+.darkTheme div[class*="reportSmall"] {
+  background: #282828;
+}
+
+.lightTheme div[class*="reportSmall"] {
+  background: #ffffff; */
 }

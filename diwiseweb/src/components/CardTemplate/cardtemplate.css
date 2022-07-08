@@ -33,5 +33,6 @@
 
 .blockContent {
   border-radius: 0 0 0.313em 0.313em;
+  margin-bottom: 2rem;
   /* padding: 1em 0 1em 0; */
 }

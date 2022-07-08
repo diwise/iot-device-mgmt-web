@@ -1,13 +1,10 @@
-.searchForm {
-  width: 90%;
-}
-
 .search {
   justify-content: center;
 }
 
 @media only screen and (min-width: 575px) {
   .searchForm form {
+    margin-top: 1rem;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
@@ -22,5 +19,6 @@
     flex-basis: 100%;
     display: flex;
     justify-content: center;
+    margin-bottom: 2rem;
   }
 }

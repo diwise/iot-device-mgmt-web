@@ -23,7 +23,8 @@ function MainNav() {
           <Container fluid>
             <Navbar.Brand href="/">
               <DiwiseLogo />
-            </Navbar.Brand>
+            </Navbar.Brand>{" "}
+            Prototyp
             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
             <Navbar.Offcanvas
               id={`offcanvasNavbar-expand-${expand}`}
@@ -31,9 +32,9 @@ function MainNav() {
               placement="end"
             >
               <Offcanvas.Header closeButton>
-                <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
-                  {/* Offcanvas */}
-                </Offcanvas.Title>
+                <Offcanvas.Title
+                  id={`offcanvasNavbarLabel-expand-${expand}`}
+                ></Offcanvas.Title>
               </Offcanvas.Header>
               <Offcanvas.Body>
                 <Nav className="justify-content-end flex-grow-1 pe-3">

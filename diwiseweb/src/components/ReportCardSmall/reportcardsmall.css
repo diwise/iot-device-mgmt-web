@@ -1,7 +1,6 @@
 .reportSmall.device {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  width: 500px;
 }
 
 .deviceWrapperSmall {
@@ -33,4 +32,5 @@
   display: grid;
   border-radius: 0.6rem;
   margin-bottom: 0.5em;
+  width: 100%;
 }
