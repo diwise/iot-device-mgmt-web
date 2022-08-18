@@ -8,6 +8,7 @@ import UserIcon from "./userIcon";
 import SearchIcon from "./searchIcon";
 import AddIcon from "./addIcon";
 import DiwiseLogo from "../DiwiseLogo";
+import UserService from "../../services/UserService";
 
 function MainNav() {
   return (
@@ -55,7 +56,7 @@ function MainNav() {
                       Something
                     </NavDropdown.Item>
                     <NavDropdown.Divider />
-                    <NavDropdown.Item href="#action/3.4">
+                    <NavDropdown.Item href="#action/logout" onClick={UserService.doLogout}>
                       Logga ut
                     </NavDropdown.Item>
                   </NavDropdown>
