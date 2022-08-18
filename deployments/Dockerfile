@@ -13,7 +13,8 @@ FROM registry.access.redhat.com/ubi8/nginx-118 AS runner
 
 # Copy nginx conf and the app files created by the builder stage
 COPY ./deployments/conf/nginx.conf /etc/nginx/nginx.conf
-COPY --from=builder --chown=1001 /opt/app-root/src/build .
+RUN mkdir device-management
+COPY --from=builder --chown=1001 /opt/app-root/src/build ./device-management
 
 EXPOSE 8080
 USER 1001

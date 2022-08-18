@@ -4,5 +4,5 @@
 
 ```
 docker build -f deployments/Dockerfile -t diwise/iot-device-mgmt-web:latest .
-docker run --rm -p 8080:8080 diwise/iot-device-mgmt-web
+docker run --rm -p 3000:8080 diwise/iot-device-mgmt-web
 ```
