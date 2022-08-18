@@ -20,7 +20,7 @@ function App() {
       <div className="background"></div>
       <div className="app">
         <MainNav />
-        <BrowserRouter>
+        <BrowserRouter basename="/device-management">
           <Routes>
             <Route path="*" element={<NotFound />} />
             <Route path="/" element={<Dashboard />} />

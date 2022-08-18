@@ -1,6 +1,6 @@
 import Keycloak from "keycloak-js";
 
-const _kc = new Keycloak('/keycloak.json')
+const _kc = new Keycloak('/config/keycloak.json')
 
 const initKeycloak = (onAuthenticatedCallback) => {
     _kc.init({
