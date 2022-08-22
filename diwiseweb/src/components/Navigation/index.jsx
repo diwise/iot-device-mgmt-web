@@ -46,8 +46,8 @@ function MainNav() {
                     <AddIcon />
                   </Nav.Link>
                   <NavDropdown title={<UserIcon />} id="basic-nav-dropdown">
-                    <NavDropdown.Item href="#action/3.1">
-                      Action
+                    <NavDropdown.Item href="/device-management">
+                      Dashboard
                     </NavDropdown.Item>
                     <NavDropdown.Item href="#action/3.2">
                       Another action
