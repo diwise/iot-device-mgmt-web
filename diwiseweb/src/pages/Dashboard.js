@@ -31,7 +31,12 @@ const Dashboard = () => {
           url="online"
           text="enheter online"
         />
-        <DashCard stylename="" number="109" url="total" text="enheter totalt" />
+        <DashCard 
+          stylename=""
+          number="109"
+          url="total"
+          text="enheter totalt"
+        />
       </Dash>
       <SearchCard />
     </>
