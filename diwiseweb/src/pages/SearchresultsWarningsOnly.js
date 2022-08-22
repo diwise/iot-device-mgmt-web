@@ -1,4 +1,3 @@
-import SearchCard from "../components/SearchCard";
 import SearchResultCard from "../components/SearchResultCard";
 import SearchResultTop from "../components/SearchResultTop";
 import styled from "styled-components";

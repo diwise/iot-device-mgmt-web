@@ -5,7 +5,6 @@ import ReportCardSmall from "../components/ReportCardSmall";
 import HistoryCardSmall from "../components/HistoryCardSmall";
 import CardTemplate from "../components/CardTemplate";
 import DeviceCardTransparent from "../components/CardTemplateTransparent";
-import SearchResultCard from "../components/SearchResultCard";
 
 const DeviceContainer = styled.div`
   /* display: grid;
