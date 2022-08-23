@@ -33,7 +33,7 @@ const Dashboard = () => {
         />
         <DashCard 
           stylename=""
-          number="109"
+          number="9"
           url="total"
           text="enheter totalt"
         />
