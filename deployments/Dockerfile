@@ -9,10 +9,10 @@ COPY ./diwiseweb/public public
 COPY ./diwiseweb/src src
 RUN npm run build
 
-FROM registry.access.redhat.com/ubi8/nginx-118 AS runner
+FROM registry.access.redhat.com/ubi8/nginx-120 AS runner
 
 # Copy nginx conf and the app files created by the builder stage
-COPY ./deployments/conf/nginx.conf /etc/nginx/nginx.conf
+COPY ./deployments/conf/nginx.conf "${NGINX_CONF_PATH}"
 RUN mkdir device-management
 COPY --from=builder --chown=1001 /opt/app-root/src/build ./device-management
 
