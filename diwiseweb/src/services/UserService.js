@@ -1,5 +1,4 @@
 import Keycloak from "keycloak-js";
-import DeviceService from "./DeviceService";
 
 const _kc = new Keycloak('/config/keycloak.json')
 
@@ -11,7 +10,6 @@ const initKeycloak = (onAuthenticatedCallback) => {
     .then((authenticated) => {
         if (authenticated) {
             onAuthenticatedCallback();
-            DeviceService.getDeviceData()
         } else {
             console.warn('not authenticated!')
             doLogin();

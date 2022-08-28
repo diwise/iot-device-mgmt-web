@@ -1,31 +1,31 @@
 import SearchResultCard from "../components/SearchResultCard";
 import SearchResultTop from "../components/SearchResultTop";
 import styled from "styled-components";
+import DeviceService from "../services/DeviceService";
 
-let objects = 104;
+const SearchResultContainer = styled.div`
+width: 95%;
+margin-right: auto;
+margin-left: auto;
+`;
 
 export default function SearchResultsOnlineOnly() {
-  const listedObjects = [...Array(objects)].map((e, i) => (
+  const deviceData = DeviceService.useGetData();
+  console.log("number of devices in online results: ", deviceData.length)
+
+  const listedObjects = [...Array(deviceData)].map((device, i) => (
     <SearchResultCard
       key={i}
-      deviceStatus="active"
-      deviceName="Namn på enhet"
-      deviceEnvironment="Vatten"
-      deviceDate="05/06/2022, 16:33"
+      deviceStatus={device[i].active}
+      deviceName={device[i].devEUI}
+      deviceEnvironment={device[i].environment}
+      deviceDate={device[i].last_observed}
       errorMessage="Fungerar"
-      deviceDescription="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla id
-        diam magna. Nam ultrices dolor ut nunc tempor semper. Vestibulum
-        finibus tempus tempus. Quisque suscipit maximus faucibus. In
-        congue nunc sit amet arcu tincidunt faucibus vel non dolor."
-      deviceUrl="device"
+      deviceDescription={device[i].description}
+      deviceUrl="deviceUrl"
     />
   ));
 
-  const SearchResultContainer = styled.div`
-    width: 95%;
-    margin-right: auto;
-    margin-left: auto;
-  `;
   return (
     <SearchResultContainer>
       <SearchResultTop columnOne="Namn" columnTwo="Miljö" columnThree="Datum" />

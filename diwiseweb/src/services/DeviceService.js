@@ -1,19 +1,24 @@
 import HttpService from "./HttpService";
+import { useState, useEffect } from "react";
 
-function getDeviceData(){
-    const url = `/api/v0/devices`
-    //const [devices, setDevices] = React.useState(null)
+function useGetData(){
+    const url = `https://6304e8f7697408f7edbdf8e8.mockapi.io/api/v0/devices`
+    const [devices, setDevices] = useState(["",...""])
 
-    HttpService.getAxiosClient().get(url)
-        .then(response => {
-            //setDevices(response.data)
-            console.log(response.data)
+    useEffect(() => {
+        HttpService.getAxiosClient().get(url)
+            .then(response => {
+            setDevices(response.data);
         })
+    }, []);
 
+    if(devices){
+       return devices
+    }
 }
 
 const DeviceService = {
-    getDeviceData
+    useGetData,
 }
-  
+
 export default DeviceService;

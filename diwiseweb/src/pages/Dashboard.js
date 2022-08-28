@@ -1,6 +1,8 @@
 import DashCard from "../components/DashCard";
 import SearchCard from "../components/SearchCard";
 import styled from "styled-components";
+import DeviceService from "../services/DeviceService";
+import Device from "./Device";
 
 const Dash = styled.div`
   display: flex;
@@ -10,6 +12,8 @@ const Dash = styled.div`
 `;
 
 const Dashboard = () => {
+  const deviceData = DeviceService.useGetData();
+
   return (
     <>
       <Dash>
@@ -33,7 +37,7 @@ const Dashboard = () => {
         />
         <DashCard 
           stylename=""
-          number="9"
+          number={deviceData.length}
           url="total"
           text="enheter totalt"
         />
