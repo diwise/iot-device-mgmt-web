@@ -1,0 +1,76 @@
+@font-face {
+  font-family: "Montsterrat";
+  src: url(./assets/fonts/Montserrat-VariableFont_wght.woff2) format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Montsterrat";
+  src: url(./assets/fonts/Montserrat-Italic-VariableFont_wght.woff2)
+    format("woff2");
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Montsterrat";
+  src: url(./assets/fonts/Montserrat-Bold.woff2) format("woff2");
+  font-weight: 900;
+  font-style: bold;
+}
+
+#root {
+  font-family: "Montsterrat";
+  font-size: 0.875em;
+  position: relative;
+  z-index: 1;
+}
+
+.background {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  opacity: 50%;
+  z-index: 19;
+  top: 0;
+  background: url("./assets/images/diwise_case_8.jpeg") no-repeat center fixed;
+  background-size: cover;
+}
+
+.darkTheme {
+  color: #ffffff;
+  background-color: #282828;
+}
+
+.lightTheme {
+  color: #000000;
+  background-color: #ffffff;
+}
+
+h1 {
+  font-size: 2em;
+}
+
+h2 {
+  font-size: 1.25em !important;
+  font-weight: 500;
+  margin: 0.2em 0 0.2em 0.2em !important;
+}
+
+li {
+  list-style: none;
+  margin: 0;
+}
+
+ul {
+  margin: 0;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+main > * {
+  margin-bottom: 2em;
+}

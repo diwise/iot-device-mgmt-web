@@ -1,0 +1,26 @@
+.historySmallContainer {
+  padding-left: 1em;
+  height: 50px;
+  cursor: pointer;
+}
+.historySmall.device {
+  display: grid;
+  width: 75%;
+  grid-template-columns: repeat(3, 1fr);
+}
+.historyWrapperSmall {
+  border-top: none;
+  border-right: none;
+  border-bottom: none;
+  padding-left: 1em;
+  border-radius: 0.6rem;
+  margin-bottom: 0.5em;
+}
+
+.darkTheme div[class*="historyWrapperSmall"] {
+  background: rgb(40, 40, 40);
+}
+
+.lightTheme div[class*="historyWrapperSmall"] {
+  background: rgb(255, 255, 255);
+}

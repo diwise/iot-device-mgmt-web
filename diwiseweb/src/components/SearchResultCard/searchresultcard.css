@@ -1,0 +1,89 @@
+.statusIcon.error {
+  color: #de1313;
+}
+
+.statusIcon.warning {
+  color: #ff9900;
+}
+
+.statusIcon.active {
+  display: none;
+}
+.status.active:first-child {
+  display: none;
+}
+
+.deviceWrapper.error {
+  border: 0.8em solid #de1313;
+}
+
+.deviceWrapper.warning {
+  border: 0.8em solid #ff9900;
+}
+
+.deviceWrapper.active {
+  border: 0.8em solid #27c01a;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.deviceWrapper.error,
+.deviceWrapper.warning,
+.deviceWrapper.active {
+  border-top: none;
+  border-right: none;
+  border-bottom: none;
+  padding-left: 1em;
+  display: grid;
+  border-radius: 0.6rem;
+  margin-bottom: 0.5em;
+}
+
+.device {
+  height: fit-content;
+  min-height: 3rem;
+  align-items: center;
+}
+
+.content a {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 2em;
+  color: inherit;
+}
+
+.contentWrapper {
+  grid-column: 1/-1;
+}
+.content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.content:last-child {
+  padding-bottom: 2em;
+}
+.status {
+  flex-basis: 20%;
+}
+.description {
+  flex-basis: 64%;
+}
+
+.darkTheme div[class*="searchResultTop"] {
+  background: rgba(40, 40, 40, 0.5);
+}
+
+.darkTheme div[class*="deviceWrapper"] {
+  background: rgb(40, 40, 40);
+}
+
+.lightTheme div[class*="searchResultTop"] {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.lightTheme div[class*="deviceWrapper"] {
+  background: rgb(255, 255, 255);
+}

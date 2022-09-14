@@ -1,0 +1,107 @@
+.darkTheme nav {
+  background: #282828 !important;
+  color: #ffffff;
+}
+
+.lightTheme nav {
+  background: #ffffff !important;
+}
+
+.navbar svg {
+  margin: 0rem 1rem 0rem 1rem;
+}
+
+.lightTheme nav a {
+  color: rgb(0, 0, 0) !important;
+}
+.darkTheme nav a {
+  color: rgb(255, 255, 255) !important;
+}
+
+nav a:hover {
+  color: orange !important;
+}
+
+.darkTheme .dropdown-menu {
+  --bs-dropdown-link-hover-bg: #35393e;
+}
+
+.lightTheme .dropdown-menu {
+  --bs-dropdown-link-hover-bg: #f0f0f0;
+}
+
+.darkTheme nav[class*="navbar-diwise"] {
+  --bs-navbar-color: transparent;
+  --bs-navbar-hover-color: #ffa500;
+  --bs-navbar-disabled-color: rgb(255, 255, 255);
+  --bs-navbar-active-color: #ffa500;
+  --bs-navbar-brand-color: #fff;
+  --bs-navbar-brand-hover-color: #ffa500;
+  --bs-navbar-toggler-border-color: none;
+  --bs-navbar-toggler-icon-bg: url(../../assets/icons/mobile-nav-dark.svg) !important;
+}
+
+.lightTheme nav[class*="navbar-diwise"] {
+  --bs-navbar-color: transparent;
+  --bs-navbar-hover-color: #ffa500;
+  --bs-navbar-disabled-color: rgb(0, 0, 0);
+  --bs-navbar-active-color: #ffa500;
+  --bs-navbar-brand-color: rgb(0, 0, 0);
+  --bs-navbar-brand-hover-color: #ffa500;
+  --bs-navbar-toggler-border-color: none;
+  /* --bs-navbar-toggler-icon-bg: url(../../assets/icons/mobile-nav-light.svg) !important; */
+}
+
+.lightTheme a[class*="nav-link"]:hover {
+  fill: #ffa500 !important;
+  color: #ffa500 !important;
+}
+
+.darkTheme nav a[class*="nav-link"]:hover {
+  fill: #ffa500 !important;
+  color: #ffa500 !important;
+}
+
+.darkTheme div[class*="offcanvas"] {
+  background: #282828 !important;
+}
+.offcanvas-header .btn-close {
+  padding: 0 !important;
+  margin: 0 !important;
+  margin-top: 10px !important;
+  opacity: 1 !important;
+  background-repeat: no-repeat !important;
+}
+
+.darkTheme button[class*="btn-close"] {
+  background: url(../../assets/icons/close-menu-dark.svg) !important;
+}
+
+.lightTheme button[class*="btn-close"] {
+  background: url(../../assets/icons/close-menu-light.svg) !important;
+}
+
+.darkTheme span[class*="navbar-toggler-icon"] {
+  fill: #ffa500 !important;
+  color: #ffa500 !important;
+}
+
+.offcanvas-end {
+  width: 100%;
+}
+
+.navbar-nav {
+  align-items: center;
+}
+.navbar-nav a {
+  margin: 2em 0em 2em 0em !important;
+}
+.dropdown-menu {
+  right: 0 !important;
+  left: auto !important;
+}
+
+.darkTheme div[class*="dropdown-menu"] {
+  background: #282828;
+  color: #ffffff !important;
+}

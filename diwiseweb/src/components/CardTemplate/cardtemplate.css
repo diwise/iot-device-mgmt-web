@@ -1,0 +1,38 @@
+.darkTheme div[class*="blockTitle"] {
+  background: rgba(40, 40, 40, 0.5);
+}
+
+.lightTheme div[class*="blockTitle"] {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.darkTheme div[class*="blockContent"] {
+  background: #282828;
+}
+
+.lightTheme div[class*="blockContent"] {
+  background: #ffffff;
+}
+.blockTitle {
+  border-radius: 0.313em 0.313em 0 0;
+  padding-left: 0.5em;
+}
+
+.blockWrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.blockContainer {
+  max-width: 83.5rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-bottom: 2rem;
+}
+
+.blockContent {
+  border-radius: 0 0 0.313em 0.313em;
+  margin-bottom: 2rem;
+  /* padding: 1em 0 1em 0; */
+}

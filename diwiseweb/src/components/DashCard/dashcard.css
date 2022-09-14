@@ -1,0 +1,86 @@
+.dashCard {
+  width: 19rem;
+  height: 19rem;
+  padding-top: 1.75rem;
+  border-radius: 1.25rem;
+  font-size: 7rem;
+  margin: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  border: 1px solid rgba(105, 99, 99, 0.817);
+}
+
+.dashCard .active {
+  color: #27c01a;
+}
+
+.dashCard .error {
+  color: #de1313;
+}
+
+.dashCard .warning {
+  color: #ff9900;
+}
+
+.dashCard:hover {
+  transform: scale(1.1);
+  border-width: 3px;
+}
+.dashText {
+  font-size: 2rem;
+  text-align: center;
+}
+
+.darkTheme div[class*="dashCard"] {
+  background: #282828;
+  color: #ffffff;
+}
+
+.lightTheme div[class*="dashCard"] {
+  background: #ffffff;
+  color: #000000;
+}
+
+@media only screen and (max-width: 685px) {
+  .dashCard {
+    width: 15rem;
+    height: 15rem;
+    font-size: 5rem;
+    padding-top: 1rem;
+  }
+
+  .dashText {
+    font-size: 1.5rem;
+  }
+}
+
+@media only screen and (max-width: 546px) {
+  .dashCard {
+    width: 10rem;
+    height: 10rem;
+    font-size: 3rem;
+    padding-top: 1rem;
+  }
+
+  .dashText {
+    font-size: 1.2rem;
+  }
+}
+
+@media only screen and (max-width: 399px) {
+  .dashCard {
+    width: 7rem;
+    height: 7rem;
+    font-size: 2rem;
+    padding-top: 1rem;
+  }
+
+  .dashText {
+    font-size: 0.9rem;
+  }
+}

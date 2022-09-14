@@ -1,0 +1,7 @@
+{
+    "realm": "diwise-test",
+    "auth-server-url": "https://iam.diwise.io",
+    "ssl-required": "external",
+    "resource": "diwise-frontend",
+    "public-client": true
+}
