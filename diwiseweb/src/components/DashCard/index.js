@@ -1,12 +1,12 @@
 import "./dashcard.css";
 
-const DashCard = (props) => {
+const DashCard = ({url, stylename, number, text}) => {
   return (
     <>
-      <a href={"/device-management/"+props.url}>
+      <a href={"/device-management/"+url}>
         <div className="dashCard">
-          <div className={props.stylename}>{props.number}</div>
-          <div className="dashText">{props.text}</div>
+          <div className={stylename}>{number}</div>
+          <div className="dashText">{text}</div>
         </div>
       </a>
     </>

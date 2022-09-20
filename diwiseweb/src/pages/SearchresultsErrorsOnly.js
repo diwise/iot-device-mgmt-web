@@ -1,23 +1,28 @@
 import SearchResultCard from "../components/SearchResultCard";
 import SearchResultTop from "../components/SearchResultTop";
 import styled from "styled-components";
-
-let objects = 2;
+import DeviceService from "../services/DeviceService";
 
 export default function SearchResultsWarningsOnly() {
-  const listedObjects = [...Array(objects)].map((e, i) => (
+  const deviceData = DeviceService.useGetData();
+  const filteredData = deviceData.length > 1 ? deviceData.filter((device) => device.status.code === 2) : deviceData
+  const listedObjects = filteredData.map((device, i) => (
     <SearchResultCard
       key={i}
+      deviceID={device.deviceID}
+      deviceName={device.name}
+      deviceDescription={device.description}
+      latitude={device.latitude}
+      longitude={device.longitude}
+      deviceEnvironment={device.environment}
+      types={device.types}
+      deviceDate={device.last_observed}
+      sensorType={device.sensor_type}
+      deviceActive={device.active ? "aktiv" : "inaktiv"}
+      tenant={device.tenant}
+      errorMessage="Fungerar"
+      deviceUrl="deviceUrl"
       deviceStatus="error"
-      deviceName="Namn på enhet"
-      deviceEnvironment="Vatten"
-      deviceDate="05/06/2022, 16:33"
-      errorMessage="Detta är ett error meddelande"
-      deviceDescription="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla id
-        diam magna. Nam ultrices dolor ut nunc tempor semper. Vestibulum
-        finibus tempus tempus. Quisque suscipit maximus faucibus. In
-        congue nunc sit amet arcu tincidunt faucibus vel non dolor."
-      deviceUrl="device"
     />
   ));
 
@@ -28,7 +33,12 @@ export default function SearchResultsWarningsOnly() {
   `;
   return (
     <SearchResultContainer>
-      <SearchResultTop columnOne="Namn" columnTwo="Miljö" columnThree="Datum" />
+      <SearchResultTop
+        columnOne="Aktiv"
+        columnTwo="Identitet"
+        columnThree="Namn"
+        columnFour="Senast"
+      />
       {listedObjects}
     </SearchResultContainer>
   );
