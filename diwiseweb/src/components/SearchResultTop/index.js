@@ -13,6 +13,9 @@ const SearchResultTop = (props) => {
         <div>
           <strong>{props.columnThree}</strong>
         </div>
+        <div>
+          <strong>{props.columnFour}</strong>
+        </div>
       </div>
     </>
   );

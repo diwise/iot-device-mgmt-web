@@ -87,3 +87,7 @@
 .lightTheme div[class*="deviceWrapper"] {
   background: rgb(255, 255, 255);
 }
+
+td {
+  vertical-align: top;
+}

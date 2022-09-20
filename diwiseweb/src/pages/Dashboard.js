@@ -12,32 +12,43 @@ const Dash = styled.div`
 
 const Dashboard = () => {
   const deviceData = DeviceService.useGetData();
+  const total = deviceData.length
+
+  let active = 0
+  let warnings = 0
+  let errors = 0
+
+  if (deviceData.length > 1) {
+    active = deviceData.filter((d) => d.active).length
+    warnings = deviceData.filter((d) => d.status.code === 1).length
+    errors = deviceData.filter((d) => d.status.code === 2).length
+  }
 
   return (
     <>
       <Dash>
         <DashCard
           stylename="error"
-          number="2"
+          number={ errors }
           url="fel"
           text="enheter med fel"
         />
         <DashCard
           stylename="warning"
-          number="3"
+          number={warnings}
           url="varningar"
           text="enheter med varningar"
         />
         <DashCard
           stylename="active"
-          number="104"
+          number={active}
           url="online"
           text="enheter online"
         />
-        <DashCard 
+        <DashCard
           stylename=""
-          number={deviceData.length}
-          url="total"
+          number={total}
+          url=""
           text="enheter totalt"
         />
       </Dash>
