@@ -2,7 +2,7 @@ import HttpService from "./HttpService";
 import { useState, useEffect } from "react";
 
 function useGetData() {
-  const url = '/api/v0/device';
+  const url = '/api/v0/devices';
   const [devices, setDevices] = useState([""]);
 
   useEffect(() => {
