@@ -26,6 +26,20 @@ function ThemeButton() {
     return window.matchMedia("(prefers-color-scheme: dark)").matches;
   }
 
+  function enableDarkMode(dark) {
+    if (dark == true) { 
+      document.body.classList.add("darkTheme");
+      document.body.classList.remove("lightTheme")
+      return "grey"
+    }
+
+    document.body.classList.add("lightTheme");
+    document.body.classList.remove("darkTheme")
+
+    return "orange"
+  }
+
+
   return (
     <div className={darkMode ? "dark-mode" : "light-mode"}>
       <div className="toggle-container">
@@ -44,10 +58,8 @@ function ThemeButton() {
         <span
           style={{
             color: darkMode
-              ? document.body.classList.add("darkTheme") +
-                document.body.classList.remove("lightTheme")
-              : document.body.classList.add("lightTheme") +
-                document.body.classList.remove("darkTheme"),
+              ? enableDarkMode(true)
+              : enableDarkMode(false),
           }}
         >
           ☾
