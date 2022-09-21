@@ -9,16 +9,14 @@ import UserService from './services/UserService';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-const renderApp = () => root.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/device-management" element={ <App /> }>
-        </Route>
-      </Routes>
-    </BrowserRouter>
-  </React.StrictMode>
-);
+const renderApp = () =>
+  root.render(
+    <React.StrictMode>
+      <BrowserRouter basename="/device-management">
+        <App />
+      </BrowserRouter>
+    </React.StrictMode>
+  );
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

@@ -13,6 +13,7 @@ import SearchresultsOnlineOnly from "./pages/SearchresultsOnlineOnly";
 import Device from "./pages/Device";
 import History from "./pages/History";
 import Reports from "./pages/Reports";
+import DeviceListView from "./pages/DeviceListView";
 
 function App() {
   return (
@@ -20,17 +21,19 @@ function App() {
       <div className="background"></div>
       <div className="app">
         <MainNav />
-          <Routes>
-            <Route path="*" element={<NotFound />} />
-            <Route path="/" element={<Dashboard />} />
-            <Route path="/search" element={<SearchPage />} />
-            <Route path="/fel" element={<SearchResultsErrorsOnly />} />
-            <Route path="/varningar" element={<SearchResultsWarningsOnly />} />
-            <Route path="/online" element={<SearchresultsOnlineOnly />} />
-            <Route path="/device" element={<Device />} />
-            <Route path="/historik" element={<History />} />
-            <Route path="/rapporter" element={<Reports />} />
-          </Routes>
+        <Routes>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/search" element={<SearchPage />} />
+          <Route path="/fel" element={<SearchResultsErrorsOnly />} />
+          <Route path="/varningar" element={<SearchResultsWarningsOnly />} />
+          <Route path="/online" element={<SearchresultsOnlineOnly />} />
+          <Route path="/device" element={<Device />} />
+          <Route path="/devicelist" element={<DeviceListView />} />
+          <Route path="/historik" element={<History />} />
+          <Route path="/rapporter" element={<Reports />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+
         <Footer
           customerLogoUrl="url here"
           customerLogoDescription="alt text here"

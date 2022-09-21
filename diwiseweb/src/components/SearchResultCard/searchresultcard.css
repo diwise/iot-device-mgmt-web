@@ -24,6 +24,11 @@
 .deviceWrapper.active {
   border: 0.8em solid #27c01a;
 }
+
+.deviceWrapper.inactive {
+  border: 0.8em solid #0000003d;
+}
+
 .grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -31,6 +36,7 @@
 
 .deviceWrapper.error,
 .deviceWrapper.warning,
+.deviceWrapper.inactive,
 .deviceWrapper.active {
   border-top: none;
   border-right: none;
