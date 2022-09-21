@@ -1,7 +1,7 @@
 import "./App.css";
 import "./components/CardTemplate/cardtemplate.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
 import MainNav from "./components/Navigation";
 import Footer from "./components/Footer";
@@ -20,7 +20,6 @@ function App() {
       <div className="background"></div>
       <div className="app">
         <MainNav />
-        <BrowserRouter basename="/device-management">
           <Routes>
             <Route path="*" element={<NotFound />} />
             <Route path="/" element={<Dashboard />} />
@@ -32,7 +31,6 @@ function App() {
             <Route path="/historik" element={<History />} />
             <Route path="/rapporter" element={<Reports />} />
           </Routes>
-        </BrowserRouter>
         <Footer
           customerLogoUrl="url here"
           customerLogoDescription="alt text here"

@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import reportWebVitals from './reportWebVitals';
 import HttpService from './services/HttpService';
 import UserService from './services/UserService';
@@ -10,7 +11,12 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 
 const renderApp = () => root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <Routes>
+        <Route path="/device-management" element={ <App /> }>
+        </Route>
+      </Routes>
+    </BrowserRouter>
   </React.StrictMode>
 );
 
