@@ -1,34 +1,39 @@
 import SearchResultCard from "../components/SearchResultCard";
 import SearchResultTop from "../components/SearchResultTop";
 import styled from "styled-components";
-import DeviceService from "../services/DeviceService";
+import HttpService from "../services/HttpService";
+import { useEffect, useState } from "react";
 
 export default function SearchResultsWarningsOnly() {
-  const deviceData = DeviceService.useGetData();
-  const filteredData =
-    deviceData.length > 1
-      ? deviceData.filter((device) => device.status.code === 1)
-      : deviceData;
+  const [devices, setDevices] = useState([]);
 
-  const listedObjects = filteredData.map((device, i) => (
-    <SearchResultCard
-      key={i}
-      deviceID={device.deviceID}
-      deviceName={device.name}
-      deviceDescription={device.description}
-      latitude={device.latitude}
-      longitude={device.longitude}
-      deviceEnvironment={device.environment}
-      types={device.types}
-      deviceDate={device.last_observed}
-      sensorType={device.sensor_type}
-      deviceActive={device.active ? "aktiv" : "inaktiv"}
-      tenant={device.tenant}
-      errorMessage="Fungerar"
-      deviceUrl="deviceUrl"
-      deviceStatus="warning"
-    />
-  ));
+  useEffect(() => {
+    HttpService.getAxiosClient()
+      .get("/api/v0/devices")
+      .then((response) => setDevices(response.data));
+  }, []);
+
+  const listedObjects = devices
+    .filter((d) => d.status.code === 2)
+    .map((device, i) => (
+      <SearchResultCard
+        key={i}
+        deviceID={device.deviceID}
+        deviceName={device.name}
+        deviceDescription={device.description}
+        latitude={device.latitude}
+        longitude={device.longitude}
+        deviceEnvironment={device.environment}
+        types={device.types}
+        deviceDate={device.last_observed}
+        sensorType={device.sensor_type}
+        deviceActive={device.active ? "aktiv" : "inaktiv"}
+        tenant={device.tenant}
+        errorMessage="Fungerar"
+        deviceUrl="deviceUrl"
+        deviceStatus="warning"
+      />
+    ));
 
   const SearchResultContainer = styled.div`
     width: 95%;

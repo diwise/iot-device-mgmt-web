@@ -1,7 +1,8 @@
 import SearchResultCard from "../components/SearchResultCard";
 import SearchResultTop from "../components/SearchResultTop";
 import styled from "styled-components";
-import DeviceService from "../services/DeviceService";
+import HttpService from "../services/HttpService";
+import { useEffect, useState } from "react";
 
 const SearchResultContainer = styled.div`
 width: 95%;
@@ -10,9 +11,15 @@ margin-left: auto;
 `;
 
 export default function SearchResultsOnlineOnly() {
-  const deviceData = DeviceService.useGetData();
+  const [devices, setDevices] = useState([]);
 
-  const listedObjects = deviceData
+  useEffect(() => {
+    HttpService.getAxiosClient()
+      .get("/api/v0/devices")
+      .then((response) => setDevices(response.data));
+  }, []);
+
+  const listedObjects = devices
     .filter((d) => d.active)
     .map((device, i) => (
       <SearchResultCard

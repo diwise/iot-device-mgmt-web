@@ -1,12 +1,20 @@
 import SearchResultCard from "../components/SearchResultCard";
 import SearchResultTop from "../components/SearchResultTop";
 import styled from "styled-components";
-import DeviceService from "../services/DeviceService";
+import HttpService from "../services/HttpService";
+import { useEffect, useState } from "react";
 
 export default function SearchResultsWarningsOnly() {
-  const deviceData = DeviceService.useGetData();
-  const filteredData = deviceData.length > 1 ? deviceData.filter((device) => device.status.code === 2) : deviceData
-  const listedObjects = filteredData.map((device, i) => (
+
+  const [devices, setDevices] = useState([]);
+
+  useEffect(() => {
+    HttpService.getAxiosClient()
+      .get("/api/v0/devices")
+      .then((response) => setDevices(response.data));
+  }, []);
+
+  const listedObjects = devices.filter((d) => d.status.code === 2).map((device, i) => (
     <SearchResultCard
       key={i}
       deviceID={device.deviceID}
