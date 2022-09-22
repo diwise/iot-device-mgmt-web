@@ -21,6 +21,7 @@ function SearchCard() {
                 <Form.Group className="mb-3" controlId="id">
                   <Form.Label>ID</Form.Label>
                   <Form.Control type="id" />
+                  <Form.Check />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="environment">

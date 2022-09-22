@@ -8,7 +8,7 @@ function SubNavigation(props) {
   return (
     <div className="subNavigationContainer">
       <div className="navLinks">
-        <a class="navTitle" href="/device">
+        <a className="navTitle" href="/device">
           <h2>{props.deviceName}</h2>
         </a>
         <ul>

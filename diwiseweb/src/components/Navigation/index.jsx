@@ -22,7 +22,7 @@ function MainNav() {
           className="mb-3"
         >
           <Container fluid>
-            <Navbar.Brand href="/">
+            <Navbar.Brand href="/device-management">
               <DiwiseLogo />
             </Navbar.Brand>{" "}
             Prototyp

@@ -1,7 +1,8 @@
 import DashCard from "../components/DashCard";
 import SearchCard from "../components/SearchCard";
 import styled from "styled-components";
-import DeviceService from "../services/DeviceService";
+import HttpService from "../services/HttpService";
+import { useEffect, useState } from "react";
 
 const Dash = styled.div`
   display: flex;
@@ -11,44 +12,39 @@ const Dash = styled.div`
 `;
 
 const Dashboard = () => {
-  const deviceData = DeviceService.useGetData();
-  const total = deviceData.length
+  const [devices, setDevices] = useState([]);
 
-  let active = 0
-  let warnings = 0
-  let errors = 0
-
-  if (deviceData.length > 1) {
-    active = deviceData.filter((d) => d.active).length
-    warnings = deviceData.filter((d) => d.status.code === 1).length
-    errors = deviceData.filter((d) => d.status.code === 2).length
-  }
+  useEffect(() => {
+    HttpService.getAxiosClient()
+      .get('/api/v0/devices')
+      .then((response) => setDevices(response.data))
+  }, [])
 
   return (
     <>
       <Dash>
         <DashCard
           stylename="error"
-          number={ errors }
-          url="fel"
+          number={devices.filter((d) => d.status.code === 2).length}
+          url="/devices/fel"
           text="enheter med fel"
         />
         <DashCard
           stylename="warning"
-          number={warnings}
-          url="varningar"
+          number={devices.filter((d) => d.status.code === 1).length}
+          url="/devices/varningar"
           text="enheter med varningar"
         />
         <DashCard
           stylename="active"
-          number={active}
-          url="online"
+          number={devices.filter((d) => d.active).length}
+          url="/devices/online"
           text="enheter online"
         />
         <DashCard
           stylename=""
-          number={total}
-          url=""
+          number={devices.length}
+          url="devices"
           text="enheter totalt"
         />
       </Dash>

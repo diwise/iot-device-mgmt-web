@@ -1,15 +1,14 @@
 import "./dashcard.css";
+import { Link } from "react-router-dom";
 
 const DashCard = ({url, stylename, number, text}) => {
   return (
-    <>
-      <a href={"/device-management/"+url}>
-        <div className="dashCard">
-          <div className={stylename}>{number}</div>
-          <div className="dashText">{text}</div>
-        </div>
-      </a>
-    </>
+    <Link to={ url } >
+      <div className="dashCard">
+        <div className={stylename}>{number}</div>
+        <div className="dashText">{text}</div>
+      </div>
+    </Link>
   );
 };
 
