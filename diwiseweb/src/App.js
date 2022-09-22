@@ -7,9 +7,6 @@ import MainNav from "./components/Navigation";
 import Footer from "./components/Footer";
 import SearchPage from "./pages/Search";
 import NotFound from "./pages/NotFound";
-import SearchResultsErrorsOnly from "./pages/SearchresultsErrorsOnly";
-import SearchResultsWarningsOnly from "./pages/SearchresultsWarningsOnly";
-import SearchresultsOnlineOnly from "./pages/SearchresultsOnlineOnly";
 import Device from "./pages/Device";
 import History from "./pages/History";
 import Reports from "./pages/Reports";
@@ -24,16 +21,13 @@ function App() {
         <Routes>
           <Route path="/" element={<Dashboard />} />
           <Route path="/search" element={<SearchPage />} />
-          <Route path="/fel" element={<SearchResultsErrorsOnly />} />
-          <Route path="/varningar" element={<SearchResultsWarningsOnly />} />
-          <Route path="/online" element={<SearchresultsOnlineOnly />} />
-          <Route path="/device" element={<Device />} />
-          <Route path="/devicelist" element={<DeviceListView />} />
+          <Route path="/device/:deviceID" element={<Device />} />
+          <Route path="/devices" element={<DeviceListView />} />
+          <Route path="/devices/:status" element={<DeviceListView />} />
           <Route path="/historik" element={<History />} />
           <Route path="/rapporter" element={<Reports />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
-
         <Footer
           customerLogoUrl="url here"
           customerLogoDescription="alt text here"

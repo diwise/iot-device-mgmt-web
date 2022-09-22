@@ -5,6 +5,9 @@ import ReportCardSmall from "../components/ReportCardSmall";
 import HistoryCardSmall from "../components/HistoryCardSmall";
 import CardTemplate from "../components/CardTemplate";
 import DeviceCardTransparent from "../components/CardTemplateTransparent";
+import { useEffect, useState } from "react";
+import HttpService from "../services/HttpService";
+import { useParams } from "react-router-dom";
 
 const DeviceContainer = styled.div`
   /* display: grid;
@@ -26,58 +29,55 @@ const DeviceContainer = styled.div`
 `;
 
 const Device = () => {
+  const [device, setDevice] = useState({})
+  const { deviceID } = useParams();
+
+  useEffect(() => {
+    HttpService.getAxiosClient()
+      .get("/api/v0/devices/" + deviceID)
+      .then((response) => setDevice(response.data));
+  }, [deviceID]);
+
   return (
-    <>
-      <SubNavigation deviceName="Enhetsnamn" />
-      <DeviceContainer>
-        <CardTemplate header="Enhetsnamn">
-          <DeviceCard
-            status="online"
-            description="Detta är en beskriving om enheten som användaren själv kan uppdatera."
-            sensorType="62.39281"
-            type="urn:oma:lwm2m:ext:3302"
-            id="53aa3c08-eed8-4e7b-8bca-88f1937817ab"
-            latitude="17.32109"
-            longitude="17.32109"
-            environment="Vatten"
-          />
-        </CardTemplate>
-        <DeviceCardTransparent header="Rapporter">
-          <ReportCardSmall
-            deviceStatus="error"
-            deviceDate="05/06/2022, 16:33"
-            errorMessage="Detta är ett error meddelande"
-            deviceUrl="device"
-          />
-          <ReportCardSmall
-            deviceStatus="warning"
-            deviceDate="05/06/2022, 16:33"
-            errorMessage="Varningmeddelande"
-            deviceUrl="device"
-          />
-          <ReportCardSmall
-            deviceStatus="warning"
-            deviceDate="05/06/2022, 16:33"
-            errorMessage="Varningmeddelande"
-            deviceUrl="device"
-          />
-        </DeviceCardTransparent>
-        <DeviceCardTransparent header="Historik">
-          <HistoryCardSmall
-            date="06/09/2022, 14:23"
-            updatedField="Beskrivning"
-          />
-          <HistoryCardSmall
-            date="06/09/2022, 14:23"
-            updatedField="Koordinater"
-          />
-          <HistoryCardSmall
-            date="06/09/2022, 14:23"
-            updatedField="Beskrivning"
-          />
-        </DeviceCardTransparent>
-      </DeviceContainer>
-    </>
+    <DeviceContainer>
+      <CardTemplate header="Enhetsnamn">
+        <DeviceCard
+          status="online"
+          description={device.description}
+          sensorType={device.sensor_type}
+          type={device.types}
+          id={device.deviceID}
+          latitude={device.position !== undefined ? device.position.latitude : 0}
+          longitude={device.position !== undefined ? device.position.longitude : 0}
+          environment={device.environment}
+        />
+      </CardTemplate>
+      <DeviceCardTransparent header="Rapporter">
+        <ReportCardSmall
+          deviceStatus="error"
+          deviceDate="05/06/2022, 16:33"
+          errorMessage="Detta är ett error meddelande"
+          deviceUrl="device"
+        />
+        <ReportCardSmall
+          deviceStatus="warning"
+          deviceDate="05/06/2022, 16:33"
+          errorMessage="Varningmeddelande"
+          deviceUrl="device"
+        />
+        <ReportCardSmall
+          deviceStatus="warning"
+          deviceDate="05/06/2022, 16:33"
+          errorMessage="Varningmeddelande"
+          deviceUrl="device"
+        />
+      </DeviceCardTransparent>
+      <DeviceCardTransparent header="Historik">
+        <HistoryCardSmall date="06/09/2022, 14:23" updatedField="Beskrivning" />
+        <HistoryCardSmall date="06/09/2022, 14:23" updatedField="Koordinater" />
+        <HistoryCardSmall date="06/09/2022, 14:23" updatedField="Beskrivning" />
+      </DeviceCardTransparent>
+    </DeviceContainer>
   );
 };
 

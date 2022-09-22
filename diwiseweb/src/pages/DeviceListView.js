@@ -1,10 +1,11 @@
-import SearchResultCard from "../components/SearchResultCard";
+import DeviceListCard from "../components/DeviceListCard";
 import SearchResultTop from "../components/SearchResultTop";
 import styled from "styled-components";
 import HttpService from "../services/HttpService";
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
-const SearchResultContainer = styled.div`
+const DeviceListViewContainer = styled.div`
   width: 95%;
   margin-right: auto;
   margin-left: auto;
@@ -12,6 +13,7 @@ const SearchResultContainer = styled.div`
 
 const DeviceListView = () => {
   const [devices, setDevices] = useState([]);
+  const { status } = useParams();
 
   useEffect(() => {
     HttpService.getAxiosClient()
@@ -19,43 +21,36 @@ const DeviceListView = () => {
       .then((response) => setDevices(response.data));
   }, []);
 
-  const listedObjects = devices
-    .map((device) => {
+  let deviceList = devices
 
-      let status = device.active ? "active" : "inactive"
-      if (device.status.code === 1) { status = "warning" }
-      if (device.status.code === 1) { status = "error" }
+  if (status !== undefined) {
+    if (status === "varningar") {
+      deviceList = devices.filter((d) => d.status.code === 1)
+    }
+    if (status === "fel") {
+      deviceList = devices.filter((d) => d.status.code === 2);
+    }
+    if (status === "online") {
+      deviceList = devices.filter((d) => d.active);
+    }
+  }
 
-      return (
-        <SearchResultCard
-          key={device.devEUI}
-          deviceID={device.deviceID}
-          deviceName={device.name}
-          deviceDescription={device.description}
-          latitude={device.latitude}
-          longitude={device.longitude}
-          deviceEnvironment={device.environment}
-          types={device.types}
-          deviceDate={device.last_observed}
-          sensorType={device.sensor_type}
-          deviceActive={device.active ? "aktiv" : "inaktiv"}
-          tenant={device.tenant}
-          errorMessage="Fungerar"
-          deviceUrl="deviceUrl"
-          deviceStatus={ status }
-        />
-    )});
+  const listedObjects = deviceList.map((device) => {
+    return (
+      <DeviceListCard
+        key={device.devEUI}
+        device= {device}
+        deviceUrl="deviceUrl"
+        deviceStatus={status}
+      />
+    );
+  });
 
   return (
-    <SearchResultContainer>
-      <SearchResultTop
-        columnOne="Aktiv"
-        columnTwo="Identitet"
-        columnThree="Namn"
-        columnFour="Senast"
-      />
+    <DeviceListViewContainer>
+
       {listedObjects}
-    </SearchResultContainer>
+    </DeviceListViewContainer>
   );
 };
 

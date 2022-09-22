@@ -26,25 +26,25 @@ const Dashboard = () => {
         <DashCard
           stylename="error"
           number={devices.filter((d) => d.status.code === 2).length}
-          url="fel"
+          url="/devices/fel"
           text="enheter med fel"
         />
         <DashCard
           stylename="warning"
           number={devices.filter((d) => d.status.code === 1).length}
-          url="varningar"
+          url="/devices/varningar"
           text="enheter med varningar"
         />
         <DashCard
           stylename="active"
           number={devices.filter((d) => d.active).length}
-          url="online"
+          url="/devices/online"
           text="enheter online"
         />
         <DashCard
           stylename=""
           number={devices.length}
-          url="devicelist"
+          url="devices"
           text="enheter totalt"
         />
       </Dash>
