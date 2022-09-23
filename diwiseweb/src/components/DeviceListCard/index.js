@@ -41,55 +41,55 @@ function DeviceListCard({ defaultExpanded, collapsedHeight, device }) {
   }
 
   return (
-      <div className={`deviceWrapper ${status}`}>
-        <div className="deviceContainer">
-          <div className="grid device" {...getToggleProps()}>
-            <strong>
-              <StatusIcon />
-              {device.active ? "Aktiv" : "Inaktiv"}
-            </strong>
-            <strong>{device.deviceID}</strong>
-            <strong>{device.name}</strong>
-            <strong>
-              {device.last_observed}
-              <Link to={"/device/" + device.deviceID}>
-                <DeviceIcon />
-              </Link>
-            </strong>
-          </div>
-          <div className="contentWrapper" {...getCollapseProps()}>
-            <div className="content">
-              <table>
-                <tbody>
-                  <TableRow header="devEUI" value={device.devEUI} />
-                  <TableRow header="deviceID" value={device.deviceID} />
-                  <TableRow header="Namn" value={device.name} />
-                  <TableRow header="Beskrivning" value={device.description} />
-                  <TableRow header="Miljö" value={device.environment} />
-                  <TableRow header="Sensortyp" value={device.sensor_type} />
-                  <TableRow header="Senast" value={device.last_observed} />
-                  <TableRow header="Tenant" value={device.tenant} />
-                  <tr>
-                    <th>Position</th>
-                    <td>
-                      <ul>
-                        <li>{device.position.latitude}</li>
-                        <li>{device.position.longitude}</li>
-                      </ul>
-                    </td>
-                  </tr>
+    <div className={`deviceWrapper ${status}`}>
+      <div className="deviceContainer">
+        <div className="grid device" {...getToggleProps()}>
+          <strong>
+            <StatusIcon />
+            {device.active ? "Aktiv" : "Inaktiv"}
+          </strong>
+          <strong>{device.deviceID}</strong>
+          <strong>{device.name}</strong>
+          <strong>
+            {device.last_observed}
+            <Link to={"/device/" + device.deviceID}>
+              <DeviceIcon />
+            </Link>
+          </strong>
+        </div>
+        <div className="contentWrapper" {...getCollapseProps()}>
+          <div className="content">
+            <table>
+              <tbody>
+                <TableRow header="devEUI" value={device.devEUI} />
+                <TableRow header="deviceID" value={device.deviceID} />
+                <TableRow header="Namn" value={device.name} />
+                <TableRow header="Beskrivning" value={device.description} />
+                <TableRow header="Miljö" value={device.environment} />
+                <TableRow header="Sensortyp" value={device.sensor_type} />
+                <TableRow header="Senast" value={device.last_observed} />
+                <TableRow header="Tenant" value={device.tenant} />
+                <tr>
+                  <th>Position</th>
+                  <td>
+                    <ul>
+                      <li>{device.location !== undefined ? device.location.latitude : 0}</li>
+                      <li>{device.location !== undefined ? device.location.longitude : 0}</li>
+                    </ul>
+                  </td>
+                </tr>
 
-                  <tr>
-                    <th>Typer</th>
-                    <td>{device.types}</td>
-                  </tr>
-                  <StatusRow header="Status" code={device.status.code} />
-                </tbody>
-              </table>
-            </div>
+                <tr>
+                  <th>Typer</th>
+                  <td>{device.types}</td>
+                </tr>
+                <StatusRow header="Status" code={device.status.code} />
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
+    </div>
   );
 }
 export default DeviceListCard;
