@@ -55,6 +55,9 @@ const DeviceListView = () => {
         onmessage(event) {
           const parsedData = JSON.parse(event.data);
           if (parsedData !== null) {
+            console.log(parsedData)
+            fetchDataAndSetState(setDevices);
+            /*
             switch (parsedData.eventName) {
               case "devicesUpdated":
                 fetchDataAndSetState(setDevices);
@@ -65,6 +68,7 @@ const DeviceListView = () => {
               default:
                 break;
             }
+            */
           }
         },
       });

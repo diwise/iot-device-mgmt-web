@@ -33,6 +33,7 @@ const Dashboard = () => {
         onmessage(event) {
           const parsedData = JSON.parse(event.data);
           if (parsedData !== null) {
+            console.log(parsedData);
             fetchDataAndSetState(setDevices);
           }
         },
