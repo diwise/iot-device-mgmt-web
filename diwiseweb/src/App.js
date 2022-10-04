@@ -29,11 +29,11 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer
-          customerLogoUrl="url here"
-          customerLogoDescription="alt text here"
+          customerLogoUrl="https://sundsvall.se/images/18.44e3ea617a0905381337a0c/1628607147661/logo.svg"
+          customerLogoDescription="logo"
           customerPhoneNumber="08-123456"
-          customerEmail="support@support.se"
-          customerWebsite="https://google.com"
+          customerEmail="support@diwise.io"
+          customerWebsite="https://diwise.io"
           faqUrl="/"
           faqText="FAQ"
           diwiseUrl="/"

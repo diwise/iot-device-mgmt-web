@@ -1,10 +1,10 @@
 import DeviceCard from "../components/DeviceCard";
-import SubNavigation from "../components/SubNavigation";
+//import SubNavigation from "../components/SubNavigation";
 import styled from "styled-components";
-import ReportCardSmall from "../components/ReportCardSmall";
-import HistoryCardSmall from "../components/HistoryCardSmall";
+//import ReportCardSmall from "../components/ReportCardSmall";
+//import HistoryCardSmall from "../components/HistoryCardSmall";
 import CardTemplate from "../components/CardTemplate";
-import DeviceCardTransparent from "../components/CardTemplateTransparent";
+//import DeviceCardTransparent from "../components/CardTemplateTransparent";
 import { useEffect, useState } from "react";
 import HttpService from "../services/HttpService";
 import { useParams } from "react-router-dom";
@@ -52,6 +52,8 @@ const Device = () => {
           environment={device.environment}
         />
       </CardTemplate>
+      {
+        /*
       <DeviceCardTransparent header="Rapporter">
         <ReportCardSmall
           deviceStatus="error"
@@ -77,6 +79,8 @@ const Device = () => {
         <HistoryCardSmall date="06/09/2022, 14:23" updatedField="Koordinater" />
         <HistoryCardSmall date="06/09/2022, 14:23" updatedField="Beskrivning" />
       </DeviceCardTransparent>
+        */
+      }
     </DeviceContainer>
   );
 };
