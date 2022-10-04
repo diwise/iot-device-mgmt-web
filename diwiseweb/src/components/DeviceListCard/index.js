@@ -25,6 +25,20 @@ const StatusRow = ({ header, code, messages }) => {
   return <TableRow header={header} value={status} />;
 };
 
+const LocationRow = ({ location }) => {
+  return (
+    <tr>
+      <th>Position</th>
+      <td>
+        <ul>
+          <li>{location !== undefined ? location.latitude : 0}</li>
+          <li>{location !== undefined ? location.longitude : 0}</li>
+        </ul>
+      </td>
+    </tr>
+  );
+};
+
 function DeviceListCard({ defaultExpanded, collapsedHeight, device }) {
   const config = {
     defaultExpanded: defaultExpanded || false,
@@ -33,10 +47,10 @@ function DeviceListCard({ defaultExpanded, collapsedHeight, device }) {
   const { getCollapseProps, getToggleProps, isExpanded } = useCollapse(config);
 
   let status = device.active ? "active" : "inactive";
-  if (device.status.code === 1) {
+  if (device.status.statusCode === 1) {
     status = "warning";
   }
-  if (device.status.code === 2) {
+  if (device.status.statusCode === 2) {
     status = "error";
   }
 
@@ -69,21 +83,12 @@ function DeviceListCard({ defaultExpanded, collapsedHeight, device }) {
                 <TableRow header="Sensortyp" value={device.sensor_type} />
                 <TableRow header="Senast" value={device.last_observed} />
                 <TableRow header="Tenant" value={device.tenant} />
-                <tr>
-                  <th>Position</th>
-                  <td>
-                    <ul>
-                      <li>{device.location !== undefined ? device.location.latitude : 0}</li>
-                      <li>{device.location !== undefined ? device.location.longitude : 0}</li>
-                    </ul>
-                  </td>
-                </tr>
-
+                <LocationRow location={device.location} />
                 <tr>
                   <th>Typer</th>
                   <td>{device.types}</td>
                 </tr>
-                <StatusRow header="Status" code={device.status.code} />
+                <StatusRow header="Status" code={device.status.statusCode} />
               </tbody>
             </table>
           </div>

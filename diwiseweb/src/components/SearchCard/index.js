@@ -2,6 +2,10 @@ import "./searchcard.css";
 import Form from "react-bootstrap/Form";
 import Button from "../Button";
 
+const handleChange = (e) => {
+  console.log(e.target.value)
+}
+
 function SearchCard() {
   return (
     <>
@@ -15,7 +19,7 @@ function SearchCard() {
               <Form>
                 <Form.Group className="mb-3" controlId="name">
                   <Form.Label>Namn</Form.Label>
-                  <Form.Control type="name" />
+                  <Form.Control type="name" onChange={(e) => handleChange(e)} />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="id">
