@@ -3,6 +3,8 @@ import useCollapse from "react-collapsed";
 import DeviceIcon from "./deviceicon";
 import StatusIcon from "./statusicon";
 import { Link } from "react-router-dom";
+import ChangeHighlight from "react-change-highlight";
+import React from "react";
 
 const TableRow = ({ header, value }) => {
   return (
@@ -65,7 +67,9 @@ function DeviceListCard({ defaultExpanded, collapsedHeight, device }) {
           <strong>{device.deviceID}</strong>
           <strong>{device.name}</strong>
           <strong>
-            {device.last_observed}
+            <ChangeHighlight>
+              <div ref={React.createRef()}>{device.last_observed}</div>
+            </ChangeHighlight>
             <Link to={"/device/" + device.deviceID}>
               <DeviceIcon />
             </Link>
