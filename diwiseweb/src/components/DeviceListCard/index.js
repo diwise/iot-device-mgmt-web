@@ -15,7 +15,7 @@ const TableRow = ({ header, value }) => {
   );
 };
 
-const StatusRow = ({ header, code, messages }) => {
+const StatusRow = ({ header, code, batteryLevel, messages }) => {
   let status = "OK";
   if (code === 1) {
     status = "warning";
@@ -24,7 +24,12 @@ const StatusRow = ({ header, code, messages }) => {
     status = "error";
   }
 
-  return <TableRow header={header} value={status} />;
+  return (
+    <>
+      <TableRow header={header} value={status} />
+      <TableRow header="Batterinivå" value={batteryLevel} />
+    </>
+  );
 };
 
 const LocationRow = ({ location }) => {
@@ -92,7 +97,7 @@ function DeviceListCard({ defaultExpanded, collapsedHeight, device }) {
                   <th>Typer</th>
                   <td>{device.types}</td>
                 </tr>
-                <StatusRow header="Status" code={device.status.statusCode} />
+                <StatusRow header="Status" code={device.status.statusCode} batteryLevel={device.status.batteryLevel} />
               </tbody>
             </table>
           </div>
