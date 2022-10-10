@@ -3,6 +3,8 @@ import useCollapse from "react-collapsed";
 import DeviceIcon from "./deviceicon";
 import StatusIcon from "./statusicon";
 import { Link } from "react-router-dom";
+import ChangeHighlight from "react-change-highlight";
+import React from "react";
 
 const TableRow = ({ header, value }) => {
   return (
@@ -13,7 +15,7 @@ const TableRow = ({ header, value }) => {
   );
 };
 
-const StatusRow = ({ header, code, messages }) => {
+const StatusRow = ({ header, code, batteryLevel, messages }) => {
   let status = "OK";
   if (code === 1) {
     status = "warning";
@@ -22,7 +24,12 @@ const StatusRow = ({ header, code, messages }) => {
     status = "error";
   }
 
-  return <TableRow header={header} value={status} />;
+  return (
+    <>
+      <TableRow header={header} value={status} />
+      <TableRow header="Batterinivå" value={batteryLevel} />
+    </>
+  );
 };
 
 const LocationRow = ({ location }) => {
@@ -65,7 +72,9 @@ function DeviceListCard({ defaultExpanded, collapsedHeight, device }) {
           <strong>{device.deviceID}</strong>
           <strong>{device.name}</strong>
           <strong>
-            {device.last_observed}
+            <ChangeHighlight>
+              <div ref={React.createRef()}>{device.last_observed}</div>
+            </ChangeHighlight>
             <Link to={"/device/" + device.deviceID}>
               <DeviceIcon />
             </Link>
@@ -88,7 +97,7 @@ function DeviceListCard({ defaultExpanded, collapsedHeight, device }) {
                   <th>Typer</th>
                   <td>{device.types}</td>
                 </tr>
-                <StatusRow header="Status" code={device.status.statusCode} />
+                <StatusRow header="Status" code={device.status.statusCode} batteryLevel={device.status.batteryLevel} />
               </tbody>
             </table>
           </div>
