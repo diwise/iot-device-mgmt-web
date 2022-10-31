@@ -10,7 +10,6 @@ services:
       - iot-device-mgmt
     environment:
       GUI_WEB_ROOT: '/opt/diwise/wwwroot/assets'
-      DEVICE_MGMT_URL: 'http://iot-device-mgmt:8080'
       OTEL_EXPORTER_OTLP_ENDPOINT: 'http://otel-collector:4318'
     ports:
       - '8081:8080'

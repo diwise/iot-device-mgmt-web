@@ -29,7 +29,7 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer
-          customerLogoUrl="https://sundsvall.se/images/18.44e3ea617a0905381337a0c/1628607147661/logo.svg"
+          customerLogoUrl={window._env_.CUSTOMER_LOGO_URL}
           customerLogoDescription="logo"
           customerPhoneNumber="08-123456"
           customerEmail="support@diwise.io"
