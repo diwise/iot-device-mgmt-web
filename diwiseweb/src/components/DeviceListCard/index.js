@@ -73,7 +73,7 @@ function DeviceListCard({ defaultExpanded, collapsedHeight, device }) {
           <strong>{device.name}</strong>
           <strong>
             <ChangeHighlight>
-              <div ref={React.createRef()}>{device.last_observed}</div>
+              <div ref={React.createRef()}>{device.lastObserved}</div>
             </ChangeHighlight>
             <Link to={"/device/" + device.deviceID}>
               <DeviceIcon />
@@ -89,8 +89,8 @@ function DeviceListCard({ defaultExpanded, collapsedHeight, device }) {
                 <TableRow header="Namn" value={device.name} />
                 <TableRow header="Beskrivning" value={device.description} />
                 <TableRow header="Miljö" value={device.environment} />
-                <TableRow header="Sensortyp" value={device.sensor_type} />
-                <TableRow header="Senast" value={device.last_observed} />
+                <TableRow header="Sensortyp" value={device.sensorType.name} />
+                <TableRow header="Senast" value={device.lastObserved} />
                 <TableRow header="Tenant" value={device.tenant} />
                 <LocationRow location={device.location} />
                 <tr>

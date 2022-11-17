@@ -44,7 +44,7 @@ const Device = () => {
         <DeviceCard
           status="online"
           description={device.description}
-          sensorType={device.sensor_type}
+          sensorType={device.sensorType.name}
           type={device.types}
           id={device.deviceID}
           latitude={device.position !== undefined ? device.position.latitude : 0}
