@@ -89,7 +89,7 @@ function DeviceListCard({ defaultExpanded, collapsedHeight, device }) {
                 <TableRow header="Namn" value={device.name} />
                 <TableRow header="Beskrivning" value={device.description} />
                 <TableRow header="Miljö" value={device.environment} />
-                <TableRow header="Sensortyp" value={device.sensorType.name} />
+                <TableRow header="Sensortyp" value={device.sensorType !== undefined ? device.sensorType.name : ""} />
                 <TableRow header="Senast" value={device.lastObserved} />
                 <TableRow header="Tenant" value={device.tenant} />
                 <LocationRow location={device.location} />
