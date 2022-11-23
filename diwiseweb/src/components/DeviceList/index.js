@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import HttpService from "../../services/HttpService";
 
 const Status = ({ status }) => {
-  return <div>{status.code}</div>;
+  return <div>{status.statusCode}</div>;
 };
 
 const DeviceRow = ({device}) => {
@@ -15,7 +15,7 @@ const DeviceRow = ({device}) => {
         <td>{device.description}</td>
         <td>{device.environment}</td>
         <td>{device.active}</td>
-        <td>{device.last_observed}</td>
+        <td>{device.lastObserved}</td>
         <td>{device.tenant}</td>
         <td><Status status={device.status} /></td>
       </tr>
