@@ -37,6 +37,13 @@ const Dashboard = () => {
             fetchDataAndSetState(setDevices);
           }
         },
+        onclose() {
+          console.log("connection closed")
+          setListening(false)
+        },
+        onerror(err) {
+          console.error("received error", err)
+        }
       });
       setListening(true);
     }
