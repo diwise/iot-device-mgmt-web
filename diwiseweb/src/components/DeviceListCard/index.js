@@ -73,11 +73,8 @@ function DeviceListCard({ defaultExpanded, collapsedHeight, device }) {
           <strong>{device.name}</strong>
           <strong>
             <ChangeHighlight>
-              <div ref={React.createRef()}>{device.lastObserved}</div>
+              <div ref={React.createRef()}>{device.lastObserved != "0001-01-01T00:00:00Z" ? device.lastObserved : ""}</div>
             </ChangeHighlight>
-            <Link to={"/device/" + device.deviceID}>
-              <DeviceIcon />
-            </Link>
           </strong>
         </div>
         <div className="contentWrapper" {...getCollapseProps()}>
