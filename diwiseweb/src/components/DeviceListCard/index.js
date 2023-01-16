@@ -17,7 +17,7 @@ const TableRow = ({ header, value }) => {
 
 const StatusRow = ({ header, code, batteryLevel, messages }) => {
   let status = "OK";
-  if (code === 1) {
+  if (code >= 1 || code <= 100) {
     status = "warning";
   }
   if (code === 2) {
