@@ -1,0 +1,34 @@
+[
+    {
+        "devEUI": "abcdefghijk",
+        "deviceID": "net:serva:iot:abcdefghijk",
+        "name": "temp-32",
+        "description": "Tranviken",
+        "location": {
+            "latitude": 62.0,
+            "longitude": 17.0,
+            "altitude": 0
+        },
+        "environment": "indoors",
+        "types": [
+            "urn:oma:lwm2m:ext:3303",
+            "urn:oma:lwm2m:ext:3301",
+            "urn:oma:lwm2m:ext:3304"
+        ],
+        "sensorType": {
+            "id": 6,
+            "name": "elsys_codec",
+            "description": "",
+            "interval": 3600
+        },
+        "lastObserved": "0001-01-01T00:00:00Z",
+        "active": false,
+        "tenant": "default",
+        "status": {
+            "batteryLevel": -1,
+            "statusCode": 1,
+            "timestamp": "2023-01-16T12:05:56.338752361Z"
+        },
+        "interval": 0
+    }
+]
