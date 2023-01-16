@@ -36,11 +36,11 @@ function App() {
           customerWebsite="https://diwise.io"
           faqUrl="/"
           faqText="FAQ"
-          diwiseUrl="/"
+          diwiseUrl="https://diwise.se/"
           diwiseText="Diwise"
-          githubUrl="/"
+          githubUrl="https://diwise.github.io"
           githubText="GitHub"
-          bugReportUrl="/"
+          bugReportUrl="https://github.com/diwise/iot-device-mgmt-web/issues"
           bugReportText="Rapportera en bugg"
         />
       </div>
