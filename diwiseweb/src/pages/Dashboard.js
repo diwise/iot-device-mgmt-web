@@ -16,7 +16,7 @@ const Dashboard = () => {
 
   const updateState = (s, obj) => {
     let newState = [];
-    const i = s.findIndex(x => x.id === obj.id);
+    const i = s.findIndex(x => x.devEUI === obj.devEUI);
 
     if (i > -1) {
       s[i] = obj;
