@@ -4,11 +4,50 @@ module.exports = (req, res) => {
         'Connection': 'keep-alive',
         'Cache-Control': 'no-cache'
     };
+
+    clients.push({ clientID: Date.now(), response: res });
+
     res.writeHead(200, headers);
 
-    let facts = {};
+    setInterval(() => {
+        console.log(Date.now());
+        const data = `data: ${JSON.stringify(facts)}\n\n`;
+        clients.forEach(client => client.response.write(data));
+    }, 5000);
 
-    const data = `data: ${JSON.stringify(facts)}\n\n`;
+};
 
-    res.write(data);
+let clients = [];
+
+let facts = {
+    "devEUI": "abcdefghijk",
+    "deviceID": "net:serva:iot:abcdefghijk",
+    "name": "temp-32",
+    "description": "Tranviken",
+    "location": {
+        "latitude": 62.0,
+        "longitude": 17.0,
+        "altitude": 0
+    },
+    "environment": "indoors",
+    "types": [
+        "urn:oma:lwm2m:ext:3303",
+        "urn:oma:lwm2m:ext:3301",
+        "urn:oma:lwm2m:ext:3304"
+    ],
+    "sensorType": {
+        "id": 6,
+        "name": "elsys_codec",
+        "description": "",
+        "interval": 3600
+    },
+    "lastObserved": new Date(Date.now()).toLocaleString(),
+    "active": true,
+    "tenant": "default",
+    "status": {
+        "batteryLevel": -1,
+        "statusCode": Math.floor(Math.random() * (3 - 0) + 0),
+        "timestamp": new Date(Date.now()).toLocaleString()
+    },
+    "interval": 0
 };
