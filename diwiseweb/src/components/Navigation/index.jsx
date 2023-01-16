@@ -43,12 +43,18 @@ function MainNav() {
                     <NavDropdown.Item href="/device-management">
                       Dashboard
                     </NavDropdown.Item>
-                    <NavDropdown.Item href="#action/3.2">
-                      Another action
+                    <NavDropdown.Item href="/device-management/devices/fel">
+                      Fel
                     </NavDropdown.Item>
-                    <NavDropdown.Item href="#action/3.3">
-                      Something
+                    <NavDropdown.Item href="/device-management/devices/varningar">
+                      Varningar
                     </NavDropdown.Item>
+                    <NavDropdown.Item href="/device-management/devices/online">
+                      Aktiva enheter
+                    </NavDropdown.Item>
+                    <NavDropdown.Item href="/device-management/devices">
+                      Alla enheter
+                    </NavDropdown.Item>                    
                     <NavDropdown.Divider />
                     <NavDropdown.Item href="#action/logout" onClick={UserService.doLogout}>
                       Logga ut
