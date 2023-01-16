@@ -23,9 +23,7 @@ const Dashboard = () => {
       newState = [...s]
     } else {
       newState = [...s, obj]
-    }
-
-    console.log(newState)
+    }    
 
     return newState;
   }
@@ -35,7 +33,6 @@ const Dashboard = () => {
       .get("/api/v0/devices")
       .then((response) => setDevices(response.data));
   }, []);
-
 
   const [listening, setListening] = useState(false);
   useEffect(() => {

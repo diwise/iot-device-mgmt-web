@@ -11,7 +11,6 @@ const DeviceListViewContainer = styled.div`
   margin-left: auto;
 `;
 
-
 const filterStatus = (items, status) => {
   if (status !== undefined) {
     switch (status.toLowerCase()) {
@@ -41,9 +40,7 @@ const DeviceListView = () => {
       newState = [...s]
     } else {
       newState = [...s, obj]
-    }
-
-    console.log(newState)
+    }    
 
     return newState;
   }
@@ -53,7 +50,6 @@ const DeviceListView = () => {
       .get("/api/v0/devices")
       .then((response) => setDevices(response.data));
   }, []);
-
 
   const [listening, setListening] = useState(false);
   useEffect(() => {
