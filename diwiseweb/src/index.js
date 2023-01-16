@@ -23,6 +23,13 @@ const renderApp = () =>
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
 
-//renderApp();
-UserService.initKeycloak(renderApp);
-HttpService.configure();
+if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {  
+  renderApp();
+} else {
+  // production code
+  UserService.initKeycloak(renderApp);
+  HttpService.configure();
+}
+
+
+

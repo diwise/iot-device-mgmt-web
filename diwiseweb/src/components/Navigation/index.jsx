@@ -24,8 +24,7 @@ function MainNav() {
           <Container fluid>
             <Navbar.Brand href="/device-management">
               <DiwiseLogo />
-            </Navbar.Brand>{" "}
-            Prototyp
+            </Navbar.Brand>{" "}            
             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
             <Navbar.Offcanvas
               id={`offcanvasNavbar-expand-${expand}`}
@@ -39,12 +38,7 @@ function MainNav() {
               </Offcanvas.Header>
               <Offcanvas.Body>
                 <Nav className="justify-content-end flex-grow-1 pe-3">
-                  <Nav.Link href="/device-management/search">
-                    <SearchIcon />
-                  </Nav.Link>
-                  <Nav.Link href="/device-management">
-                    <AddIcon />
-                  </Nav.Link>
+
                   <NavDropdown title={<UserIcon />} id="basic-nav-dropdown">
                     <NavDropdown.Item href="/device-management">
                       Dashboard
