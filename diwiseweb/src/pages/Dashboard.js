@@ -76,13 +76,13 @@ const Dashboard = () => {
         />
         <DashCard
           stylename="warning"
-          number={devices.filter((d) => d.status.statusCode === 1).length}
+          number={devices.filter((d) => d.status.statusCode === 1 && d.lastObserved != "0001-01-01T00:00:00Z").length}
           url="/devices/varningar"
           text="enheter med varningar"
         />
         <DashCard
           stylename="active"
-          number={devices.filter((d) => d.active).length}
+          number={devices.filter((d) => d.active && d.lastObserved != "0001-01-01T00:00:00Z").length}
           url="/devices/online"
           text="enheter online"
         />

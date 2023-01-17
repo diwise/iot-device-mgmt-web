@@ -15,11 +15,11 @@ const filterStatus = (items, status) => {
   if (status !== undefined) {
     switch (status.toLowerCase()) {
       case "varningar":
-        return items.filter((d) => d.status.statusCode === 1);
+        return items.filter((d) => d.status.statusCode === 1 && d.lastObserved != "0001-01-01T00:00:00Z");
       case "fel":
         return items.filter((d) => d.status.statusCode === 2);
       case "online":
-        return items.filter((d) => d.active);
+        return items.filter((d) => d.active && d.lastObserved != "0001-01-01T00:00:00Z");
       default:
         return items;
     }
