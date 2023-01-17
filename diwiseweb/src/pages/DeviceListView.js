@@ -15,11 +15,11 @@ const filterStatus = (items, status) => {
   if (status !== undefined) {
     switch (status.toLowerCase()) {
       case "varningar":
-        return items.filter((d) => d.status.statusCode === 1 && d.lastObserved != "0001-01-01T00:00:00Z");
+        return items.filter((d) => d.status.statusCode === 1 && d.lastObserved !== "0001-01-01T00:00:00Z");
       case "fel":
         return items.filter((d) => d.status.statusCode === 2);
       case "online":
-        return items.filter((d) => d.active && d.lastObserved != "0001-01-01T00:00:00Z");
+        return items.filter((d) => d.active && d.lastObserved !== "0001-01-01T00:00:00Z");
       default:
         return items;
     }
@@ -31,28 +31,43 @@ const filterStatus = (items, status) => {
 const DeviceListView = () => {
   const [devices, setDevices] = useState([]);
 
-  const updateState = (s, obj) => {
-    let newState = [];
-    const i = s.findIndex(x => x.devEUI === obj.devEUI);
-
-    if (i > -1) {
-      s[i] = obj;
-      newState = [...s]
-    } else {
-      newState = [...s, obj]
-    }    
-
-    return newState;
+  const adjustStatus = (obj) => {
+    if (obj.status !== undefined) {
+      let s = obj.status.statusCode;
+      if (!(s === -1 || s === 0 || s === 2)) {
+        obj.status.statusCode = 1;
+      }
+    }
+    return obj;
   }
 
   useEffect(() => {
     HttpService.getAxiosClient()
       .get("/api/v0/devices")
-      .then((response) => setDevices(response.data));
+      .then((response) => setDevices(response.data.map(e => {
+        return adjustStatus(e);
+      })));
   }, []);
 
   const [listening, setListening] = useState(false);
   useEffect(() => {
+
+    const updateState = (s, obj) => {
+      let newState = [];
+      const i = s.findIndex(x => x.devEUI === obj.devEUI);
+
+      obj = adjustStatus(obj);
+
+      if (i > -1) {
+        s[i] = obj;
+        newState = [...s]
+      } else {
+        newState = [...s, obj]
+      }
+
+      return newState;
+    }
+
     if (!listening) {
       fetchEventSource(`/api/v0/events`, {
         onopen(res) {

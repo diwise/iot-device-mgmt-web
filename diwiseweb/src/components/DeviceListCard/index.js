@@ -17,11 +17,13 @@ const TableRow = ({ header, value }) => {
 
 const StatusRow = ({ header, code, batteryLevel, messages }) => {
   let status = "OK";
-  if (code >= 1 || code <= 100) {
-    status = "warning";
+
+  if (code >= 1 || (code > 2 && code <= 100)) {
+    status = "varning";
   }
+
   if (code === 2) {
-    status = "error";
+    status = "fel";
   }
 
   return (
@@ -54,7 +56,7 @@ function DeviceListCard({ defaultExpanded, collapsedHeight, device }) {
   const { getCollapseProps, getToggleProps, isExpanded } = useCollapse(config);
 
   let status = device.active ? "active" : "inactive";
-  if (device.status.statusCode === 1) {
+  if (device.status.statusCode === 1 || (device.status.statusCode > 2 && device.status.statusCode <= 100)) {
     status = "warning";
   }
   if (device.status.statusCode === 2) {
