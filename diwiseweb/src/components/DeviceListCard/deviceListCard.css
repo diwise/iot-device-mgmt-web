@@ -68,38 +68,28 @@
 .content {
     display: flex;
     justify-content: space-between;
+    flex-direction: column;
+}
+
+.item strong {
+    margin-right: 1em;
+}
+
+.item p {
+    margin-left: 1em;
+    margin-bottom: 0px;
 }
 
 .content:last-child {
     padding-bottom: 2em;
 }
 
-.status {
-    flex-basis: 20%;
-}
-
-.description {
-    flex-basis: 64%;
-}
-
-.darkTheme div[class*="searchResultTop"] {
-    background: rgba(40, 40, 40, 0.5);
-}
-
 .darkTheme div[class*="deviceWrapper"] {
     background: rgb(40, 40, 40);
 }
 
-.lightTheme div[class*="searchResultTop"] {
-    background: rgba(255, 255, 255, 0.5);
-}
-
 .lightTheme div[class*="deviceWrapper"] {
     background: rgb(255, 255, 255);
-}
-
-td {
-    vertical-align: top;
 }
 
 svg {
