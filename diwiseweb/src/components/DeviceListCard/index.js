@@ -42,7 +42,7 @@ function DeviceListCard({ defaultExpanded, collapsedHeight, device }) {
             <div className="item"><strong>Beskrivning:</strong>{device.description}</div>
             <div className="item"><strong>Miljö:</strong>{device.environment}</div>
             <div className="item"><strong>Sensortyp:</strong>{device.sensorType !== undefined ? device.sensorType.name : ""}</div>
-            <div className="item"><strong>Senast:</strong>{device.lastObserved}</div>
+            <div className="item"><strong>Senast:</strong>{lastObserved}</div>
             <div className="item"><strong>Tenant:</strong>{device.tenant}</div>
             <div className="item"><Location location={device.location} /></div>
             <div className="item"><Types types={device.types} /></div>
