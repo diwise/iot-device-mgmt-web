@@ -1,19 +1,16 @@
-import "./App.css";
-import "./components/CardTemplate/cardtemplate.css";
-import "bootstrap/dist/css/bootstrap.min.css";
 import { Routes, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { fetchEventSource } from "@microsoft/fetch-event-source";
-import HttpService from "./services/HttpService";
+import UserService from "./services/UserService";
 import Dashboard from "./pages/Dashboard";
-import MainNav from "./components/Navigation";
-import Footer from "./components/Footer";
-import SearchPage from "./pages/Search";
 import NotFound from "./pages/NotFound";
 import Device from "./pages/Device";
-import History from "./pages/History";
-import Reports from "./pages/Reports";
 import DeviceListView from "./pages/DeviceListView";
+import MainNav from "./components/Navigation";
+import Footer from "./components/Footer";
+import "./App.css";
+import "./components/CardTemplate/cardtemplate.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   const [devices, setDevices] = useState([]);
@@ -28,14 +25,6 @@ function App() {
     return obj;
   }
 
-  useEffect(() => {
-    HttpService.getAxiosClient()
-      .get("/api/v0/devices")
-      .then((response) => setDevices(response.data.map(e => {
-        return adjustStatus(e);
-      })));
-  }, []);
-
   const [listening, setListening] = useState(false);
   useEffect(() => {
     const updateState = (s, obj) => {
@@ -48,7 +37,8 @@ function App() {
         s[i] = obj;
         newState = [...s]
       } else {
-        newState = [...s, obj]
+        console.log("unknown device");
+        newState = [...s];
       }
 
       return newState;
@@ -56,9 +46,22 @@ function App() {
 
     if (!listening) {
       fetchEventSource(`/api/v0/events`, {
+        headers: {
+          'Authorization': `Bearer ${UserService.getToken()}`
+        },
         onopen(res) {
           if (res.ok && res.status === 200) {
             console.log("Connection made ", res);
+
+            fetch(`/api/v0/devices`, {
+              headers: {
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${UserService.getToken()}`
+              },
+            }).then(res => res.json())
+              .then(json => setDevices(json.map((e) => {
+                return adjustStatus(e);
+              })));
           } else if (
             res.status >= 400 &&
             res.status < 500 &&
@@ -69,7 +72,6 @@ function App() {
         },
         onmessage(event) {
           const obj = JSON.parse(event.data);
-          console.log(obj)
           setDevices((s) => updateState(s, obj))
         },
         onclose() {
@@ -90,12 +92,9 @@ function App() {
         <MainNav />
         <Routes>
           <Route path="/" element={<Dashboard devices={devices} />} />
-          <Route path="/search" element={<SearchPage />} />
           <Route path="/device/:deviceID" element={<Device />} />
           <Route path="/devices" element={<DeviceListView devices={devices} />} />
           <Route path="/devices/:status" element={<DeviceListView devices={devices} />} />
-          <Route path="/historik" element={<History />} />
-          <Route path="/rapporter" element={<Reports />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer
