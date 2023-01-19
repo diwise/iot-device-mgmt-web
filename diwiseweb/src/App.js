@@ -35,12 +35,9 @@ function App() {
 
       if (i > -1) {
         s[i] = obj;
-        newState = [...s]
-      } else {
-        console.log("unknown device");
-        newState = [...s];
       }
 
+      newState = [...s];
       return newState;
     }
 
