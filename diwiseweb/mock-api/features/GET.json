@@ -4,8 +4,8 @@
         "type": "counter",
         "subtype": "overflow",
         "location": {
-            "latitude": 62.362741,
-            "longitude": 17.510442
+            "latitude": 62.362742,
+            "longitude": 17.510443
         },
         "tenant": "default",
         "counter": {
@@ -18,8 +18,8 @@
         "type": "counter",
         "subtype": "overflow",
         "location": {
-            "latitude": 62.362741,
-            "longitude": 17.510442
+            "latitude": 62.362744,
+            "longitude": 17.510444
         },
         "tenant": "default",
         "counter": {
