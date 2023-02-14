@@ -1,0 +1,30 @@
+[
+    {
+        "id": "featureId-01",
+        "type": "counter",
+        "subtype": "overflow",
+        "location": {
+            "latitude": 62.362741,
+            "longitude": 17.510442
+        },
+        "tenant": "default",
+        "counter": {
+            "count": 1,
+            "state": true
+        }
+    },
+    {
+        "id": "featureId-02",
+        "type": "counter",
+        "subtype": "overflow",
+        "location": {
+            "latitude": 62.362741,
+            "longitude": 17.510442
+        },
+        "tenant": "default",
+        "counter": {
+            "count": 5,
+            "state": true
+        }
+    }
+]

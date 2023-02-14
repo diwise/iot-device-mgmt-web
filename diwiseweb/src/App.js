@@ -12,35 +12,38 @@ import "./App.css";
 import "./components/CardTemplate/cardtemplate.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-function App() {
-  const [devices, setDevices] = useState([]);
 
-  const adjustStatus = (obj) => {
-    if (obj.status !== undefined) {
-      let s = obj.status.statusCode;
-      if (!(s === -1 || s === 0 || s === 2)) {
-        obj.status.statusCode = 1;
-      }
+import MapView from "./pages/MapView";
+
+function adjustStatus(obj) {
+  if (obj.status !== undefined) {
+    let s = obj.status.statusCode;
+    if (!(s === -1 || s === 0 || s === 2)) {
+      obj.status.statusCode = 1;
     }
-    return obj;
+  }
+  return obj;
+}
+
+function updateState(s, obj) {
+  let newState = [];
+  const i = s.findIndex(x => x.devEUI === obj.devEUI);
+
+  obj = adjustStatus(obj);
+
+  if (i > -1) {
+    s[i] = obj;
   }
 
+  newState = [...s];
+  return newState;
+}
+
+function App() {
+  const [devices, setDevices] = useState([]);
   const [listening, setListening] = useState(false);
+
   useEffect(() => {
-    const updateState = (s, obj) => {
-      let newState = [];
-      const i = s.findIndex(x => x.devEUI === obj.devEUI);
-
-      obj = adjustStatus(obj);
-
-      if (i > -1) {
-        s[i] = obj;
-      }
-
-      newState = [...s];
-      return newState;
-    }
-
     if (!listening) {
       fetchEventSource(`/api/v0/events`, {
         headers: {
@@ -56,9 +59,11 @@ function App() {
                 'Authorization': `Bearer ${UserService.getToken()}`
               },
             }).then(res => res.json())
-              .then(json => setDevices(json.map((e) => {
-                return adjustStatus(e);
-              })));
+              .then(json => {
+                setDevices(json.map((e) => {
+                  return adjustStatus(e);
+                }));
+              });
           } else if (
             res.status >= 400 &&
             res.status < 500 &&
@@ -68,8 +73,8 @@ function App() {
           }
         },
         onmessage(event) {
-          const obj = JSON.parse(event.data);
-          setDevices((s) => updateState(s, obj))
+          const obj = JSON.parse(event.data);          
+          setDevices((s) => updateState(s, obj));                    
         },
         onclose() {
           console.log("Connection closed by the server");
@@ -92,6 +97,7 @@ function App() {
           <Route path="/device/:deviceID" element={<Device />} />
           <Route path="/devices" element={<DeviceListView devices={devices} />} />
           <Route path="/devices/:status" element={<DeviceListView devices={devices} />} />
+          <Route path="/map" element={<MapView devices={devices} />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer
