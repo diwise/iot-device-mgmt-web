@@ -12,7 +12,6 @@ import "./App.css";
 import "./components/CardTemplate/cardtemplate.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-
 import MapView from "./pages/MapView";
 
 function adjustStatus(obj) {
