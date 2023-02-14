@@ -1,9 +1,22 @@
 .ol-map {
     min-width: 600px;
     min-height: 500px;
-    margin: 50px;
+    margin: 30px;
     height: 60vh;
     width: "100%";
+}
+
+.ol-selectLayers {  
+  margin-bottom: 30px;
+  display: flex;
+}
+
+.ol-selectLayers div {
+  margin-left: 30px;    
+}
+
+.ol-selectLayers input {
+  margin-right: 5px;    
 }
 
 .ol-control {

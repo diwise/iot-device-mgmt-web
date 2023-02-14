@@ -52,25 +52,25 @@ const MapView = ({ devices }) => {
           <FullScreenControl />
         </Controls>
       </Map>
-      
-      <div>
-        <input
-          type="checkbox"
-          checked={showDeviceLayer}
-          onChange={(event) => setShowDeviceLayer(event.target.checked)}
-        />{" "}
-        Visa sensorer
+      <div className="ol-selectLayers">
+        <div>          
+          <input
+            type="checkbox"
+            checked={showDeviceLayer}
+            onChange={(event) => setShowDeviceLayer(event.target.checked)}
+          />          
+          Visa sensorer
+        </div>
+
+        <div>
+          <input
+            type="checkbox"
+            checked={showFeaturesLayer}
+            onChange={(event) => setShowFeaturesLayer(event.target.checked)}
+          />          
+          Visa features        
+        </div>          
       </div>
-
-      <div>
-        <input
-          type="checkbox"
-          checked={showFeaturesLayer}
-          onChange={(event) => setShowFeaturesLayer(event.target.checked)}
-        />{" "}
-        Visa features        
-      </div>          
-
     </div>
   );
 };

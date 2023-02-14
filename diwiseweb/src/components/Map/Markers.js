@@ -15,9 +15,9 @@ const addDeviceMarkers = (devices) => {
 
         if (d.active && d.lastObserved !== "0001-01-01T00:00:00Z") {
             feature.setStyle(getMarkerStyle("device_green.png"));
-        } else if (d.status.statusCode == 1) {
+        } else if (d.status.statusCode === 1) {
             feature.setStyle(getMarkerStyle("device_orange.png"));
-        } else if (d.status.statusCode == 2) {
+        } else if (d.status.statusCode === 2) {
             feature.setStyle(getMarkerStyle("device_red.png"));
         } else {
             feature.setStyle(getMarkerStyle("device_gray.png"));
