@@ -42,21 +42,21 @@ const Map = ({ children, zoom, center }) => {
 	const onSingleClickHandler = (event) => {	
 		const feature = event.map.forEachFeatureAtPixel(event.pixel, function (feature) {
 			return feature;
-		});			
-		if (!feature) {
-			event.map.getOverlays().clear();
+		});	
+		
+		event.map.getOverlays().clear();
+
+		if (!feature) {	
 			return;
 		} 
-		const clickedCoord = event.map.getCoordinateFromPixel(event.pixel);
 				
 		const popup = new Overlay({
 			element: popRef.current,
-			position: clickedCoord,
+			position: event.map.getCoordinateFromPixel(event.pixel),
 		});
 
 		event.map.addOverlay(popup);	
-		console.log(feature);		
-
+		
 		setPopupContent(getPopupContent(feature));
 	}	
 
