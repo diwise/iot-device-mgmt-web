@@ -69,10 +69,14 @@
     position: absolute;
     top: 2px;
     right: 8px;
+    display: none;
   }
   .ol-popup-closer:after {
     content: "✖";
   }
   .ol-popup  strong {
     margin-right: 5px;
+  }
+  .ol-popup img {
+    scale: 0.5;
   }

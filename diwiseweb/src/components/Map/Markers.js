@@ -5,13 +5,12 @@ import Point from "ol/geom/Point";
 import { fromLonLat } from "ol/proj";
 
 const addDeviceMarkers = (devices) => {
-    let result = [];
-    let features = devices.map((d) => {
+    let features = devices.filter((d) => hasLonLat(d)).map((d) => {
         let lonLat = tryParseLonLat(d);
         let feature = new Feature({
             geometry: new Point(fromLonLat(lonLat)),
-        });      
-        feature.setId(d.deviceID);    
+        });
+        feature.setId(d.deviceID);
 
         if (d.active && d.lastObserved !== "0001-01-01T00:00:00Z") {
             feature.setStyle(getMarkerStyle("device_green.png"));
@@ -22,24 +21,23 @@ const addDeviceMarkers = (devices) => {
         } else {
             feature.setStyle(getMarkerStyle("device_gray.png"));
         }
-    
+
         feature["data"] = d;
         feature["markerType"] = "device";
-        
+
         return feature;
     });
 
-    result = [...features];
-    return result;
+    return features;
 }
 
 const addFeatureMarkers = (diwiseFeatures) => {
-    let features = diwiseFeatures.map((d) => {
+    let features = diwiseFeatures.filter((d) => hasLonLat(d)).map((d) => {
         let lonLat = tryParseLonLat(d);
         let feature = new Feature({
             geometry: new Point(fromLonLat(lonLat)),
         });
-        feature.setId(d.id);    
+        feature.setId(d.id);
         feature.setStyle(getMarkerStyle("feature_blue.png"));
         feature["data"] = d;
         feature["markerType"] = "feature";
@@ -49,13 +47,23 @@ const addFeatureMarkers = (diwiseFeatures) => {
     return features;
 }
 
+const hasLonLat = (d) => {
+    try {
+        let lat = parseFloat(d.location.latitude);
+        let lon = parseFloat(d.location.longitude);
+        return lat !== 0 && lon !== 0;
+    } catch (error) {
+        return false;
+    }
+}
+
 const tryParseLonLat = (d) => {
     try {
         let lat = parseFloat(d.location.latitude);
         let lon = parseFloat(d.location.longitude);
         return [lon, lat];
     } catch (error) {
-        return [0.0,0.0];
+        return [0.0, 0.0];
     }
 }
 
@@ -71,7 +79,7 @@ const getMarkerStyle = (filename = "device_orange.png") => {
     return iconStyle;
 }
 
-export { 
+export {
     addDeviceMarkers,
     addFeatureMarkers,
     getMarkerStyle,

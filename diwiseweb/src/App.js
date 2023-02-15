@@ -24,9 +24,8 @@ function adjustStatus(obj) {
   return obj;
 }
 
-function updateState(s, obj) {
-  let newState = [];
-  const i = s.findIndex(x => x.devEUI === obj.devEUI);
+function updateDeviceState(s, obj) {
+  let i = s.findIndex(x => x.devEUI === obj.devEUI);
 
   obj = adjustStatus(obj);
 
@@ -34,13 +33,56 @@ function updateState(s, obj) {
     s[i] = obj;
   }
 
-  newState = [...s];
-  return newState;
+  return [...s];
+}
+
+function updateFeaturesState(state, obj) {
+  let idx = state.findIndex(x => x.id === obj.id);
+
+  if (idx > -1) {
+    state[idx] = obj;
+  }
+
+  console.log(obj);
+
+  return [...state];
 }
 
 function App() {
   const [devices, setDevices] = useState([]);
+  const [features, setFeatures] = useState([]);
   const [listening, setListening] = useState(false);
+
+  const fetchDevices = () => {
+    fetch(`/api/v0/devices`, {
+      headers: {
+        'Accept': 'application/json',
+        'Authorization': `Bearer ${UserService.getToken()}`
+      },
+    }).then(res => res.json())
+      .then(json => {
+        setDevices(json.map((e) => {
+          return adjustStatus(e);
+        }));
+      });
+  };
+
+  const fetchFeatures = () => {
+    fetch(`/api/features`, {
+      headers: {
+        'Accept': 'application/json',
+        'Authorization': `Bearer ${UserService.getToken()}`
+      },
+    }).then(res => res.json())
+      .then(json => {
+        setFeatures(json);
+      });
+  };
+
+  useEffect(() => {
+    fetchDevices();
+    fetchFeatures();
+  }, []);
 
   useEffect(() => {
     if (!listening) {
@@ -51,18 +93,9 @@ function App() {
         onopen(res) {
           if (res.ok && res.status === 200) {
             console.log("Connection made ", res);
+            fetchDevices();
+            fetchFeatures();
 
-            fetch(`/api/v0/devices`, {
-              headers: {
-                'Accept': 'application/json',
-                'Authorization': `Bearer ${UserService.getToken()}`
-              },
-            }).then(res => res.json())
-              .then(json => {
-                setDevices(json.map((e) => {
-                  return adjustStatus(e);
-                }));
-              });
           } else if (
             res.status >= 400 &&
             res.status < 500 &&
@@ -72,8 +105,15 @@ function App() {
           }
         },
         onmessage(event) {
-          const obj = JSON.parse(event.data);          
-          setDevices((s) => updateState(s, obj));                    
+          const data = JSON.parse(event.data);
+          switch (event.event) {
+            case "deviceUpdated": setDevices((s) => updateDeviceState(s, data)); break;
+            case "deviceCreated": setDevices((s) => updateDeviceState(s, data)); break;
+            case "lastObservedUpdated": setDevices((s) => updateDeviceState(s, data)); break;
+            case "feature.updated": setFeatures((s) => updateFeaturesState(s, data)); break;
+            default:
+              console.log(`event: ${event.event} is not implemented!`);
+          };
         },
         onclose() {
           console.log("Connection closed by the server");
@@ -96,7 +136,7 @@ function App() {
           <Route path="/device/:deviceID" element={<Device />} />
           <Route path="/devices" element={<DeviceListView devices={devices} />} />
           <Route path="/devices/:status" element={<DeviceListView devices={devices} />} />
-          <Route path="/map" element={<MapView devices={devices} />} />
+          <Route path="/map" element={<MapView devices={devices} features={features} />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer

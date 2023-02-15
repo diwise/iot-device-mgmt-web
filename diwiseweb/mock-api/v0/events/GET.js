@@ -17,7 +17,7 @@ module.exports = (req, res) => {
             statusCode = 0;
         }
         device.status.statusCode = statusCode;
-        const data = `data: ${JSON.stringify(device)}\n\n`;
+        const data = `event: deviceUpdated\ndata: ${JSON.stringify(device)}\n\n`;
         clients.forEach(client => client.response.write(data));
     }, 5000);
 
