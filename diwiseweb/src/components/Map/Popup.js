@@ -1,23 +1,11 @@
+import { IconSolid } from "./Icons";
+
 const Popup = ({ parent, popupContent }) => {
 	return (
 		<div id="popup" ref={parent} className="ol-popup">
-
 			<div id="popup-content">{popupContent}</div>
 		</div>
 	);
-};
-
-const TypeIcons = ({ types }) => {
-	let fire = require("../../assets/images/fire_black.png");
-	let exclamation = require("../../assets/images/exclamation_black.png");
-	let cloud = require("../../assets/images/cloud_black.png");
-
-	return (
-		<div>
-			{types.includes('urn:oma:lwm2m:ext:3303') ? <img alt="temperature" src={fire} /> : <></>}
-			{types.includes('urn:oma:lwm2m:ext:3200') ? <img alt="digital input" src={exclamation} /> : <></>}
-			{types.includes('urn:oma:lwm2m:ext:3304') ? <img alt="humidity" src={cloud} /> : <></>}
-		</div>);
 };
 
 const DevicePopupContent = ({ feature }) => {
@@ -31,7 +19,11 @@ const DevicePopupContent = ({ feature }) => {
 			<div><strong>Typ:</strong>{d.sensorType.name}</div>
 			<hr />
 			<div><strong>Senast:</strong>{d.lastObserved}</div>
-			<TypeIcons types={d.types} />
+			<div>
+				{d.types.includes('urn:oma:lwm2m:ext:3303') ? <IconSolid name="temperature-half" color="red" /> : <></>}
+				{d.types.includes('urn:oma:lwm2m:ext:3200') ? <IconSolid name="lightbulb" color="black" /> : <></>}
+				{d.types.includes('urn:oma:lwm2m:ext:3304') ? <IconSolid name="image" color="black" /> : <></>}
+			</div>
 		</>
 	);
 };
@@ -68,6 +60,8 @@ const LevelPopupContent = ({ level }) => {
 		</>
 	);
 };
+
+
 
 export {
 	Popup,
