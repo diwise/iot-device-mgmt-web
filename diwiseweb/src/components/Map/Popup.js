@@ -17,12 +17,20 @@ const DevicePopupContent = ({ feature }) => {
 			<div><strong>Beskrivning:</strong>{d.description}</div>
 			<div><strong>ID:</strong>{d.deviceID}</div>
 			<div><strong>Typ:</strong>{d.sensorType.name}</div>
-			<hr />
 			<div><strong>Senast:</strong>{d.lastObserved}</div>
+			<hr />
 			<div>
-				{d.types.includes('urn:oma:lwm2m:ext:3303') ? <IconSolid name="temperature-half" color="red" /> : <></>}
-				{d.types.includes('urn:oma:lwm2m:ext:3200') ? <IconSolid name="lightbulb" color="black" /> : <></>}
-				{d.types.includes('urn:oma:lwm2m:ext:3304') ? <IconSolid name="image" color="black" /> : <></>}
+				{d.types.includes('urn:oma:lwm2m:ext:3428') ? <IconSolid name="smog" color="black" /> : <></>}
+				{d.types.includes('urn:oma:lwm2m:ext:3327') ? <IconSolid name="bolt" color="black" /> : <></>}
+				{d.types.includes('urn:oma:lwm2m:ext:3200') ? <IconSolid name="toggle-on" color="black" /> : <></>}
+				{d.types.includes('urn:oma:lwm2m:ext:3304') ? <IconSolid name="droplet" color="black" /> : <></>}
+				{d.types.includes('urn:oma:lwm2m:ext:3301') ? <IconSolid name="lightbulb" color="black" /> : <></>}
+				{d.types.includes('urn:oma:lwm2m:ext:3434') ? <IconSolid name="people-group" color="black" /> : <></>}
+				{d.types.includes('urn:oma:lwm2m:ext:3302') ? <IconSolid name="hand" color="black" /> : <></>}
+				{d.types.includes('urn:oma:lwm2m:ext:3323') ? <IconSolid name="weight-hanging" color="black" /> : <></>}
+				{d.types.includes('urn:oma:lwm2m:ext:3303') ? <IconSolid name="temperature-half" color="black" /> : <></>}
+				{d.types.includes('urn:oma:lwm2m:ext:3330') ? <IconSolid name="route" color="black" /> : <></>}
+				{d.types.includes('urn:oma:lwm2m:ext:3424') ? <IconSolid name="gauge-simple-high" color="black" /> : <></>}
 			</div>
 		</>
 	);
