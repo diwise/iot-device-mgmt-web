@@ -5,8 +5,8 @@
         "name": "temp-32",
         "description": "Tranviken",
         "location": {
-            "latitude": 62.0,
-            "longitude": 17.0,
+            "latitude": 62.362741,
+            "longitude": 17.510442,
             "altitude": 0
         },
         "environment": "indoors",
@@ -37,8 +37,8 @@
         "name": "Elsys_EMS_7",
         "description": "",
         "location": {
-            "latitude": 0,
-            "longitude": 0,
+            "latitude": 62.416863,
+            "longitude": 17.519440,
             "altitude": 0
         },
         "environment": "indoors",
@@ -73,8 +73,8 @@
         "name": "05598423",
         "description": "",
         "location": {
-            "latitude": 0,
-            "longitude": 0,
+            "latitude": 62.392375,
+            "longitude": 17.317828,
             "altitude": 0
         },
         "environment": "",

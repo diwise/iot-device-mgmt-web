@@ -54,7 +54,10 @@ function MainNav() {
                     </NavDropdown.Item>
                     <NavDropdown.Item href="/device-management/devices">
                       Alla enheter
-                    </NavDropdown.Item>                    
+                    </NavDropdown.Item>   
+                    <NavDropdown.Item href="/device-management/map">
+                      Karta
+                    </NavDropdown.Item>   
                     <NavDropdown.Divider />
                     <NavDropdown.Item href="#action/logout" onClick={UserService.doLogout}>
                       Logga ut
