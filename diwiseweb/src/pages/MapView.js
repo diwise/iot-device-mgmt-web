@@ -8,21 +8,21 @@ import { Layers, TileLayer, VectorLayer } from "../components/Map/Layers";
 import { osm, vector } from "../components/Map/Source";
 
 import "../components/Map/Map.css";
-import { addDeviceMarkers, addFeatureMarkers } from "../components/Map/Markers";
+import { addMarkers } from "../components/Map/Markers";
 
 const MapView = ({ devices, features }) => {
   const [showDeviceLayer, setShowDeviceLayer] = useState(false);
   const [showFeaturesLayer, setShowFeaturesLayer] = useState(false);
 
-  const [deviceSource, setDeviceSource] = useState(vector({ features: addDeviceMarkers(devices) }));
+  const [deviceSource, setDeviceSource] = useState(vector({ features: addMarkers(devices) }));
   const [featuresSource, setFeaturesSource] = useState();
 
   useEffect(() => {
-    setFeaturesSource(vector({ features: addFeatureMarkers(features) }))
+    setFeaturesSource(vector({ features: addMarkers(features) }))
   }, [features]);
 
   useEffect(() => {
-    setDeviceSource(vector({ features: addDeviceMarkers(devices) }));
+    setDeviceSource(vector({ features: addMarkers(devices) }));
   }, [devices]);
 
   return (
