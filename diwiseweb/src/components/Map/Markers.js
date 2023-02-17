@@ -115,7 +115,8 @@ const pin = (icon, color, size) => {
     <svg viewBox="0 0 384 512" version="1.1" id="svg343" xml:space="preserve"
     xmlns="http://www.w3.org/2000/svg"
     xmlns:svg="http://www.w3.org/2000/svg"    
-    height="${size}px">    
+    height="${size}px"
+    width="${size}px">    
     <defs id="defs347" />
         ${marker(color)}
         ${icon}
