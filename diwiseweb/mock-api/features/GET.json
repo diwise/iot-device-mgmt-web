@@ -1,30 +1,90 @@
 [
     {
-        "id": "featureId-01",
-        "type": "counter",
-        "subtype": "overflow",
+        "id": "lifebuoy-01-false",
+        "type": "presence",
+        "subtype": "lifebuoy",
         "location": {
-            "latitude": 62.362742,
-            "longitude": 17.510443
+            "latitude": 62.362741,
+            "longitude": 17.510442
         },
-        "tenant": "default",
-        "counter": {
-            "count": 1,
+        "presence": {
+            "state": false
+        }
+    },
+    {
+        "id": "lifebuoy-02-true",
+        "type": "presence",
+        "subtype": "lifebuoy",
+        "location": {
+            "latitude": 62.416863,
+            "longitude": 17.519440
+        },
+        "presence": {
             "state": true
         }
     },
     {
-        "id": "featureId-02",
+        "id": "desk-01-false",
+        "type": "presence",
+        "subtype": "desk",
+        "tenant": "default",
+        "location": {
+            "latitude": 62.392375,
+            "longitude": 17.317828
+        },
+        "presence": {
+            "state": false
+        }
+    },
+    {
+        "id": "desk-02-true",
+        "type": "presence",
+        "subtype": "desk",
+        "tenant": "default",
+        "location": {
+            "latitude": 62.392375,
+            "longitude": 16.317828
+        },
+        "presence": {
+            "state": true
+        }
+    },
+    {
+        "id": "counter-overflow-false",
         "type": "counter",
         "subtype": "overflow",
+        "tenant": "default",
         "location": {
-            "latitude": 62.362744,
-            "longitude": 17.510444
+            "latitude": 63.392375,
+            "longitude": 17.317828
         },
+        "counter": {
+            "count": 15,
+            "state": false
+        }
+    },
+    {
+        "id": "counter-door-true",
+        "type": "counter",
+        "subtype": "door",
+        "tenant": "default",
+        "location": {
+            "latitude": 63.392375,
+            "longitude": 16.317828
+        },
+        "counter": {
+            "count": 19590,
+            "state": true
+        }
+    },
+    {
+        "id": "counter-overflow-no-location",
+        "type": "counter",
+        "subtype": "overflow",
         "tenant": "default",
         "counter": {
-            "count": 5,
-            "state": true
+            "count": 15,
+            "state": false
         }
     }
 ]

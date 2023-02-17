@@ -71,23 +71,15 @@ const Map = ({ children, zoom, center }) => {
 }
 
 const getPopupContent = (feature) => {
-	switch (feature.type) {
-		case "qalcosonic":
-		case "elsys_codec":
-		case "enviot":
-		case "tem_lab_14ns":
-		case "strips_lora_ms_h":
-		case "milesight_am100":
-		case "presence":
-		case "cube02":
-		case "niab-fls":
-			return <DevicePopupContent feature={feature} />
-		case "counter":
-			return <FeaturePopupContent feature={feature} />
-		default:
-			console.log(feature.type);
-			return <></>
+	if (feature.type.startsWith("device.")) {
+		return <DevicePopupContent feature={feature} />
 	}
+	if (feature.type.startsWith("feature.")) {
+		return <FeaturePopupContent feature={feature} />
+	}
+
+	console.log(feature.type);
+	return <></>
 };
 
 export default Map;
