@@ -17,11 +17,24 @@ const DevicePopupContent = ({ feature }) => {
 			<div><strong>Beskrivning:</strong>{d.description}</div>
 			<div><strong>ID:</strong>{d.deviceID}</div>
 			<div><strong>Typ:</strong>{d.sensorType.name}</div>
+			<Location location={d.location} />
 			<div><strong>Senast:</strong>{d.lastObserved}</div>
 			<TypeIcons types={d.types} />
 		</>
 	);
 };
+
+const Location = ({ location }) => {
+	if (location && location.latitude && location.longitude) {
+		return (
+			<>
+				<div><strong>lat:</strong>{location.latitude}</div>
+				<div><strong>lon:</strong>{location.longitude}</div>
+			</>
+		);
+	}
+	return <></>
+}
 
 const TypeIcons = ({ types }) => {
 	return (
@@ -51,6 +64,7 @@ const FeaturePopupContent = ({ feature }) => {
 			<div><strong>Id:</strong>{f.id}</div>
 			<div><strong>Typ:</strong>{f.type}</div>
 			<div><strong>Kategori:</strong>{f.subtype}</div>
+			<Location location={f.location} />
 			{f.type === "counter" ? <CounterPopupContent counter={f.counter} /> : <></>}
 			{f.type === "level" ? <LevelPopupContent level={f.level} /> : <></>}
 			{f.type === "presence" ? <PresencePopupContent presence={f.presence} /> : <></>}
