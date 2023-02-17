@@ -29,8 +29,8 @@
         "subtype": "desk",
         "tenant": "default",
         "location": {
-            "latitude": 62.392375,
-            "longitude": 17.317828
+            "latitude": 62.392153,
+            "longitude": 17.301941
         },
         "presence": {
             "state": false
