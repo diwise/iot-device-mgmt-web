@@ -1,6 +1,4 @@
 import styled from "styled-components";
-import { useState } from "react";
-import { useParams } from "react-router-dom";
 import { FeatureCard } from '../components/FeatureCard'
 
 const FeatureViewContainer = styled.div`
@@ -27,10 +25,9 @@ const FeatureView = ({ features }) => {
 
           return 0
         })
-
         .map((feature) => {
           return (
-            <FeatureCard feature={feature} />
+            <FeatureCard key={feature.id} feature={feature} />
           );
         })}
     </FeatureViewContainer>
