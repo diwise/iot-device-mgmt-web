@@ -1,0 +1,39 @@
+.dashboard-page {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.device-page {
+    /* display: grid; 
+    grid-template-columns: repeat(2, 1fr) repeat(3, 0);
+    grid-template-rows: repeat(2, 1fr) 0 0;
+    grid-column-gap: 5px;
+    grid-row-gap: 10px;
+    align-items: center;
+    max-width: fit-content; */
+    @media only screen and (min-width: 772px) {
+      margin-left: 16rem;
+      align-items: flex-start;
+      align-self: flex-start;
+    }
+    align-self: center;
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+}
+
+.devicelist-page {
+    width: 95%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.featureview-page {
+    width: 95%;
+    margin-right: auto;
+    margin-left: auto;
+    display: flex;
+    flex-wrap: wrap;  
+}

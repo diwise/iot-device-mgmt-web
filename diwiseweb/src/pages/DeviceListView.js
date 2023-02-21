@@ -1,13 +1,15 @@
 import DeviceListCard from "../components/DeviceListCard";
-import styled from "styled-components";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
+import './pages.css';
 
-const DeviceListViewContainer = styled.div`
-  width: 95%;
-  margin-right: auto;
-  margin-left: auto;
-`;
+const DeviceListViewContainer = ({ children }) => {
+  return (
+    <div className="devicelist-page">
+      {children}
+    </div>
+  );
+}
 
 const filterStatus = (items, status) => {
   if (status !== undefined) {
@@ -26,7 +28,7 @@ const filterStatus = (items, status) => {
   return items;
 };
 
-const DeviceListView = ({devices}) => {
+const DeviceListView = ({ devices }) => {
   const [q, setQ] = useState("");
   const [searchParam] = useState(["name", "deviceID"]);
   const { status } = useParams();

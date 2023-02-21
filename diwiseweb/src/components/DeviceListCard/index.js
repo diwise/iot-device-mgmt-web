@@ -36,17 +36,17 @@ function DeviceListCard({ defaultExpanded, collapsedHeight, device }) {
         </div>
         <div className="contentWrapper" {...getCollapseProps()}>
           <div className="content">
-            <div className="item"><strong>devEUI:</strong>{device.devEUI}</div>
-            <div className="item"><strong>deviceID:</strong>{device.deviceID}</div>
-            <div className="item"><strong>Namn:</strong>{device.name}</div>
-            <div className="item"><strong>Beskrivning:</strong>{device.description}</div>
-            <div className="item"><strong>Miljö:</strong>{device.environment}</div>
-            <div className="item"><strong>Sensortyp:</strong>{device.sensorType !== undefined ? device.sensorType.name : ""}</div>
-            <div className="item"><strong>Senast:</strong>{lastObserved}</div>
-            <div className="item"><strong>Tenant:</strong>{device.tenant}</div>
-            <div className="item"><Location location={device.location} /></div>
-            <div className="item"><Types types={device.types} /></div>
-            <div className="item"><Status status={device.status} /></div>
+            <div><strong>devEUI:</strong>{device.devEUI}</div>
+            <div><strong>deviceID:</strong>{device.deviceID}</div>
+            <div><strong>Namn:</strong>{device.name}</div>
+            <div><strong>Beskrivning:</strong>{device.description}</div>
+            <div><strong>Miljö:</strong>{device.environment}</div>
+            <div><strong>Sensortyp:</strong>{device.sensorType !== undefined ? device.sensorType.name : ""}</div>
+            <div><strong>Senast:</strong>{lastObserved}</div>
+            <div><strong>Tenant:</strong>{device.tenant}</div>
+            <div><Location location={device.location} /></div>
+            <div><Types types={device.types} /></div>
+            <div><Status status={device.status} /></div>
           </div>
         </div>
       </div>

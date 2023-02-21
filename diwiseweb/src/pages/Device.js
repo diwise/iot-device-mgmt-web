@@ -1,32 +1,18 @@
 import DeviceCard from "../components/DeviceCard";
-//import SubNavigation from "../components/SubNavigation";
-import styled from "styled-components";
-//import ReportCardSmall from "../components/ReportCardSmall";
-//import HistoryCardSmall from "../components/HistoryCardSmall";
 import CardTemplate from "../components/CardTemplate";
-//import DeviceCardTransparent from "../components/CardTemplateTransparent";
 import { useEffect, useState } from "react";
 import HttpService from "../services/HttpService";
 import { useParams } from "react-router-dom";
+import './pages.css';
 
-const DeviceContainer = styled.div`
-  /* display: grid;
-  grid-template-columns: repeat(2, 1fr) repeat(3, 0);
-  grid-template-rows: repeat(2, 1fr) 0 0;
-  grid-column-gap: 5px;
-  grid-row-gap: 10px;
-  align-items: center;
-  max-width: fit-content; */
-  @media only screen and (min-width: 772px) {
-    margin-left: 16rem;
-    align-items: flex-start;
-    align-self: flex-start;
-  }
-  align-self: center;
-  width: fit-content;
-  display: flex;
-  flex-direction: column;
-`;
+
+const DeviceContainer = ({ children }) => {
+  return (
+    <div className="device-page">
+      {children}
+    </div>
+  );
+}
 
 const Device = () => {
   const [device, setDevice] = useState({})

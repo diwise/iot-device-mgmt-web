@@ -1,12 +1,12 @@
 import DashCard from "../components/DashCard";
-import styled from "styled-components";
+import './pages.css';
 
-const Dash = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-`;
+const Dash = ({ children }) => {
+  return (
+    <div className="dashboard-page">
+      {children}
+    </div>);
+};
 
 const Dashboard = ({ devices }) => {
   return (
