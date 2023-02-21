@@ -86,5 +86,20 @@
             "count": 15,
             "state": false
         }
-    }
+    },
+    {
+        "id": "level-01",
+        "type": "level",
+        "subtype": "filling",
+        "tenant": "default",
+        "location": {
+            "latitude": 63.392375,
+            "longitude": 16.317828
+        },
+        "levels": {
+            "current": 19590,
+            "percent": 46,
+            "offset": 32
+        }
+    } 
 ]

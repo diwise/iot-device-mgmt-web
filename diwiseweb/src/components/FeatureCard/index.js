@@ -37,6 +37,7 @@ const FeatureCard = ({ feature }) => {
     switch (feature.type) {
         case "counter": return <CounterFeatureCard feature={feature} />
         case "presence": return <PresenceFeatureCard feature={feature} />
+        case "level": return <LevelFeatureCard feature={feature} />
         default: return (<div>{feature.id}</div>);
     }
 };
@@ -53,7 +54,6 @@ const CommonFeatureCard = ({ feature }) => {
 };
 
 const CounterFeatureCard = ({ feature }) => {
-
     const labels = [feature.subtype];
     const color = feature.counter.state ? "green" : "grey";
 
@@ -69,27 +69,58 @@ const CounterFeatureCard = ({ feature }) => {
     };
 
     return (
-        <div className="card item">
-            <div class="card-container">
-                <CommonFeatureCard feature={feature} />
-                <Bar options={options} data={data} />
-            </div>
-        </div>
+        <>
+            <CommonFeatureCard feature={feature} />
+            <Bar options={options} data={data} />
+        </>
     );
 };
 
-
 const PresenceFeatureCard = ({ feature }) => {
     return (
-        <div className={"card item presence-" + feature.presence.state}>
-            <div class="card-container">
-                <CommonFeatureCard feature={feature} />
-                <div>{feature.presence.state ? "true" : "false"}</div>
-            </div></div>
+        <>
+            <CommonFeatureCard feature={feature} />
+            <div>{feature.presence.state ? "true" : "false"}</div>
+        </>
+    );
+};
+
+const LevelFeatureCard = ({ feature }) => {
+    const labels = [feature.subtype];
+    const color = "grey";
+
+    let d = feature.levels.percent ? feature.levels.percent : feature.levels.current;
+
+    let o = options;
+    o.scales = {
+        y: {
+            suggestedMin: 0,
+            suggestedMax: 100
+        }
+    };
+
+    const data = {
+        labels,
+        datasets: [
+            {
+                label: d,
+                data: [d],
+                backgroundColor: color,
+            }
+        ],
+    };
+
+    return (
+        <>
+            <CommonFeatureCard feature={feature} />
+            <Bar options={o} data={data} updateMode="show" />
+        </>
     );
 };
 
 export {
     FeatureCard,
-    CounterFeatureCard
+    CounterFeatureCard,
+    PresenceFeatureCard,
+    LevelFeatureCard
 }
