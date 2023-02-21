@@ -69,22 +69,19 @@ const CounterFeatureCard = ({ feature }) => {
     };
 
     return (
-        <div className="card item">
-            <div className="card-container">
-                <CommonFeatureCard feature={feature} />
-                <Bar options={options} data={data} />
-            </div>
-        </div>
+        <>
+            <CommonFeatureCard feature={feature} />
+            <Bar options={options} data={data} />
+        </>
     );
 };
 
 const PresenceFeatureCard = ({ feature }) => {
     return (
-        <div className={"card item presence-" + (feature.presence.state ? "on" : "off")}>
-            <div className="card-container">
-                <CommonFeatureCard feature={feature} />
-                <div>{feature.presence.state ? "true" : "false"}</div>
-            </div></div>
+        <>
+            <CommonFeatureCard feature={feature} />
+            <div>{feature.presence.state ? "true" : "false"}</div>
+        </>
     );
 };
 
@@ -92,7 +89,7 @@ const LevelFeatureCard = ({ feature }) => {
     const labels = [feature.subtype];
     const color = "grey";
 
-    let d = feature.levels.percent;
+    let d = feature.levels.percent ? feature.levels.percent : feature.levels.current;
 
     let o = options;
     o.scales = {
@@ -114,12 +111,10 @@ const LevelFeatureCard = ({ feature }) => {
     };
 
     return (
-        <div className="card item">
-            <div className="card-container">
-                <CommonFeatureCard feature={feature} />
-                <Bar options={o} data={data} updateMode="show" />
-            </div>
-        </div>
+        <>
+            <CommonFeatureCard feature={feature} />
+            <Bar options={o} data={data} updateMode="show" />
+        </>
     );
 };
 

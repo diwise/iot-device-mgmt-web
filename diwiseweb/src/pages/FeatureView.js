@@ -1,13 +1,11 @@
-import styled from "styled-components";
-import { FeatureCard } from '../components/FeatureCard'
+import { FeatureCard, FeatureCardWrapper } from '../components/FeatureCard'
 
-const FeatureViewContainer = styled.div`
-  width: 95%;
-  margin-right: auto;
-  margin-left: auto;
-  display: flex;
-  flex-wrap: wrap;    
-`;
+const FeatureViewContainer = ({ children }) => {
+  return (
+    <div className="featureview-page">{children}</div>
+  );
+}
+
 
 const FeatureView = ({ features }) => {
   return (
@@ -27,7 +25,11 @@ const FeatureView = ({ features }) => {
         })
         .map((feature) => {
           return (
-            <FeatureCard key={feature.id} feature={feature} />
+            <div className="card item">
+              <div className="card-container">
+                <FeatureCard feature={feature} />
+              </div>
+            </div>
           );
         })}
     </FeatureViewContainer>
