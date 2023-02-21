@@ -4,7 +4,7 @@ import regular from '../../assets/icons/regular.svg';
 
 const icons = ({ iconSet, name, color, size }) => {
     return (
-        <svg className="svg-icon" fill={color} width={size} height={size}>
+        <svg className={"svg-icon " + name} fill={color} width={size} height={size}>
             <use xlinkHref={`${iconSet}#${name}`} />
         </svg>
     );
