@@ -58,6 +58,9 @@ function MainNav() {
                     <NavDropdown.Item href="/device-management/map">
                       Karta
                     </NavDropdown.Item>   
+                    <NavDropdown.Item href="/device-management/features">
+                      Features
+                    </NavDropdown.Item>     
                     <NavDropdown.Divider />
                     <NavDropdown.Item href="#action/logout" onClick={UserService.doLogout}>
                       Logga ut
