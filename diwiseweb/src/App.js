@@ -6,6 +6,7 @@ import Dashboard from "./pages/Dashboard";
 import NotFound from "./pages/NotFound";
 import Device from "./pages/Device";
 import DeviceListView from "./pages/DeviceListView";
+import FeatureView from './pages/FeatureView';
 import MainNav from "./components/Navigation";
 import Footer from "./components/Footer";
 import "./App.css";
@@ -14,20 +15,22 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import MapView from "./pages/MapView";
 
-function adjustStatus(obj) {
-  if (obj.status !== undefined) {
-    let s = obj.status.statusCode;
+function adjustDevice(device) {
+  if (device.status !== undefined) {
+    let s = device.status.statusCode;
     if (!(s === -1 || s === 0 || s === 2)) {
-      obj.status.statusCode = 1;
+      device.status.statusCode = 1;
     }
   }
-  return obj;
+
+  return device;
 }
+
 
 function updateDeviceState(s, obj) {
   let i = s.findIndex(x => x.devEUI === obj.devEUI);
 
-  obj = adjustStatus(obj);
+  obj = adjustDevice(obj);
 
   if (i > -1) {
     s[i] = obj;
@@ -62,7 +65,7 @@ function App() {
     }).then(res => res.json())
       .then(json => {
         setDevices(json.map((e) => {
-          return adjustStatus(e);
+          return adjustDevice(e);
         }));
       });
   };
@@ -137,6 +140,7 @@ function App() {
           <Route path="/devices" element={<DeviceListView devices={devices} />} />
           <Route path="/devices/:status" element={<DeviceListView devices={devices} />} />
           <Route path="/map" element={<MapView devices={devices} features={features} />} />
+          <Route path="/features" element={<FeatureView features={features} />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer
