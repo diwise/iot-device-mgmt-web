@@ -25,7 +25,7 @@ const FeatureView = ({ features }) => {
         })
         .map((feature) => {
           return (
-            <div className="card item">
+            <div className="card item featureCard">
               <div className="card-container">
                 <FeatureCard feature={feature} />
               </div>
