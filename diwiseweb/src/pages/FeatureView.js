@@ -1,11 +1,10 @@
-import { FeatureCard, FeatureCardWrapper } from '../components/FeatureCard'
+import { FeatureCard } from '../components/FeatureCard'
 
 const FeatureViewContainer = ({ children }) => {
   return (
     <div className="featureview-page">{children}</div>
   );
 }
-
 
 const FeatureView = ({ features }) => {
   return (
@@ -25,7 +24,7 @@ const FeatureView = ({ features }) => {
         })
         .map((feature) => {
           return (
-            <div className="card item featureCard">
+            <div key={feature.id} className="card item featureCard">
               <div className="card-container">
                 <FeatureCard feature={feature} />
               </div>
@@ -35,7 +34,5 @@ const FeatureView = ({ features }) => {
     </FeatureViewContainer>
   );
 };
-
-
 
 export default FeatureView;
