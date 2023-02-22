@@ -86,8 +86,8 @@ const App = () => {
         async onopen(res) {
           if (res.ok && res.status === 200) {
             console.log("connection made ", res);
-            loadDevices(token);
-            loadFeatures(token);
+            await loadDevices(token);
+            await loadFeatures(token);
           }
         },
         onmessage(event) {
