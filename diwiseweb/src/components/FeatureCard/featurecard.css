@@ -12,7 +12,15 @@
 }
 
 .presence-on {
-    background-color: coral;
+    color: coral;
+}
+
+.presence-off {
+    color: green;
+}
+
+.presenceWrapper {
+    width: 100%;
 }
 
 .card-container {

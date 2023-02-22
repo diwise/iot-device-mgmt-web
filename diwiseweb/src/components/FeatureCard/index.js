@@ -8,6 +8,7 @@ import {
     Legend,
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
+import { Link } from 'react-router-dom';
 
 import "./featurecard.css";
 
@@ -19,19 +20,6 @@ ChartJS.register(
     Tooltip,
     Legend
 );
-
-const options = {
-    responsive: true,
-    plugins: {
-        legend: {
-            position: 'top',
-            display: true,
-        },
-        title: {
-            display: false,
-        },
-    },
-};
 
 const FeatureCard = ({ feature }) => {
     switch (feature.type) {
@@ -45,7 +33,7 @@ const FeatureCard = ({ feature }) => {
 const CommonFeatureCard = ({ feature }) => {
     return (
         <>
-            <div><strong>ID:</strong>{feature.id}</div>
+            <div><strong>ID:</strong><Link to={"/features/" + feature.id}>{feature.id}</Link></div>
             <div><strong>Typ:</strong>{feature.type}</div>
             <div><strong>Kategori:</strong>{feature.subtype}</div>
             <hr />
@@ -53,9 +41,24 @@ const CommonFeatureCard = ({ feature }) => {
     );
 };
 
+const plugins = {
+    legend: {
+        position: 'top',
+        display: true,
+    },
+    title: {
+        display: false,
+    },
+};
+
 const CounterFeatureCard = ({ feature }) => {
     const labels = [feature.subtype];
     const color = feature.counter.state ? "green" : "grey";
+
+    const options = {
+        responsive: true,
+        plugins: plugins,
+    };
 
     const data = {
         labels,
@@ -80,7 +83,9 @@ const PresenceFeatureCard = ({ feature }) => {
     return (
         <>
             <CommonFeatureCard feature={feature} />
-            <div>{feature.presence.state ? "true" : "false"}</div>
+            <div className='presenceWrapper'>
+                <div className={"presence-" + (feature.presence.state ? "on" : "off")}>{feature.presence.state ? "true" : "false"}</div>
+            </div>
         </>
     );
 };
@@ -91,11 +96,14 @@ const LevelFeatureCard = ({ feature }) => {
 
     let d = feature.levels.percent ? feature.levels.percent : feature.levels.current;
 
-    let o = options;
-    o.scales = {
-        y: {
-            suggestedMin: 0,
-            suggestedMax: 100
+    const options = {
+        responsive: true,
+        plugins: plugins,
+        scales: {
+            y: {
+                suggestedMin: 0,
+                suggestedMax: 100
+            }
         }
     };
 
@@ -113,7 +121,7 @@ const LevelFeatureCard = ({ feature }) => {
     return (
         <>
             <CommonFeatureCard feature={feature} />
-            <Bar options={o} data={data} updateMode="show" />
+            <Bar options={options} data={data} updateMode="show" />
         </>
     );
 };

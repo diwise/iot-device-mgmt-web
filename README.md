@@ -1,5 +1,11 @@
 # iot-device-mgmt-web
 
+# Development
+To run the application in development mode, in directory `diwiseweb` run the following command
+```
+npm run dev
+```
+That will start a development server and a mock backend api.
 # Building and running with Docker
 
 ```

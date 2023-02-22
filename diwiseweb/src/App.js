@@ -16,16 +16,17 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import MapView from "./pages/MapView";
 
 function adjustDevice(device) {
-  if (device.status !== undefined) {
-    let s = device.status.statusCode;
-    if (!(s === -1 || s === 0 || s === 2)) {
-      device.status.statusCode = 1;
-    }
+  if (device.status === undefined) {
+    return device;
+  }
+
+  let s = device.status.statusCode;
+  if (!(s === -1 || s === 0 || s === 2)) {
+    device.status.statusCode = 1;
   }
 
   return device;
 }
-
 
 function updateDeviceState(s, obj) {
   let i = s.findIndex(x => x.devEUI === obj.devEUI);
@@ -46,69 +47,52 @@ function updateFeaturesState(state, obj) {
     state[idx] = obj;
   }
 
-  console.log(obj);
-
   return [...state];
 }
 
-function App() {
+const App = () => {
   const [devices, setDevices] = useState([]);
   const [features, setFeatures] = useState([]);
-  const [listening, setListening] = useState(false);
-
-  const fetchDevices = () => {
-    fetch(`/api/v0/devices`, {
-      headers: {
-        'Accept': 'application/json',
-        'Authorization': `Bearer ${UserService.getToken()}`
-      },
-    }).then(res => res.json())
-      .then(json => {
-        setDevices(json.map((e) => {
-          return adjustDevice(e);
-        }));
-      });
-  };
-
-  const fetchFeatures = () => {
-    fetch(`/api/features`, {
-      headers: {
-        'Accept': 'application/json',
-        'Authorization': `Bearer ${UserService.getToken()}`
-      },
-    }).then(res => res.json())
-      .then(json => {
-        setFeatures(json);
-      });
-  };
 
   useEffect(() => {
-    fetchDevices();
-    fetchFeatures();
-  }, []);
-
-  useEffect(() => {
-    if (!listening) {
-      fetchEventSource(`/api/v0/events`, {
+    const loadDevices = async (token) => {
+      let res = await fetch(`/api/v0/devices`, {
         headers: {
-          'Authorization': `Bearer ${UserService.getToken()}`
-        },
-        onopen(res) {
-          if (res.ok && res.status === 200) {
-            console.log("Connection made ", res);
-            fetchDevices();
-            fetchFeatures();
+          'Accept': 'application/json',
+          'Authorization': `Bearer ${token}`
+        }
+      });
+      let json = await res.json();
+      setDevices(json.map((d) => adjustDevice(d)));
+    };
 
-          } else if (
-            res.status >= 400 &&
-            res.status < 500 &&
-            res.status !== 429
-          ) {
-            console.log("Client side error ", res);
+    const loadFeatures = async (token) => {
+      let res = await fetch(`/api/features`, {
+        headers: {
+          'Accept': 'application/json',
+          'Authorization': `Bearer ${token}`
+        }
+      });
+      let json = await res.json();
+      setFeatures(json);
+    };
+
+    const loadEventSource = async (token) => {
+      await fetchEventSource(`/api/v0/events`, {
+        headers: {
+          'Accept': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        async onopen(res) {
+          if (res.ok && res.status === 200) {
+            console.log("connection made ", res);
+            await loadDevices(token);
+            await loadFeatures(token);
           }
         },
         onmessage(event) {
-          const data = JSON.parse(event.data);
+          let data = JSON.parse(event.data);
+          console.log(event.event);
           switch (event.event) {
             case "deviceUpdated": setDevices((s) => updateDeviceState(s, data)); break;
             case "deviceCreated": setDevices((s) => updateDeviceState(s, data)); break;
@@ -119,15 +103,19 @@ function App() {
           };
         },
         onclose() {
-          console.log("Connection closed by the server");
+          console.log("connection closed");
         },
         onerror(err) {
-          console.log("There was an error from server", err);
-        },
-      });
-      setListening(true);
-    };
-  }, [listening]);
+          console.log("error: ", err)
+        }
+      })
+    }
+
+    let token = UserService.getToken();
+    loadDevices(token);
+    loadFeatures(token);
+    loadEventSource(token);
+  }, []);
 
   return (
     <>
