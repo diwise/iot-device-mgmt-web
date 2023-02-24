@@ -96,10 +96,10 @@
             "latitude": 63.392375,
             "longitude": 16.317828
         },
-        "levels": {
-            "current": 19590,
+        "level": {
+            "current": 19.590,
             "percent": 46,
-            "offset": 32
+            "offset": 0.32
         }
     },
     {
@@ -111,7 +111,7 @@
             "latitude": 63.392335,
             "longitude": 16.317821
         },
-        "levels": {
+        "level": {
             "current": 19590
         }
     }
