@@ -27,7 +27,7 @@ module.exports = (req, res) => {
                 f.counter.count++;
             }
             if (f.type === "level") {
-                f.levels.current++;
+                f.level.current++;
             }
             
             let data = `event: feature.updated\ndata: ${JSON.stringify(f)}\n\n`;

@@ -94,7 +94,7 @@ const LevelFeatureCard = ({ feature }) => {
     const labels = [feature.subtype];
     const color = "grey";
 
-    let d = feature.levels.percent !== undefined ? feature.levels.percent : feature.levels.current;
+    let d = feature.level.percent !== undefined ? feature.level.percent : feature.level.current;
 
     const options = {
         responsive: true,
@@ -111,7 +111,7 @@ const LevelFeatureCard = ({ feature }) => {
         labels,
         datasets: [
             {
-                label: feature.levels.current,
+                label: feature.level.current,
                 data: [d],
                 backgroundColor: color,
             }
