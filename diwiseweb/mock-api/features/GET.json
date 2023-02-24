@@ -101,5 +101,18 @@
             "percent": 46,
             "offset": 32
         }
-    } 
+    },
+    {
+        "id": "level-02",
+        "type": "level",
+        "subtype": "filling",
+        "tenant": "default",
+        "location": {
+            "latitude": 63.392335,
+            "longitude": 16.317821
+        },
+        "levels": {
+            "current": 19590
+        }
+    }
 ]

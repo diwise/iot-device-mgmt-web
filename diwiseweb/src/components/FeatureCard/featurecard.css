@@ -11,6 +11,10 @@
     transition: 0.3s;
 }
 
+.featureCard strong {
+    margin-right: 10px;
+}
+
 .presence-on {
     color: coral;
 }
