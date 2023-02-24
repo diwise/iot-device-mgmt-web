@@ -4,7 +4,6 @@ import './index.css';
 import App from './App';
 import { BrowserRouter } from "react-router-dom";
 import reportWebVitals from './reportWebVitals';
-import HttpService from './services/HttpService';
 import UserService from './services/UserService';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -23,12 +22,11 @@ const renderApp = () =>
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
 
-if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {  
+if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
   renderApp();
 } else {
   // production code
   UserService.initKeycloak(renderApp);
-  HttpService.configure();
 }
 
 

@@ -1,9 +1,9 @@
 import DeviceCard from "../components/DeviceCard";
 import CardTemplate from "../components/CardTemplate";
 import { useEffect, useState } from "react";
-import HttpService from "../services/HttpService";
 import { useParams } from "react-router-dom";
 import './pages.css';
+import UserService from "../services/UserService";
 
 
 const DeviceContainer = ({ children }) => {
@@ -19,9 +19,18 @@ const Device = () => {
   const { deviceID } = useParams();
 
   useEffect(() => {
-    HttpService.getAxiosClient()
-      .get("/api/v0/devices/" + deviceID)
-      .then((response) => setDevice(response.data));
+    const loadDevice = async (token) => {
+      let res = await fetch(`/api/v0/devices/${deviceID}`, {
+        headers: {
+          'Accept': 'application/json',
+          'Authorization': `Bearer ${token}`
+        }
+      });
+      let json = await res.json();
+      setDevice(json);
+    };
+     
+    loadDevice(UserService.getToken());
   }, [deviceID]);
 
   return (
