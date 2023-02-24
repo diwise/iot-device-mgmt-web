@@ -7,13 +7,12 @@ import NotFound from "./pages/NotFound";
 import Device from "./pages/Device";
 import DeviceListView from "./pages/DeviceListView";
 import FeatureView from './pages/FeatureView';
+import MapView from "./pages/MapView";
 import MainNav from "./components/Navigation";
 import Footer from "./components/Footer";
 import "./App.css";
 import "./components/CardTemplate/cardtemplate.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-
-import MapView from "./pages/MapView";
 
 function adjustDevice(device) {
   if (device.status === undefined) {
@@ -55,41 +54,45 @@ const App = () => {
   const [features, setFeatures] = useState([]);
 
   useEffect(() => {
-    const loadDevices = async (token) => {
+    const loadDevices = async () => {
       console.log("load devices");
       let res = await fetch(`/api/v0/devices`, {
         headers: {
           'Accept': 'application/json',
-          'Authorization': `Bearer ${token}`
+          'Authorization': `Bearer ${UserService.getToken()}`
         }
       });
       let json = await res.json();
       setDevices(json.map((d) => adjustDevice(d)));
     };
 
-    const loadFeatures = async (token) => {
+    const loadFeatures = async () => {
       console.log("load features");
       let res = await fetch(`/api/features`, {
         headers: {
           'Accept': 'application/json',
-          'Authorization': `Bearer ${token}`
+          'Authorization': `Bearer ${UserService.getToken()}`
         }
       });
       let json = await res.json();
       setFeatures(json);
     };
 
-    const loadEventSource = async (token) => {
+    const loadEventSource = async () => {
       await fetchEventSource(`/api/v0/events`, {
         headers: {
           'Accept': 'application/json',
-          'Authorization': `Bearer ${token}`
+          'Authorization': `Bearer ${UserService.getToken()}`
         },
         async onopen(res) {
           if (res.ok && res.status === 200) {
             console.log("connection made ", res);
-            await loadDevices(token);
-            await loadFeatures(token);
+
+            UserService.updateToken(async () => {
+              console.log("onopen");
+              await loadDevices();
+              await loadFeatures();
+            });
           }
         },
         onmessage(event) {
@@ -102,6 +105,13 @@ const App = () => {
             default:
               console.log(`event: ${event.event} is not implemented!`);
           };
+
+          try {
+            UserService.updateToken(() => { });
+          } catch (error) {
+            console.log(error);
+          }
+
         },
         onclose() {
           console.log("connection closed");
@@ -112,10 +122,9 @@ const App = () => {
       })
     }
 
-    let token = UserService.getToken();
-    loadDevices(token);
-    loadFeatures(token);
-    loadEventSource(token);
+    loadDevices();
+    loadFeatures();
+    loadEventSource();
   }, []);
 
   return (
