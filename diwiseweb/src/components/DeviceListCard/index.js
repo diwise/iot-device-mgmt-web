@@ -58,13 +58,13 @@ const Types = ({ types }) => {
   return (
     <>
       <strong>Typer:</strong>
-      <p>
+      <ul>
         {types.map((t) => {
           return (
-            <div key={t}>{t}</div>
+            <li key={t}>{t}</li>
           );
         })}
-      </p>
+      </ul>
     </>
   );
 }
@@ -83,17 +83,19 @@ const Status = ({ status }) => {
   return (
     <div className="status">
       <strong>Status:</strong>
-      <p><strong>Kod:</strong>{statusCode}</p>
-      <p><strong>Batterinivå:</strong>{batteryLevel}</p>
-      <p><strong>Meddelanden:</strong>
-        <p>
-          {messages.map((m) => {
-            return (
-              <div key={m}>{m}<br /></div>
-            )
-          })}
-        </p>
-      </p>
+      <ul>
+        <li><strong>Kod:</strong>{statusCode}</li>
+        <li><strong>Batterinivå:</strong>{batteryLevel}</li>
+        <li><strong>Meddelanden:</strong>
+          <ul>
+            {messages.map((m) => {
+              return (
+                <li key={m}>{m}<br /></li>
+              )
+            })}
+          </ul>
+        </li>
+      </ul>
     </div>
   );
 };
@@ -105,8 +107,10 @@ const Location = ({ location }) => {
   return (
     <>
       <strong>Position:</strong>
-      <p><strong>Lat:</strong>{lat}</p>
-      <p><strong>Lon:</strong>{lon}</p>
+      <ul>
+        <li><strong>Lat:</strong>{lat}</li>
+        <li><strong>Lon:</strong>{lon}</li>
+      </ul>
     </>
   )
 };

@@ -71,13 +71,12 @@
     flex-direction: column;
 }
 
-.item strong {
-    margin-right: 1em;
+.content li {
+    margin-left: -15px;
 }
 
-.item p {
-    margin-left: 1em;
-    margin-bottom: 0px;
+.content strong {
+    margin-right: 10px;
 }
 
 .content:last-child {
