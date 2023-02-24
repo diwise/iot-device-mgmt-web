@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/ubi8/nodejs-16 AS builder
+FROM --platform=$BUILDPLATFORM registry.access.redhat.com/ubi9/nodejs-18 AS builder
 
 # Copy package json and install dependencies
 COPY ./diwiseweb/package.json .
