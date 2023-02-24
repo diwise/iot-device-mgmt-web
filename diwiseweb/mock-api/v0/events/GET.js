@@ -26,6 +26,10 @@ module.exports = (req, res) => {
             if (f.type === "counter") {
                 f.counter.count++;
             }
+            if (f.type === "level") {
+                f.levels.current++;
+            }
+            
             let data = `event: feature.updated\ndata: ${JSON.stringify(f)}\n\n`;
             clients.forEach(client => client.response.write(data));
         });

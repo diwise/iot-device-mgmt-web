@@ -56,6 +56,7 @@ const App = () => {
 
   useEffect(() => {
     const loadDevices = async (token) => {
+      console.log("load devices");
       let res = await fetch(`/api/v0/devices`, {
         headers: {
           'Accept': 'application/json',
@@ -67,6 +68,7 @@ const App = () => {
     };
 
     const loadFeatures = async (token) => {
+      console.log("load features");
       let res = await fetch(`/api/features`, {
         headers: {
           'Accept': 'application/json',
@@ -92,7 +94,6 @@ const App = () => {
         },
         onmessage(event) {
           let data = JSON.parse(event.data);
-          console.log(event.event);
           switch (event.event) {
             case "deviceUpdated": setDevices((s) => updateDeviceState(s, data)); break;
             case "deviceCreated": setDevices((s) => updateDeviceState(s, data)); break;

@@ -1,6 +1,6 @@
 import React from "react";
 import ChangeHighlight from "react-change-highlight";
-import useCollapse from "react-collapsed";
+import { useCollapse } from "@collapsed/react";
 import StatusIcon from "./statusicon";
 import "./deviceListCard.css";
 

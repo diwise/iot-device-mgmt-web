@@ -111,7 +111,7 @@ const LevelFeatureCard = ({ feature }) => {
         labels,
         datasets: [
             {
-                label: d,
+                label: feature.levels.current,
                 data: [d],
                 backgroundColor: color,
             }
