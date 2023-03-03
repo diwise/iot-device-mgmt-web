@@ -26,6 +26,7 @@ const FeatureCard = ({ feature }) => {
         case "counter": return <CounterFeatureCard feature={feature} />
         case "presence": return <PresenceFeatureCard feature={feature} />
         case "level": return <LevelFeatureCard feature={feature} />
+        case "waterquality": return <WaterQualityFeatureCard feature={feature} />
         default: return (<div>{feature.id}</div>);
     }
 };
@@ -33,7 +34,7 @@ const FeatureCard = ({ feature }) => {
 const CommonFeatureCard = ({ feature }) => {
     return (
         <>
-            <div><strong>ID:</strong><Link to={"/features/" + feature.id}>{feature.id}</Link></div>
+            <div><strong>ID:</strong>{feature.id}</div>
             <div><strong>Typ:</strong>{feature.type}</div>
             <div><strong>Kategori:</strong>{feature.subtype}</div>
             <hr />
@@ -126,9 +127,44 @@ const LevelFeatureCard = ({ feature }) => {
     );
 };
 
+const WaterQualityFeatureCard = ({ feature }) => {
+    const labels = [feature.subtype];
+    const color = "blue";
+
+    const options = {
+        responsive: true,
+        plugins: plugins,
+        scales: {
+            y: {
+                suggestedMin: 0,
+                suggestedMax: 30
+            }
+        }
+    };
+
+    const data = {
+        labels,
+        datasets: [
+            {
+                label: feature.subtype,
+                data: [feature.waterquality.temperature],
+                backgroundColor: color,
+            }
+        ],
+    };
+
+    return (
+        <>
+            <CommonFeatureCard feature={feature} />
+            <Bar options={options} data={data} />
+        </>
+    );
+};
+
 export {
     FeatureCard,
     CounterFeatureCard,
     PresenceFeatureCard,
-    LevelFeatureCard
+    LevelFeatureCard,
+    WaterQualityFeatureCard
 }

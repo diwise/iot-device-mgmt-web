@@ -7,6 +7,7 @@ import NotFound from "./pages/NotFound";
 import Device from "./pages/Device";
 import DeviceListView from "./pages/DeviceListView";
 import FeatureView from './pages/FeatureView';
+import Feature from './pages/Feature';
 import MapView from "./pages/MapView";
 import MainNav from "./components/Navigation";
 import Footer from "./components/Footer";
@@ -55,7 +56,6 @@ const App = () => {
 
   useEffect(() => {
     const loadDevices = async () => {
-      console.log("load devices");
       let res = await fetch(`/api/v0/devices`, {
         headers: {
           'Accept': 'application/json',
@@ -67,7 +67,6 @@ const App = () => {
     };
 
     const loadFeatures = async () => {
-      console.log("load features");
       let res = await fetch(`/api/features`, {
         headers: {
           'Accept': 'application/json',
@@ -89,7 +88,6 @@ const App = () => {
             console.log("connection made ", res);
 
             UserService.updateToken(async () => {
-              console.log("onopen");
               await loadDevices();
               await loadFeatures();
             });
@@ -139,6 +137,7 @@ const App = () => {
           <Route path="/devices/:status" element={<DeviceListView devices={devices} />} />
           <Route path="/map" element={<MapView devices={devices} features={features} />} />
           <Route path="/features" element={<FeatureView features={features} />} />
+          <Route path="/features/:featureID" element={<Feature />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer
