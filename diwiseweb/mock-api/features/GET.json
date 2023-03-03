@@ -114,5 +114,17 @@
         "level": {
             "current": 19590
         }
+    },
+    {
+        "id": "waterTemp-2643",
+        "type": "waterquality",
+        "subtype": "beach",
+        "location": {
+            "latitude": 63.392335,
+            "longitude": 12.317821
+        },
+        "waterquality": {
+            "temperature": 10
+        }
     }
 ]
