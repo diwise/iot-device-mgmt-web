@@ -1,14 +1,8 @@
 import {
-    Chart as ChartJS,
-    CategoryScale,
-    LinearScale,
-    BarElement,
-    Title,
-    Tooltip,
-    Legend,
+    BarElement, CategoryScale, Chart as ChartJS, Legend, LinearScale, Title,
+    Tooltip
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
-import { Link } from 'react-router-dom';
 
 import "./featurecard.css";
 
@@ -146,7 +140,7 @@ const WaterQualityFeatureCard = ({ feature }) => {
         labels,
         datasets: [
             {
-                label: feature.subtype,
+                label: feature.waterquality.temperature + " \u2103", // ˚C
                 data: [feature.waterquality.temperature],
                 backgroundColor: color,
             }
@@ -167,4 +161,4 @@ export {
     PresenceFeatureCard,
     LevelFeatureCard,
     WaterQualityFeatureCard
-}
+};
