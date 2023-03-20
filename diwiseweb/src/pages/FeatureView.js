@@ -7,30 +7,28 @@ const FeatureViewContainer = ({ children }) => {
 }
 
 const FeatureView = ({ features }) => {
+  let funcs = features.sort((a, b) => {
+    let funcTypeA = a.type + ":" + a.subtype;
+    let funcTypeB = b.type + ":" + b.subtype;
+    if (funcTypeA < funcTypeB) {
+      return -1;
+    } else if (funcTypeA > funcTypeB) {
+      return 1;
+    }
+    return 0;
+  });
+
   return (
     <FeatureViewContainer>
-      {features
-        .sort((a, b) => {
-          let aa = a.type + a.subtype;
-          let bb = a.type + b.subtype;
-
-          if (aa < bb) {
-            return -1
-          } else if (aa > bb) {
-            return 1
-          }
-
-          return 0
-        })
-        .map((feature) => {
-          return (
-            <div key={feature.id} className="card item featureCard">
-              <div className="card-container">
-                <FeatureCard feature={feature} />
-              </div>
+      {funcs.map((f) => {
+        return (
+          <div key={f.id} className="card item featureCard">
+            <div className="card-container">
+              <FeatureCard feature={f} />
             </div>
-          );
-        })}
+          </div>
+        );
+      })}
     </FeatureViewContainer>
   );
 };

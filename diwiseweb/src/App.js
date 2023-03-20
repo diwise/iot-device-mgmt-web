@@ -28,28 +28,6 @@ function adjustDevice(device) {
   return device;
 }
 
-function updateDeviceState(s, obj) {
-  let i = s.findIndex(x => x.devEUI === obj.devEUI);
-
-  obj = adjustDevice(obj);
-
-  if (i > -1) {
-    s[i] = obj;
-  }
-
-  return [...s];
-}
-
-function updateFeaturesState(state, obj) {
-  let idx = state.findIndex(x => x.id === obj.id);
-
-  if (idx > -1) {
-    state[idx] = obj;
-  }
-
-  return [...state];
-}
-
 const App = () => {
   const [devices, setDevices] = useState([]);
   const [features, setFeatures] = useState([]);
@@ -62,8 +40,19 @@ const App = () => {
           'Authorization': `Bearer ${UserService.getToken()}`
         }
       });
-      let json = await res.json();
-      setDevices(json.map((d) => adjustDevice(d)));
+      let result = await res.json();
+      setDevices(result.map((d) => adjustDevice(d)));
+    };
+
+    const loadDevice = async (deviceID) => {
+      let res = await fetch(`/api/v0/devices/${deviceID}`, {
+        headers: {
+          'Accept': 'application/json',
+          'Authorization': `Bearer ${UserService.getToken()}`
+        }
+      });
+      let result = await res.json();
+      return result;
     };
 
     const loadFeatures = async () => {
@@ -73,14 +62,13 @@ const App = () => {
           'Authorization': `Bearer ${UserService.getToken()}`
         }
       });
-      let json = await res.json();
-      setFeatures(json);
+      let result = await res.json();
+      setFeatures(result);
     };
 
     const loadEventSource = async () => {
       await fetchEventSource(`/api/v0/events`, {
         headers: {
-          'Accept': 'application/json',
           'Authorization': `Bearer ${UserService.getToken()}`
         },
         async onopen(res) {
@@ -94,22 +82,93 @@ const App = () => {
           }
         },
         onmessage(event) {
-          let data = JSON.parse(event.data);
-          switch (event.event) {
-            case "deviceUpdated": setDevices((s) => updateDeviceState(s, data)); break;
-            case "deviceCreated": setDevices((s) => updateDeviceState(s, data)); break;
-            case "lastObservedUpdated": setDevices((s) => updateDeviceState(s, data)); break;
-            case "feature.updated": setFeatures((s) => updateFeaturesState(s, data)); break;
-            default:
-              console.log(`event: ${event.event} is not implemented!`);
-          };
-
-          try {
-            UserService.updateToken(() => { });
-          } catch (error) {
-            console.log(error);
+          if (event.event === "keep-alive") {
+            try {
+              UserService.updateToken(() => { });
+            } catch (error) {
+              console.log(error);
+            }
+            return;
           }
 
+          let data = JSON.parse(atob(event.data)); // atob is not deprecated in browsers, only node.js.
+
+          switch (event.event) {
+            case "device.created":
+              setDevices((currentState) => {
+                let i = currentState.findIndex((d) => { return d.deviceID === data.deviceID });
+                if (i >= 0) {
+                  console.log(`created device ${data.deviceID} already exists in device state`);
+                } else {
+                  let device = loadDevice(data.deviceID);
+                  return [...currentState, adjustDevice(device)];
+                }
+              });
+              break;
+            case "device.updated":
+              setDevices((currentState) => {
+                return currentState.map((d) => {
+                  if (d.deviceID === data.deviceID) {
+                    let device = adjustDevice(loadDevice(data.deviceID));
+                    return device;
+                  } else {
+                    return d;
+                  }
+                });
+              });
+              break;
+            case "device-status":
+              setDevices((currentState) => {
+                return currentState.map((d) => {
+                  if (d.deviceID === data.deviceID) {
+                    d.lastObserved = data.timestamp;
+                    return d;
+                  } else {
+                    return d;
+                  }
+                });
+              });
+              break;
+            case "device.statusUpdated":
+              setDevices((currentState) => {
+                return currentState.map((d) => {
+                  if (d.deviceID === data.deviceID) {
+                    // TODO: fix status logic in backend
+
+                    let s = data.status.statusCode;
+
+                    if (!(s === -1 || s === 0 || s === 2)) {
+                      data.status.statusCode = 1;
+                    }
+
+                    d.status = data.status;
+
+                    if (d.lastObserved !== "0001-01-01T00:00:00Z" && data.timestamp !== "0001-01-01T00:00:00Z") {
+                      d.lastObserved = data.timestamp;
+                    }
+
+                    return d;
+                  } else {
+                    return d;
+                  }
+                });
+              });
+              break;
+            case "feature.updated":
+              setFeatures((currentState) => {
+                return currentState.map((func) => {
+                  if (func.ID === data.ID) {
+                    return data;
+                  } else {
+                    return func;
+                  }
+                });
+              });
+
+              break;
+            default:
+              console.log(`event: ${event.event} unhandled`);
+          };
         },
         onclose() {
           console.log("connection closed");

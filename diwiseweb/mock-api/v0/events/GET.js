@@ -18,7 +18,12 @@ module.exports = (req, res) => {
         devices.forEach((d) => {
             d.lastObserved = Date.now();
             d.status.statusCode = Math.random(Math.floor(Math.random() * 2))
-            let data = `event: deviceUpdated\ndata: ${JSON.stringify(d)}\n\n`;
+
+            let jsonStr = JSON.stringify(d);
+            let buf = Buffer.from(jsonStr, 'utf8');
+            let b64Data = buf.toString('base64');
+
+            let data = `event: device.statusUpdated\ndata: ${b64Data}\n\n`;
             clients.forEach(client => client.response.write(data));
         });
 
@@ -29,8 +34,12 @@ module.exports = (req, res) => {
             if (f.type === "level") {
                 f.level.current++;
             }
-            
-            let data = `event: feature.updated\ndata: ${JSON.stringify(f)}\n\n`;
+
+            let jsonStr = JSON.stringify(f);
+            let buf = Buffer.from(jsonStr, 'utf8');
+            let b64Data = buf.toString('base64');
+
+            let data = `event: feature.updated\ndata: ${b64Data}\n\n`;
             clients.forEach(client => client.response.write(data));
         });
 
@@ -43,5 +52,3 @@ module.exports = (req, res) => {
 
     res.writeHead(200, headers);
 };
-
-

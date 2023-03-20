@@ -6,6 +6,7 @@
 }
 
 .device-page {
+
     /* display: grid; 
     grid-template-columns: repeat(2, 1fr) repeat(3, 0);
     grid-template-rows: repeat(2, 1fr) 0 0;
@@ -14,10 +15,11 @@
     align-items: center;
     max-width: fit-content; */
     @media only screen and (min-width: 772px) {
-      margin-left: 16rem;
-      align-items: flex-start;
-      align-self: flex-start;
+        margin-left: 16rem;
+        align-items: flex-start;
+        align-self: flex-start;
     }
+
     align-self: center;
     width: fit-content;
     display: flex;
@@ -35,5 +37,10 @@
     margin-right: auto;
     margin-left: auto;
     display: flex;
-    flex-wrap: wrap;  
+    flex-wrap: wrap;
+}
+
+.break {
+    flex-basis: 100%;
+    height: 0;
 }
