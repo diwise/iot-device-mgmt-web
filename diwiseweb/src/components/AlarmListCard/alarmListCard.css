@@ -1,46 +1,21 @@
-.statusIcon.inactive,
-.statusIcon.ok,
-.statusIcon.unknown,
-.statusIcon.active {
-    display: none;
-}
-
-.statusIcon.warning {
-    color: #ff9900;
-    display: contents;
-}
-
-.statusIcon.error {
-    color: #de1313;
-    display: contents;
-}
-
 .status.active:first-child {
     display: none;
 }
 
-.deviceWrapper.inactive {
+.alarmWrapper.closed {
     border: 0.8em solid #0000003d;
 }
 
-.deviceWrapper.active {
-    border: 0.8em solid #27c01a;
+.alarmWrapper.low {
+    border: 0.8em solid #f88686;
 }
 
-.deviceWrapper.unknown {
-    border: 0.8em solid #858585;
+.alarmWrapper.medium {
+    border: 0.8em solid #fc2b2b;
 }
 
-.deviceWrapper.ok {
-    border: 0.8em solid #27c01a;
-}
-
-.deviceWrapper.warning {
-    border: 0.8em solid #ff9900;
-}
-
-.deviceWrapper.error {
-    border: 0.8em solid #de1313;
+.alarmWrapper.high {
+    border: 0.8em solid #ff0000;
 }
 
 .grid {
@@ -48,12 +23,10 @@
     grid-template-columns: repeat(4, 1fr);
 }
 
-.deviceWrapper.active,
-.deviceWrapper.error,
-.deviceWrapper.inactive,
-.deviceWrapper.ok,
-.deviceWrapper.unknown,
-.deviceWrapper.warning {
+.alarmWrapper.closed,
+.alarmWrapper.low,
+.alarmWrapper.medium,
+.alarmWrapper.high {
     border-top: none;
     border-right: none;
     border-bottom: none;
@@ -63,7 +36,7 @@
     margin-bottom: 0.5em;
 }
 
-.device {
+.alarm {
     height: fit-content;
     min-height: 3rem;
     align-items: center;
@@ -98,14 +71,35 @@
     padding-bottom: 2em;
 }
 
-.darkTheme div[class*="deviceWrapper"] {
+.darkTheme div[class*="alarmWrapper"] {
     background: rgb(40, 40, 40);
 }
 
-.lightTheme div[class*="deviceWrapper"] {
+.lightTheme div[class*="alarmWrapper"] {
     background: rgb(255, 255, 255);
 }
 
 svg {
     padding-left: 5px;
+}
+
+.mainButton {
+    width: 100%;
+    background-color: #c3682a;
+    color: #ffffff;
+    border: none;
+    height: 2.5em;
+    font-weight: bold;
+    font-size: 1em;
+    border-radius: 0.313em;
+}
+
+.mainButton:hover {
+    color: #000000;
+}
+
+@media only screen and (min-width: 575px) {
+    .mainButton {
+        max-width: 100px;
+    }
 }
