@@ -6,8 +6,8 @@ import Dashboard from "./pages/Dashboard";
 import NotFound from "./pages/NotFound";
 import Device from "./pages/Device";
 import DeviceListView from "./pages/DeviceListView";
-import FeatureView from './pages/FeatureView';
-import Feature from './pages/Feature';
+import FunctionView from './pages/FunctionView';
+import Funcs from './pages/Func';
 import MapView from "./pages/MapView";
 import Alarms from "./pages/Alarms";
 import MainNav from "./components/Navigation";
@@ -18,7 +18,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 const App = () => {
   const [devices, setDevices] = useState([]);
-  const [features, setFeatures] = useState([]);
+  const [functions, setFunctions] = useState([]);
   const [alarms, setAlarms] = useState([]);
 
   useEffect(() => {
@@ -55,15 +55,15 @@ const App = () => {
       return device;
     };
 
-    const loadFeatures = async () => {
-      let res = await fetch(`/api/features`, {
+    const loadFunctions = async () => {
+      let res = await fetch(`/api/functions`, {
         headers: {
           'Accept': 'application/json',
           'Authorization': `Bearer ${UserService.getToken()}`
         }
       });
       let result = await res.json();
-      setFeatures(result);
+      setFunctions(result);
     };
 
     const loadEventSource = async () => {
@@ -77,7 +77,7 @@ const App = () => {
 
             UserService.updateToken(async () => {
               await loadDevices();
-              await loadFeatures();
+              await loadFunctions();
               await loadAlarms();
             });
           }
@@ -159,7 +159,7 @@ const App = () => {
 
               break;
             case "feature.updated":
-              setFeatures((currentState) => {
+              setFunctions((currentState) => {
                 return currentState.map((func) => {
                   if (func.ID === data.ID) {
                     return data;
@@ -189,7 +189,7 @@ const App = () => {
 
     UserService.updateToken(async () => {
       await loadDevices();
-      await loadFeatures();
+      await loadFunctions();
       await loadAlarms();
       await loadEventSource();
     });
@@ -205,9 +205,9 @@ const App = () => {
           <Route path="/device/:deviceID" element={<Device />} />
           <Route path="/devices" element={<DeviceListView devices={devices} />} />
           <Route path="/devices/:deviceState" element={<DeviceListView devices={devices} />} />
-          <Route path="/map" element={<MapView devices={devices} features={features} />} />
-          <Route path="/features" element={<FeatureView features={features} />} />
-          <Route path="/features/:featureID" element={<Feature />} />
+          <Route path="/map" element={<MapView devices={devices} features={functions} />} />
+          <Route path="/functions" element={<FunctionView functions={functions} />} />
+          <Route path="/functions/:functionID" element={<Funcs />} />
           <Route path="/alarms" element={<Alarms alarms={alarms} />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

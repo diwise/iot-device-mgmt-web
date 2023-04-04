@@ -4,7 +4,7 @@ import {
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 
-import "./featurecard.css";
+import "./functioncard.css";
 
 ChartJS.register(
     CategoryScale,
@@ -15,22 +15,22 @@ ChartJS.register(
     Legend
 );
 
-const FeatureCard = ({ feature }) => {
-    switch (feature.type) {
-        case "counter": return <CounterFeatureCard feature={feature} />
-        case "presence": return <PresenceFeatureCard feature={feature} />
-        case "level": return <LevelFeatureCard feature={feature} />
-        case "waterquality": return <WaterQualityFeatureCard feature={feature} />
-        default: return (<div>{feature.id}</div>);
+const FunctionCard = ({ func }) => {
+    switch (func.type) {
+        case "counter": return <CounterCard func={func} />
+        case "presence": return <PresenceCard func={func} />
+        case "level": return <LevelCard func={func} />
+        case "waterquality": return <WaterQualityCard func={func} />
+        default: return (<div>{func.id}</div>);
     }
 };
 
-const CommonFeatureCard = ({ feature }) => {
+const CommonFunctionCard = ({ func }) => {
     return (
         <>
-            <div><strong>ID:</strong>{feature.id}</div>
-            <div><strong>Typ:</strong>{feature.type}</div>
-            <div><strong>Kategori:</strong>{feature.subtype}</div>
+            <div><strong>ID:</strong>{func.id}</div>
+            <div><strong>Typ:</strong>{func.type}</div>
+            <div><strong>Kategori:</strong>{func.subtype}</div>
             <hr />
         </>
     );
@@ -46,9 +46,9 @@ const plugins = {
     },
 };
 
-const CounterFeatureCard = ({ feature }) => {
-    const labels = [feature.subtype];
-    const color = feature.counter.state ? "green" : "grey";
+const CounterCard = ({ func }) => {
+    const labels = [func.subtype];
+    const color = func.counter.state ? "green" : "grey";
 
     const options = {
         responsive: true,
@@ -59,8 +59,8 @@ const CounterFeatureCard = ({ feature }) => {
         labels,
         datasets: [
             {
-                label: feature.counter.count,
-                data: [feature.counter.count],
+                label: func.counter.count,
+                data: [func.counter.count],
                 backgroundColor: color,
             }
         ],
@@ -68,28 +68,28 @@ const CounterFeatureCard = ({ feature }) => {
 
     return (
         <>
-            <CommonFeatureCard feature={feature} />
+            <CommonFunctionCard func={func} />
             <Bar options={options} data={data} />
         </>
     );
 };
 
-const PresenceFeatureCard = ({ feature }) => {
+const PresenceCard = ({ func }) => {
     return (
         <>
-            <CommonFeatureCard feature={feature} />
+            <CommonFunctionCard func={func} />
             <div className='presenceWrapper'>
-                <div className={"presence-" + (feature.presence.state ? "on" : "off")}>{feature.presence.state ? "true" : "false"}</div>
+                <div className={"presence-" + (func.presence.state ? "on" : "off")}>{func.presence.state ? "true" : "false"}</div>
             </div>
         </>
     );
 };
 
-const LevelFeatureCard = ({ feature }) => {
-    const labels = [feature.subtype];
+const LevelCard = ({ func }) => {
+    const labels = [func.subtype];
     const color = "grey";
 
-    let d = feature.level.percent !== undefined ? feature.level.percent : feature.level.current;
+    let d = func.level.percent !== undefined ? func.level.percent : func.level.current;
 
     const options = {
         responsive: true,
@@ -106,7 +106,7 @@ const LevelFeatureCard = ({ feature }) => {
         labels,
         datasets: [
             {
-                label: feature.level.current,
+                label: func.level.current,
                 data: [d],
                 backgroundColor: color,
             }
@@ -115,14 +115,14 @@ const LevelFeatureCard = ({ feature }) => {
 
     return (
         <>
-            <CommonFeatureCard feature={feature} />
+            <CommonFunctionCard func={func} />
             <Bar options={options} data={data} updateMode="show" />
         </>
     );
 };
 
-const WaterQualityFeatureCard = ({ feature }) => {
-    const labels = [feature.subtype];
+const WaterQualityCard = ({ func }) => {
+    const labels = [func.subtype];
     const color = "blue";
 
     const options = {
@@ -140,8 +140,8 @@ const WaterQualityFeatureCard = ({ feature }) => {
         labels,
         datasets: [
             {
-                label: feature.waterquality.temperature + " \u2103", // ˚C
-                data: [feature.waterquality.temperature],
+                label: func.waterquality.temperature + " \u2103", // ˚C
+                data: [func.waterquality.temperature],
                 backgroundColor: color,
             }
         ],
@@ -149,16 +149,16 @@ const WaterQualityFeatureCard = ({ feature }) => {
 
     return (
         <>
-            <CommonFeatureCard feature={feature} />
+            <CommonFunctionCard func={func} />
             <Bar options={options} data={data} />
         </>
     );
 };
 
 export {
-    FeatureCard,
-    CounterFeatureCard,
-    PresenceFeatureCard,
-    LevelFeatureCard,
-    WaterQualityFeatureCard
+    FunctionCard,
+    CounterCard,
+    PresenceCard,
+    LevelCard,
+    WaterQualityCard
 };

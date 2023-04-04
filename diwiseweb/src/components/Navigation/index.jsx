@@ -58,8 +58,8 @@ function MainNav() {
                     <NavDropdown.Item href="/device-management/map">
                       Karta
                     </NavDropdown.Item>   
-                    <NavDropdown.Item href="/device-management/features">
-                      Features
+                    <NavDropdown.Item href="/device-management/functions">
+                      Funktioner
                     </NavDropdown.Item> 
                     <NavDropdown.Item href="/device-management/alarms">
                       Alarm

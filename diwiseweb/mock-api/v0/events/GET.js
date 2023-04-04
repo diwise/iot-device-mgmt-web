@@ -1,5 +1,5 @@
 let devices = require("../../v0/devices/GET.json");
-let features = require("../../features/GET.json");
+let features = require("../../functions/GET.json");
 
 let clients = [];
 
