@@ -11,27 +11,19 @@ const DeviceListViewContainer = ({ children }) => {
   );
 }
 
-const filterStatus = (items, status) => {
-  if (status !== undefined) {
-    switch (status.toLowerCase()) {
-      case "varningar":
-        return items.filter((d) => d.status.statusCode === 1 && d.lastObserved !== "0001-01-01T00:00:00Z");
-      case "fel":
-        return items.filter((d) => d.status.statusCode === 2);
-      case "online":
-        return items.filter((d) => d.active && d.lastObserved !== "0001-01-01T00:00:00Z");
-      default:
-        return items;
-    }
+const filterDeviceState = (items, deviceState) => {
+  switch (deviceState) {
+    case "online": return items.filter((d) => d.deviceState.online === true)
+    case "warning": return items.filter((d) => d.deviceState.state === 2)
+    case "error": return items.filter((d) => d.deviceState.state === 3)
+    default: return items;
   }
-
-  return items;
 };
 
 const DeviceListView = ({ devices }) => {
   const [q, setQ] = useState("");
   const [searchParam] = useState(["name", "deviceID"]);
-  const { status } = useParams();
+  const { deviceState } = useParams();
 
   function search(items) {
     return items.filter((item) => {
@@ -61,12 +53,11 @@ const DeviceListView = ({ devices }) => {
         </label>
       </div>
 
-      {filterStatus(search(devices), status).map((device) => {
+      {filterDeviceState(search(devices), deviceState).map((device) => {
         return (
           <DeviceListCard
-            key={device.devEUI}
+            key={device.deviceID}
             device={device}
-            deviceStatus={status}
           />
         );
       })}

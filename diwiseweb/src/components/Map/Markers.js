@@ -19,8 +19,8 @@ const addMarkers = (data) => {
             if (scale > 1) {
                 scale = 1;
             }
-            style.getImage()?.setScale(scale);            
-            
+            style.getImage()?.setScale(scale);
+
             return style;
         });
 
@@ -56,16 +56,12 @@ const getMarker = (d, type, color) => {
 
 const getColor = (d, type) => {
     if (type.startsWith("device.")) {
-        if (d.status && d.status.statusCode) {
-            if (d.active && d.lastObserved !== "0001-01-01T00:00:00Z") {
-                return "#00cc00"; //green
-            }
-            switch (d.status.statusCode) {
-                case 0: return "#bfbfbf"; // grey
-                case 1: return "#D68910"; // orange
-                case 2: return "#C0392B"; // red
-                default: return "e6e6e6";
-            }
+        switch (d.deviceState.state) {
+            case -1: return "#bfbfbf"; // grey
+            case 1: return "#00cc00"; //green
+            case 2: return "#D68910"; // orange
+            case 3: return "#C0392B"; // red
+            default: return "#00cc00"; //green
         }
     }
     if (type.startsWith("feature.presence")) {
@@ -83,7 +79,7 @@ const getId = (d) => {
 };
 
 const getType = (d) => {
-    if (d.sensorType && d.sensorType.name) return "device." + d.sensorType.name;
+    if (d.deviceProfile && d.deviceProfile.name) return "device." + d.deviceProfile.name;
     if (d.type) return "feature." + d.type + "." + d.subtype;
     throw new Error("could not get type for feature");
 }

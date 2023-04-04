@@ -60,7 +60,10 @@ function MainNav() {
                     </NavDropdown.Item>   
                     <NavDropdown.Item href="/device-management/features">
                       Features
-                    </NavDropdown.Item>     
+                    </NavDropdown.Item> 
+                    <NavDropdown.Item href="/device-management/alarms">
+                      Alarm
+                    </NavDropdown.Item>  
                     <NavDropdown.Divider />
                     <NavDropdown.Item href="#action/logout" onClick={UserService.doLogout}>
                       Logga ut

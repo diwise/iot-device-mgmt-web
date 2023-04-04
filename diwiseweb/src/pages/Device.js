@@ -47,35 +47,6 @@ const Device = () => {
           environment={device.environment}
         />
       </CardTemplate>
-      {
-        /*
-      <DeviceCardTransparent header="Rapporter">
-        <ReportCardSmall
-          deviceStatus="error"
-          deviceDate="05/06/2022, 16:33"
-          errorMessage="Detta är ett error meddelande"
-          deviceUrl="device"
-        />
-        <ReportCardSmall
-          deviceStatus="warning"
-          deviceDate="05/06/2022, 16:33"
-          errorMessage="Varningmeddelande"
-          deviceUrl="device"
-        />
-        <ReportCardSmall
-          deviceStatus="warning"
-          deviceDate="05/06/2022, 16:33"
-          errorMessage="Varningmeddelande"
-          deviceUrl="device"
-        />
-      </DeviceCardTransparent>
-      <DeviceCardTransparent header="Historik">
-        <HistoryCardSmall date="06/09/2022, 14:23" updatedField="Beskrivning" />
-        <HistoryCardSmall date="06/09/2022, 14:23" updatedField="Koordinater" />
-        <HistoryCardSmall date="06/09/2022, 14:23" updatedField="Beskrivning" />
-      </DeviceCardTransparent>
-        */
-      }
     </DeviceContainer>
   );
 };
