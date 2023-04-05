@@ -34,7 +34,7 @@ const App = () => {
     };
 
     const loadAlarms = async () => {
-      let res = await fetch(`/api/v0/alarms`, {
+      let res = await fetch(`/api/v0/alarms?active=true`, {
         headers: {
           'Accept': 'application/json',
           'Authorization': `Bearer ${UserService.getToken()}`
@@ -158,7 +158,7 @@ const App = () => {
               });
 
               break;
-            case "feature.updated":
+            case "function.updated":
               setFunctions((currentState) => {
                 return currentState.map((func) => {
                   if (func.ID === data.ID) {

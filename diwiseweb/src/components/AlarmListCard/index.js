@@ -27,12 +27,13 @@ const AlarmListCard = ({ defaultExpanded, collapsedHeight, alarm }) => {
 
   const closeAlarm = async (alarmID) => {
     const res = await fetch(`/api/v0/alarms/${alarmID}`, {
-      method: 'POST',
+      method: 'PATCH',
       headers: {
         'Accept': 'application/json',
         'Authorization': `Bearer ${UserService.getToken()}`
       }
     });
+
     return res.ok;
   };
 
@@ -48,7 +49,7 @@ const AlarmListCard = ({ defaultExpanded, collapsedHeight, alarm }) => {
         <div className="contentWrapper" {...getCollapseProps()}>
           <div className="content">
             <div>{alarm.description}</div>
-            <button className="mainButton" onClick={async (e) => await closeAlarm(alarm.id, e)}>Stäng</button>
+            <button className="mainButton" onClick={async (e) => await closeAlarm(alarm.id)}>Stäng</button>
           </div>
         </div>
       </div>
