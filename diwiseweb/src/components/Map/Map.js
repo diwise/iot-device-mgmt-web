@@ -3,7 +3,7 @@ import MapContext from "./MapContext";
 import * as ol from "ol";
 import Overlay from 'ol/Overlay';
 import "./Map.css";
-import { Popup, DevicePopupContent, FeatureCardPopupContent } from "./Popup";
+import { Popup, DevicePopupContent, FunctionCardPopupContent } from "./Popup";
 
 const Map = ({ children, zoom, center }) => {
 	const mapRef = useRef();
@@ -74,8 +74,8 @@ const getPopupContent = (feature) => {
 	if (feature.type.startsWith("device.")) {
 		return <DevicePopupContent feature={feature} />
 	}
-	if (feature.type.startsWith("feature.")) {
-		return <FeatureCardPopupContent feature={feature} />
+	if (feature.type.startsWith("function.")) {
+		return <FunctionCardPopupContent feature={feature} />
 	}
 
 	console.log(feature.type);

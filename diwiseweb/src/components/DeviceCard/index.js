@@ -1,31 +1,17 @@
+import { DeviceInfo, DeviceState, Tenant } from "../DeviceListCard";
 import { IconSolid } from "../Icons";
 import "./devicecard.css";
 
 const DeviceCard = ({ device }) => {
   return (
     <>
-      <div><strong>Namn:</strong>{device.name}</div>
-      <div><strong>Beskrivning:</strong>{device.description}</div>
-      <div><strong>ID:</strong>{device.deviceID}</div>
-      <div><strong>Typ:</strong>{device.sensorType.name}</div>
-      <Location location={device.location} />
-      <div><strong>Senast:</strong>{device.lastObserved}</div>
-      <TypeIcons types={device.types} />
+      <DeviceInfo device={device} />
+      <DeviceState device={device} />
+      <Tenant device={device} />
+      <TypeIcons types={device.types.map((t) => { return t.urn })} />
     </>
   );
 };
-
-const Location = ({ location }) => {
-  if (location && location.latitude && location.longitude) {
-    return (
-      <>
-        <div><strong>lat:</strong>{location.latitude}</div>
-        <div><strong>lon:</strong>{location.longitude}</div>
-      </>
-    );
-  }
-  return <></>
-}
 
 const TypeIcons = ({ types }) => {
   return (

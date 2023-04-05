@@ -1,5 +1,6 @@
 let devices = require("../../v0/devices/GET.json");
-let features = require("../../features/GET.json");
+let features = require("../../functions/GET.json");
+
 let clients = [];
 
 module.exports = (req, res) => {
@@ -15,35 +16,25 @@ module.exports = (req, res) => {
     clients.push(newClient);
 
     setInterval(() => {
-        devices.forEach((d) => {
-            d.lastObserved = Date.now();
-            d.status.statusCode = Math.random(Math.floor(Math.random() * 2))
 
-            let jsonStr = JSON.stringify(d);
-            let buf = Buffer.from(jsonStr, 'utf8');
-            let b64Data = buf.toString('base64');
+        const i = getRandomNumber(0, devices.length - 1);
+        let d = devices[i];
 
-            let data = `event: device.statusUpdated\ndata: ${b64Data}\n\n`;
-            clients.forEach(client => client.response.write(data));
-        });
+        let statusUpdated = {
+            deviceID: d.deviceID,
+            state: d.deviceState.state,
+            tenant: d.tenant.name,
+            timestamp: Date.now()
+        };
 
-        features.forEach((f) => {
-            if (f.type === "counter") {
-                f.counter.count++;
-            }
-            if (f.type === "level") {
-                f.level.current++;
-            }
+        let jsonStr = JSON.stringify(statusUpdated);
+        let buf = Buffer.from(jsonStr, 'utf8');
+        let b64Data = buf.toString('base64');
 
-            let jsonStr = JSON.stringify(f);
-            let buf = Buffer.from(jsonStr, 'utf8');
-            let b64Data = buf.toString('base64');
+        let data = `event: device.statusUpdated\ndata: ${b64Data}\n\n`;
+        clients.forEach(client => client.response.write(data));
 
-            let data = `event: feature.updated\ndata: ${b64Data}\n\n`;
-            clients.forEach(client => client.response.write(data));
-        });
-
-    }, 10 * 1000);
+    }, 3000);
 
     req.on('close', () => {
         console.log(`${clientId} Connection closed`);
@@ -51,4 +42,8 @@ module.exports = (req, res) => {
     });
 
     res.writeHead(200, headers);
+};
+
+function getRandomNumber(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 };

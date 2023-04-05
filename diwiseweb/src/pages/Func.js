@@ -2,13 +2,13 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import UserService from "../services/UserService";
 
-const Feature = () => {
-    const { featureID } = useParams();
-    const { feature, setFeature } = useState({});
+const Funcs = () => {
+    const { functionID } = useParams();
+    const { func, setFunction } = useState({});
 
     useEffect(() => {
-        const fetchFeature = async () => {
-            let res = await fetch(`/api/features/${featureID}`, {
+        const fetchFunction = async () => {
+            let res = await fetch(`/api/functions/${functionID}`, {
                 headers: {
                     'Accept': 'application/json',
                     'Authorization': `Bearer ${UserService.getToken()}`
@@ -16,19 +16,19 @@ const Feature = () => {
             });
             if (res.ok) {
                 let json = await res.json();
-                setFeature(json);
+                setFunction(json);
             }
         };
-        UserService.updateToken(async () => { 
-            await fetchFeature();
-        });        
+        UserService.updateToken(async () => {
+            await fetchFunction();
+        });
     });
 
     return (
         <>
-            <div>{featureID}</div>
+            <div>{functionID}</div>
         </>
     );
 };
 
-export default Feature
+export default Funcs

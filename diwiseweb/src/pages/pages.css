@@ -26,13 +26,19 @@
     flex-direction: column;
 }
 
+.alarms-page {
+    width: 95%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
 .devicelist-page {
     width: 95%;
     margin-right: auto;
     margin-left: auto;
 }
 
-.featureview-page {
+.functionview-page {
     width: 95%;
     margin-right: auto;
     margin-left: auto;

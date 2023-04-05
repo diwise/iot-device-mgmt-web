@@ -1,4 +1,4 @@
-import { FeatureCard } from "../FeatureCard";
+import { FunctionCard } from "../FunctionCard";
 import DeviceCard from "../DeviceCard";
 
 const Popup = ({ parent, popupContent }) => {
@@ -17,14 +17,14 @@ const DevicePopupContent = ({ feature }) => {
 };
 
 
-const FeatureCardPopupContent = ({ feature }) => {
+const FunctionCardPopupContent = ({ feature }) => {
 	const f = feature["data"];
 	return (
-		<FeatureCard feature={f} />
+		<FunctionCard func={f} />
 	);
 };
 export {
 	Popup,
 	DevicePopupContent,
-	FeatureCardPopupContent
+	FunctionCardPopupContent 
 }

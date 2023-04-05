@@ -1,0 +1,46 @@
+[
+    {
+        "id": 1,
+        "refID": {
+            "deviceID": "net:serva:iot:70b3d580a010c5c3"
+        },
+        "type": "alarms.lastObservedWarning",
+        "severity": 2,
+        "description": "",
+        "active": true,
+        "observedAt": "2023-03-31T11:27:39.881907967Z"
+    },
+    {
+        "id": 2,
+        "refID": {
+            "deviceID": "net:serva:iot:a81758fffe0524f3"
+        },
+        "type": "alarms.lastObservedWarning",
+        "severity": 2,
+        "description": "",
+        "active": true,
+        "observedAt": "2023-03-31T11:27:40.010745887Z"
+    },
+    {
+        "id": 3,
+        "refID": {
+            "deviceID": "net:serva:iot:70b3d580a010c589"
+        },
+        "type": "alarms.lastObservedWarning",
+        "severity": 2,
+        "description": "",
+        "active": true,
+        "observedAt": "2023-03-31T11:27:39.877477785Z"
+    },
+    {
+        "id": 4,
+        "refID": {
+            "deviceID": "net:serva:iot:1aa52aaa84c36102"
+        },
+        "type": "alarms.lastObservedWarning",
+        "severity": 2,
+        "description": "",
+        "active": true,
+        "observedAt": "2023-03-31T11:27:39.862689286Z"
+    }
+]
