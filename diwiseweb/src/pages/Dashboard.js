@@ -44,7 +44,7 @@ const Dashboard = ({ devices, alarms }) => {
         stylename="error"
         number={alarms.length}
         url="/alarms"
-        text="alarm"
+        text="larm"
       />
     </Dash>
   );

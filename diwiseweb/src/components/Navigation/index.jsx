@@ -62,7 +62,7 @@ function MainNav() {
                       Funktioner
                     </NavDropdown.Item> 
                     <NavDropdown.Item href="/device-management/alarms">
-                      Alarm
+                      Larm
                     </NavDropdown.Item>  
                     <NavDropdown.Divider />
                     <NavDropdown.Item href="#action/logout" onClick={UserService.doLogout}>
