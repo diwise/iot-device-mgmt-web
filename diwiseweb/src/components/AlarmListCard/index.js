@@ -41,7 +41,7 @@ const AlarmListCard = ({ defaultExpanded, collapsedHeight, alarm }) => {
     <div className={`alarmWrapper ${statusClass}`}>
       <div className="alarmContainer">
         <div className="grid alarm" {...getToggleProps()}>
-          <AlarmIdentifier alarm={alarm} />
+          <strong>{alarm.refID}</strong>
           <strong>{alarm.type}</strong>
           <strong></strong>
           <strong>{observedAt}</strong>
