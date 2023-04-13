@@ -15,11 +15,13 @@ import Footer from "./components/Footer";
 import "./App.css";
 import "./components/CardTemplate/cardtemplate.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Events from "./pages/events";
 
 const App = () => {
   const [devices, setDevices] = useState([]);
   const [functions, setFunctions] = useState([]);
   const [alarms, setAlarms] = useState([]);
+  const [events, setEvents] = useState([]);
 
   useEffect(() => {
     const loadDevices = async () => {
@@ -94,6 +96,10 @@ const App = () => {
 
           let data = JSON.parse(atob(event.data)); // atob is not deprecated in browsers, only node.js.
           let device = {};
+
+          setEvents((e) => {
+            return [...e, { name: event.event, data: data }]
+          });
 
           switch (event.event) {
             case "device.created":
@@ -205,11 +211,12 @@ const App = () => {
           <Route path="/device/:deviceID" element={<Device />} />
           <Route path="/devices" element={<DeviceListView devices={devices} />} />
           <Route path="/devices/:deviceState" element={<DeviceListView devices={devices} />} />
-          <Route path="/map" element={<MapView devices={devices} features={functions} />} />
+          <Route path="/map" element={<MapView devices={devices} functions={functions} />} />
           <Route path="/functions" element={<FunctionView functions={functions} />} />
           <Route path="/functions/:functionID" element={<Funcs />} />
           <Route path="/alarms" element={<Alarms alarms={alarms} />} />
           <Route path="*" element={<NotFound />} />
+          <Route path="/eventstream" element={<Events events={events} />} />
         </Routes>
         <Footer
           customerLogoUrl={window._env_.CUSTOMER_LOGO_URL}

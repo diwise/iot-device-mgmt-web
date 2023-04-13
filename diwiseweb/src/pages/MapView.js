@@ -10,16 +10,16 @@ import { osm, vector } from "../components/Map/Source";
 import "../components/Map/Map.css";
 import { addMarkers } from "../components/Map/Markers";
 
-const MapView = ({ devices, features }) => {
+const MapView = ({ devices, functions }) => {
   const [showDeviceLayer, setShowDeviceLayer] = useState(false);
-  const [showFeaturesLayer, setShowFeaturesLayer] = useState(false);
+  const [showFunctionsLayer, setShowFunctionsLayer] = useState(false);
 
   const [deviceSource, setDeviceSource] = useState(vector({ features: addMarkers(devices) }));
-  const [featuresSource, setFeaturesSource] = useState();
+  const [functionsSource, setFunctionsSource] = useState();
 
   useEffect(() => {
-    setFeaturesSource(vector({ features: addMarkers(features) }))
-  }, [features]);
+    setFunctionsSource(vector({ features: addMarkers(functions) }))
+  }, [functions]);
 
   useEffect(() => {
     setDeviceSource(vector({ features: addMarkers(devices) }));
@@ -31,7 +31,7 @@ const MapView = ({ devices, features }) => {
         <Layers>
           <TileLayer source={osm()} zIndex={0} />
           {showDeviceLayer && <VectorLayer source={deviceSource} />}
-          {showFeaturesLayer && <VectorLayer source={featuresSource} />}
+          {showFunctionsLayer && <VectorLayer source={functionsSource} />}
         </Layers>
         <Controls>
           <FullScreenControl />
@@ -50,10 +50,10 @@ const MapView = ({ devices, features }) => {
         <div>
           <input
             type="checkbox"
-            checked={showFeaturesLayer}
-            onChange={(event) => setShowFeaturesLayer(event.target.checked)}
+            checked={showFunctionsLayer}
+            onChange={(event) => setShowFunctionsLayer(event.target.checked)}
           />
-          Visa features
+          Visa funktioner
         </div>
       </div>
     </div>
