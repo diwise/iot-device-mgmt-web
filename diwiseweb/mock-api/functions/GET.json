@@ -126,5 +126,31 @@
         "waterquality": {
             "temperature": 10
         }
+    },
+    {
+        "id": "waterquality-0001",
+        "type": "waterquality",
+        "subtype": "beach",
+        "location": {
+            "latitude": 62.35277,
+            "longitude": 17.374
+        },
+        "tenant": "default",
+        "waterquality": {
+            "temperature": 7.6
+        }
+    },
+    {
+        "id": "waterquality-0002",
+        "type": "waterquality",
+        "subtype": "beach",
+        "location": {
+            "latitude": 62.36955,
+            "longitude": 17.27541
+        },
+        "tenant": "default",
+        "waterquality": {
+            "temperature": 8.1
+        }
     }
 ]
