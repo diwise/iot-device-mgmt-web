@@ -7,15 +7,15 @@
 }
 
 .alarmWrapper.low {
-    border: 0.8em solid #f88686;
+    border: 0.8em solid #f1db75;
 }
 
 .alarmWrapper.medium {
-    border: 0.8em solid #fc2b2b;
+    border: 0.8em solid #ff9900;
 }
 
 .alarmWrapper.high {
-    border: 0.8em solid #ff0000;
+    border: 0.8em solid #de1313;
 }
 
 .grid {

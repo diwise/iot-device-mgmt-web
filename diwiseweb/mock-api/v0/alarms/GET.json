@@ -1,46 +1,42 @@
 [
     {
         "id": 1,
-        "refID": {
-            "deviceID": "net:serva:iot:70b3d580a010c5c3"
-        },
-        "type": "alarms.lastObservedWarning",
-        "severity": 2,
-        "description": "",
+        "refID": "vattenmätare-01",
+        "type": "Temporary error",
+        "severity": 3,
+        "description": "\nTemporary error\nBackflow",
         "active": true,
-        "observedAt": "2023-03-31T11:27:39.881907967Z"
+        "tenant": "default",
+        "observedAt": "2023-04-17T06:55:09Z"
     },
     {
         "id": 2,
-        "refID": {
-            "deviceID": "net:serva:iot:a81758fffe0524f3"
-        },
-        "type": "alarms.lastObservedWarning",
+        "refID": "vattenmätare-02",
+        "type": "payload error",
         "severity": 2,
-        "description": "",
+        "description": "\npayload error\nuplink message contains no payload",
         "active": true,
-        "observedAt": "2023-03-31T11:27:40.010745887Z"
+        "tenant": "default",
+        "observedAt": "2023-04-17T06:54:50Z"
     },
     {
         "id": 3,
-        "refID": {
-            "deviceID": "net:serva:iot:70b3d580a010c589"
-        },
-        "type": "alarms.lastObservedWarning",
-        "severity": 2,
+        "refID": "vattenmätare-03",
+        "type": "deviceNotObserved",
+        "severity": 1,
         "description": "",
         "active": true,
-        "observedAt": "2023-03-31T11:27:39.877477785Z"
-    },
+        "tenant": "default",
+        "observedAt": "2023-04-17T09:00:06.995187392Z"
+    },    
     {
         "id": 4,
-        "refID": {
-            "deviceID": "net:serva:iot:1aa52aaa84c36102"
-        },
-        "type": "alarms.lastObservedWarning",
+        "refID": "waterquality-0001",
+        "type": "waterquality",
         "severity": 2,
-        "description": "",
+        "description": "Temp ska vara mellan 9 och 10 men är 8",
         "active": true,
-        "observedAt": "2023-03-31T11:27:39.862689286Z"
+        "tenant": "default",
+        "observedAt": "2023-04-17T08:28:47.194588868Z"
     }
 ]
