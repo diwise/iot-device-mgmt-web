@@ -29,6 +29,17 @@ ChartJS.register(
     TimeScale
 );
 
+const loadHistory = async (funcID) => {
+    const res = await fetch(`/api/functions/${funcID}/history`, {
+        headers: {
+            'Accept': 'application/json',
+            'Authorization': `Bearer ${UserService.getToken()}`
+        }
+    });
+    let j = await res.json();
+    return j;
+};
+
 const FunctionCard = ({ func }) => {
     switch (func.type) {
         case "counter": return <CounterCard func={func} />
@@ -50,44 +61,6 @@ const CommonFunctionCard = ({ func }) => {
     );
 };
 
-const plugins = {
-    legend: {
-        position: 'top',
-        display: true,
-    },
-    title: {
-        display: false,
-    },
-};
-
-const CounterCard = ({ func }) => {
-    const labels = [func.subtype];
-    const color = func.counter.state ? "green" : "grey";
-
-    const options = {
-        responsive: true,
-        plugins: plugins,
-    };
-
-    const data = {
-        labels,
-        datasets: [
-            {
-                label: func.counter.count,
-                data: [func.counter.count],
-                backgroundColor: color,
-            }
-        ],
-    };
-
-    return (
-        <>
-            <CommonFunctionCard func={func} />
-            <Bar options={options} data={data} />
-        </>
-    );
-};
-
 const PresenceCard = ({ func }) => {
     return (
         <>
@@ -99,43 +72,26 @@ const PresenceCard = ({ func }) => {
     );
 };
 
-const LevelCard = ({ func }) => {
-    const labels = [func.subtype];
-    const color = "grey";
 
-    let d = func.level.percent !== undefined ? func.level.percent : func.level.current;
-
-    const options = {
-        responsive: true,
-        plugins: plugins,
-        scales: {
-            y: {
-                suggestedMin: 0,
-                suggestedMax: 100
-            }
-        }
-    };
-
-    const data = {
-        labels,
-        datasets: [
-            {
-                label: func.level.current,
-                data: [d],
-                backgroundColor: color,
-            }
-        ],
-    };
-
+const CounterCard = ({ func }) => {
     return (
-        <>
-            <CommonFunctionCard func={func} />
-            <Bar options={options} data={data} updateMode="show" />
-        </>
+        <LineCard f={func} titleText="" label={func.counter.count} />
+    );
+};
+
+const LevelCard = ({ func }) => {
+    return (
+        <LineCard f={func} titleText={func.level.current} label="" />
     );
 };
 
 const WaterQualityCard = ({ func }) => {
+    return (
+        <LineCard f={func} titleText={func.waterquality.temperature + "\u2103"} label={"\u2103"} />
+    );
+};
+
+const LineCard = ({ f, titleText, label }) => {
     const [history, setHistory] = useState([]);
 
     const options = {
@@ -147,7 +103,7 @@ const WaterQualityCard = ({ func }) => {
             },
             title: {
                 display: true,
-                text: func.waterquality.temperature + "\u2103",
+                text: titleText,
             },
         },
         scales: {
@@ -158,34 +114,23 @@ const WaterQualityCard = ({ func }) => {
                 },
                 type: 'time',
                 time: {
-                    unit: 'week'
+                    unit: 'day'
                 }
             }
         }
     };
 
-    const loadHistory = async (funcID) => {
-        const res = await fetch(`/api/functions/${funcID}/history`, {
-            headers: {
-                'Accept': 'application/json',
-                'Authorization': `Bearer ${UserService.getToken()}`
-            }
-        });
-        let j = await res.json();
-        return j;
-    };
-
     useEffect(() => {
         UserService.updateToken(async () => {
-            let h = await loadHistory(func.id);
+            let h = await loadHistory(f.id);
             setHistory(h.history.values);
         });
-    }, [func.id]);
+    }, [f.id]);
 
     const data = {
         datasets: [
             {
-                label: "\u2103", // ˚C
+                label: label,
                 data: history.map((h) => { return { x: h.ts, y: h.v } }),
                 borderColor: 'rgb(255, 99, 132)',
                 backgroundColor: 'rgba(255, 99, 132, 0.5)',
@@ -195,11 +140,11 @@ const WaterQualityCard = ({ func }) => {
 
     return (
         <>
-            <CommonFunctionCard func={func} />
+            <CommonFunctionCard func={f} />
             <Line options={options} data={data} />
         </>
     );
-};
+}
 
 export {
     FunctionCard,
