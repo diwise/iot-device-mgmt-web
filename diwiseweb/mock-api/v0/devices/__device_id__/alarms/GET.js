@@ -4,11 +4,13 @@ module.exports = (request, response) => {
 
     let deviceID = request.params.device_id;
 
+    currentAlarms = [];
+
     for (i = 0; i < alarms.length; i++) {
         if (alarms[i].refID === deviceID) {
-            response.json(alarms[i]);
-            return;
+            currentAlarms = [...currentAlarms, alarms[i]];
         }
     }
 
+    response.json(currentAlarms);
 };

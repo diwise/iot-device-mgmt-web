@@ -77,7 +77,11 @@
 }
 
 .contentWrapper {
-    grid-column: 1/-1;
+    display: flex;
+}
+
+.contentWrapper div {
+    flex-grow: 1;
 }
 
 .content {

@@ -57,20 +57,5 @@ const AlarmListCard = ({ defaultExpanded, collapsedHeight, alarm }) => {
   );
 };
 
-const AlarmIdentifier = ({ alarm }) => {
-
-  let alarmID = "";
-
-  if (alarm.refID.deviceID !== undefined) {
-    alarmID = alarm.refID.deviceID;
-  } else if (alarm.refID.functionID !== undefined) {
-    alarmID = alarm.refID.functionID;
-  }
-
-  return (
-    <strong>{alarmID}</strong>
-  );
-}
-
 export default AlarmListCard;
 
