@@ -1,8 +1,19 @@
 import {
-    BarElement, CategoryScale, Chart as ChartJS, Legend, LinearScale, Title,
-    Tooltip
+    Chart as ChartJS,
+    BarElement,
+    CategoryScale,
+    Legend,
+    LinearScale,
+    Title,
+    Tooltip,
+    PointElement,
+    LineElement,
+    TimeScale
 } from 'chart.js';
-import { Bar } from 'react-chartjs-2';
+import { Bar, Line } from 'react-chartjs-2';
+import UserService from '../../services/UserService';
+import { useEffect, useState } from "react";
+import 'chartjs-adapter-spacetime'
 
 import "./functioncard.css";
 
@@ -12,7 +23,10 @@ ChartJS.register(
     BarElement,
     Title,
     Tooltip,
-    Legend
+    Legend,
+    PointElement,
+    LineElement,
+    TimeScale
 );
 
 const FunctionCard = ({ func }) => {
@@ -122,27 +136,59 @@ const LevelCard = ({ func }) => {
 };
 
 const WaterQualityCard = ({ func }) => {
-    const labels = [func.subtype];
-    const color = "blue";
+    const [history, setHistory] = useState([]);
 
     const options = {
         responsive: true,
-        plugins: plugins,
+        plugins: {
+            legend: {
+                position: 'top',
+                display: false,
+            },
+            title: {
+                display: true,
+                text: func.waterquality.temperature + "\u2103",
+            },
+        },
         scales: {
-            y: {
-                suggestedMin: 0,
-                suggestedMax: 30
+            x: {
+                ticks: {
+                    maxRotation: 90,
+                    minRotation: 90,
+                },
+                type: 'time',
+                time: {
+                    unit: 'week'
+                }
             }
         }
     };
 
+    const loadHistory = async (funcID) => {
+        const res = await fetch(`/api/functions/${funcID}/history`, {
+            headers: {
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${UserService.getToken()}`
+            }
+        });
+        let j = await res.json();
+        return j;
+    };
+
+    useEffect(() => {
+        UserService.updateToken(async () => {
+            let h = await loadHistory(func.id);
+            setHistory(h.history.values);
+        });
+    }, [func.id]);
+
     const data = {
-        labels,
         datasets: [
             {
-                label: func.waterquality.temperature + " \u2103", // ˚C
-                data: [func.waterquality.temperature],
-                backgroundColor: color,
+                label: "\u2103", // ˚C
+                data: history.map((h) => { return { x: h.ts, y: h.v } }),
+                borderColor: 'rgb(255, 99, 132)',
+                backgroundColor: 'rgba(255, 99, 132, 0.5)',
             }
         ],
     };
@@ -150,7 +196,7 @@ const WaterQualityCard = ({ func }) => {
     return (
         <>
             <CommonFunctionCard func={func} />
-            <Bar options={options} data={data} />
+            <Line options={options} data={data} />
         </>
     );
 };
