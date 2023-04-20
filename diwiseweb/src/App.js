@@ -36,7 +36,7 @@ const App = () => {
     };
 
     const loadAlarms = async () => {
-      let res = await fetch(`/api/v0/alarms?active=true`, {
+      let res = await fetch(`/api/v0/alarms`, {
         headers: {
           'Accept': 'application/json',
           'Authorization': `Bearer ${UserService.getToken()}`

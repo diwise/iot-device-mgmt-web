@@ -1,8 +1,19 @@
 import {
-    BarElement, CategoryScale, Chart as ChartJS, Legend, LinearScale, Title,
-    Tooltip
+    Chart as ChartJS,
+    BarElement,
+    CategoryScale,
+    Legend,
+    LinearScale,
+    Title,
+    Tooltip,
+    PointElement,
+    LineElement,
+    TimeScale
 } from 'chart.js';
-import { Bar } from 'react-chartjs-2';
+import { Bar, Line } from 'react-chartjs-2';
+import UserService from '../../services/UserService';
+import { useEffect, useState } from "react";
+import 'chartjs-adapter-spacetime'
 
 import "./functioncard.css";
 
@@ -12,8 +23,22 @@ ChartJS.register(
     BarElement,
     Title,
     Tooltip,
-    Legend
+    Legend,
+    PointElement,
+    LineElement,
+    TimeScale
 );
+
+const loadHistory = async (funcID) => {
+    const res = await fetch(`/api/functions/${funcID}/history`, {
+        headers: {
+            'Accept': 'application/json',
+            'Authorization': `Bearer ${UserService.getToken()}`
+        }
+    });
+    let j = await res.json();
+    return j;
+};
 
 const FunctionCard = ({ func }) => {
     switch (func.type) {
@@ -36,44 +61,6 @@ const CommonFunctionCard = ({ func }) => {
     );
 };
 
-const plugins = {
-    legend: {
-        position: 'top',
-        display: true,
-    },
-    title: {
-        display: false,
-    },
-};
-
-const CounterCard = ({ func }) => {
-    const labels = [func.subtype];
-    const color = func.counter.state ? "green" : "grey";
-
-    const options = {
-        responsive: true,
-        plugins: plugins,
-    };
-
-    const data = {
-        labels,
-        datasets: [
-            {
-                label: func.counter.count,
-                data: [func.counter.count],
-                backgroundColor: color,
-            }
-        ],
-    };
-
-    return (
-        <>
-            <CommonFunctionCard func={func} />
-            <Bar options={options} data={data} />
-        </>
-    );
-};
-
 const PresenceCard = ({ func }) => {
     return (
         <>
@@ -85,75 +72,79 @@ const PresenceCard = ({ func }) => {
     );
 };
 
-const LevelCard = ({ func }) => {
-    const labels = [func.subtype];
-    const color = "grey";
 
-    let d = func.level.percent !== undefined ? func.level.percent : func.level.current;
-
-    const options = {
-        responsive: true,
-        plugins: plugins,
-        scales: {
-            y: {
-                suggestedMin: 0,
-                suggestedMax: 100
-            }
-        }
-    };
-
-    const data = {
-        labels,
-        datasets: [
-            {
-                label: func.level.current,
-                data: [d],
-                backgroundColor: color,
-            }
-        ],
-    };
-
+const CounterCard = ({ func }) => {
     return (
-        <>
-            <CommonFunctionCard func={func} />
-            <Bar options={options} data={data} updateMode="show" />
-        </>
+        <LineCard f={func} titleText="" label={func.counter.count} />
+    );
+};
+
+const LevelCard = ({ func }) => {
+    return (
+        <LineCard f={func} titleText={func.level.current} label="" />
     );
 };
 
 const WaterQualityCard = ({ func }) => {
-    const labels = [func.subtype];
-    const color = "blue";
+    return (
+        <LineCard f={func} titleText={func.waterquality.temperature + "\u2103"} label={"\u2103"} />
+    );
+};
+
+const LineCard = ({ f, titleText, label }) => {
+    const [history, setHistory] = useState([]);
 
     const options = {
         responsive: true,
-        plugins: plugins,
+        plugins: {
+            legend: {
+                position: 'top',
+                display: false,
+            },
+            title: {
+                display: true,
+                text: titleText,
+            },
+        },
         scales: {
-            y: {
-                suggestedMin: 0,
-                suggestedMax: 30
+            x: {
+                ticks: {
+                    maxRotation: 90,
+                    minRotation: 90,
+                },
+                type: 'time',
+                time: {
+                    unit: 'day'
+                }
             }
         }
     };
 
+    useEffect(() => {
+        UserService.updateToken(async () => {
+            let h = await loadHistory(f.id);
+            setHistory(h.history.values);
+        });
+    }, [f.id]);
+
     const data = {
-        labels,
         datasets: [
             {
-                label: func.waterquality.temperature + " \u2103", // ˚C
-                data: [func.waterquality.temperature],
-                backgroundColor: color,
+                label: label,
+                data: history.map((h) => { return { x: h.ts, y: h.v } }),
+                borderColor: 'rgb(255, 99, 132)',
+                backgroundColor: 'rgba(255, 99, 132, 0.5)',
             }
         ],
     };
 
     return (
         <>
-            <CommonFunctionCard func={func} />
-            <Bar options={options} data={data} />
+            <CommonFunctionCard func={f} />
+            <Line options={options} data={data} />
         </>
     );
-};
+}
 
 export {
     FunctionCard,

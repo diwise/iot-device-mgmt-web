@@ -2,7 +2,7 @@
     {
         "active": true,
         "sensorID": "01",
-        "deviceID": "vattenmätare-01",
+        "deviceID": "watermeter-01",
         "tenant": {
             "name": "default"
         },
@@ -38,7 +38,7 @@
     {
         "active": true,
         "sensorID": "02",
-        "deviceID": "vattenmätare-02",
+        "deviceID": "watermeter-02",
         "tenant": {
             "name": "default"
         },
@@ -74,7 +74,7 @@
     {
         "active": true,
         "sensorID": "03",
-        "deviceID": "vattenmätare-03",
+        "deviceID": "watermeter-03",
         "tenant": {
             "name": "default"
         },
@@ -110,7 +110,7 @@
     {
         "active": true,
         "sensorID": "04",
-        "deviceID": "vattenmätare-04",
+        "deviceID": "watermeter-04",
         "tenant": {
             "name": "default"
         },

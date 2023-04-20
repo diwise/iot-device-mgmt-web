@@ -1,7 +1,7 @@
 [
     {
         "id": 1,
-        "refID": "vattenmätare-01",
+        "refID": "watermeter-01",
         "type": "Temporary error",
         "severity": 3,
         "description": "\nTemporary error\nBackflow",
@@ -11,7 +11,7 @@
     },
     {
         "id": 2,
-        "refID": "vattenmätare-02",
+        "refID": "watermeter-02",
         "type": "payload error",
         "severity": 2,
         "description": "\npayload error\nuplink message contains no payload",
@@ -21,14 +21,14 @@
     },
     {
         "id": 3,
-        "refID": "vattenmätare-03",
+        "refID": "watermeter-03",
         "type": "deviceNotObserved",
         "severity": 1,
         "description": "",
         "active": true,
         "tenant": "default",
         "observedAt": "2023-04-17T09:00:06.995187392Z"
-    },    
+    },
     {
         "id": 4,
         "refID": "waterquality-0001",
@@ -38,5 +38,15 @@
         "active": true,
         "tenant": "default",
         "observedAt": "2023-04-17T08:28:47.194588868Z"
+    },
+    {
+        "id": 5,
+        "refID": "watermeter-01",
+        "type": "deviceNotObserved",
+        "severity": 1,
+        "description": "",
+        "active": true,
+        "tenant": "default",
+        "observedAt": "2023-04-17T09:00:06.995187392Z"
     }
 ]

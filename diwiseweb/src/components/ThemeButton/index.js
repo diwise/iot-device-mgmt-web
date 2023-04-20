@@ -27,7 +27,7 @@ function ThemeButton() {
   }
 
   function enableDarkMode(dark) {
-    if (dark == true) { 
+    if (dark === true) {
       document.body.classList.add("darkTheme");
       document.body.classList.remove("lightTheme")
       return "grey"

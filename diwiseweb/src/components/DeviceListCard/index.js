@@ -1,8 +1,10 @@
-import React from "react";
+import { React, useState, useEffect } from "react";
 import ChangeHighlight from "react-change-highlight";
 import { useCollapse } from "@collapsed/react";
 import StatusIcon from "./statusicon";
 import "./deviceListCard.css";
+import UserService from "../../services/UserService";
+import AlarmListCard from "../AlarmListCard";
 
 const DeviceListCard = ({ defaultExpanded, collapsedHeight, device }) => {
   const config = {
@@ -45,6 +47,9 @@ const DeviceListCard = ({ defaultExpanded, collapsedHeight, device }) => {
             <Location device={device} />
             <Tenant device={device} />
             <Lwm2mTypes device={device} />
+          </div>
+          <div>
+            <Alarms device={device} isExpanded={isExpanded} />
           </div>
         </div>
       </div>
@@ -125,6 +130,47 @@ const Tenant = ({ device }) => {
   return (
     <div><strong>Tenant:</strong>{device.tenant.name}</div>
   );
+};
+
+const loadAlarms = async (deviceID) => {
+  const res = await fetch(`/api/v0/alarms?refID=${deviceID}`, {
+    headers: {
+      'Accept': 'application/json',
+      'Authorization': `Bearer ${UserService.getToken()}`
+    }
+  });
+  let result = [];
+
+  if (res.ok) {
+    result = await res.json();
+  }
+
+  return result;
+}
+
+const Alarms = ({ device, isExpanded }) => {
+  const [alarms, setAlarms] = useState([]);
+
+  useEffect(() => {
+    UserService.updateToken(async () => {
+      if (isExpanded) {
+        let alarms = await loadAlarms(device.deviceID);
+        setAlarms(alarms);
+      }
+    });
+  }, [device.deviceID, isExpanded]);
+
+  return (
+    <>
+      {alarms.map((a) => {
+        return (
+          <div key={a.id}>
+            <AlarmListCard alarm={a} />
+          </div>
+        );
+      })}
+    </>
+  )
 };
 
 export default DeviceListCard;
