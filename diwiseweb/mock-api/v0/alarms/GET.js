@@ -1,13 +1,18 @@
-let alarms = require("../../../alarms/GET.json");
+let alarms = require("./alarms.json");
 
 module.exports = (request, response) => {
 
-    let deviceID = request.params.device_id;
+    let refID = request.query.refID;
+
+    if (refID === "") {
+        response.json(alarms);
+        return
+    }
 
     currentAlarms = [];
 
     for (i = 0; i < alarms.length; i++) {
-        if (alarms[i].refID === deviceID) {
+        if (alarms[i].refID === refID) {
             currentAlarms = [...currentAlarms, alarms[i]];
         }
     }

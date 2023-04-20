@@ -133,7 +133,7 @@ const Tenant = ({ device }) => {
 };
 
 const loadAlarms = async (deviceID) => {
-  const res = await fetch(`/api/v0/devices/${deviceID}/alarms`, {
+  const res = await fetch(`/api/v0/alarms?refID=${deviceID}`, {
     headers: {
       'Accept': 'application/json',
       'Authorization': `Bearer ${UserService.getToken()}`
