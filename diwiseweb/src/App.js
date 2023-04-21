@@ -213,7 +213,7 @@ const App = () => {
           <Route path="/devices/:deviceState" element={<DeviceListView devices={devices} />} />
           <Route path="/map" element={<MapView devices={devices} functions={functions} />} />
           <Route path="/functions" element={<FunctionView functions={functions} />} />
-          <Route path="/functions/:functionID" element={<Funcs />} />
+          <Route path="/functions/:functionID" element={<Funcs functions={functions} />} />
           <Route path="/alarms" element={<Alarms alarms={alarms} />} />
           <Route path="*" element={<NotFound />} />
           <Route path="/eventstream" element={<Events events={events} />} />

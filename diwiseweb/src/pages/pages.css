@@ -32,6 +32,17 @@
     margin-left: auto;
 }
 
+.function-page {
+    width: 95%;
+    margin-right: auto;
+    margin-left: auto;
+    display: flex;
+}
+
+.function-page>div {
+    padding: 10px;
+}
+
 .devicelist-page {
     width: 95%;
     margin-right: auto;

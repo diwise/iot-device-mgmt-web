@@ -152,5 +152,35 @@
         "waterquality": {
             "temperature": 8.1
         }
+    },
+    {
+        "id": "time-overflow-start",
+        "type": "timer",
+        "subtype": "overflow",
+        "tenant": "default",
+        "location": {
+            "latitude": 63.392375,
+            "longitude": 17.317828
+        },
+        "timer": {
+            "startTime": "2023-04-17T06:50:56.064135122Z",
+            "state": true
+        }
+    },
+    {
+        "id": "time-overflow-start-end",
+        "type": "timer",
+        "subtype": "overflow",
+        "tenant": "default",
+        "location": {
+            "latitude": 63.392375,
+            "longitude": 17.317828
+        },
+        "timer": {
+            "startTime": "2023-04-17T06:50:56.064135122Z",
+            "endTime": "2023-04-17T07:50:56.064135122Z",
+            "duration": "3600000000000",
+            "state": false
+        }
     }
 ]

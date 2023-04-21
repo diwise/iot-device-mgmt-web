@@ -10,9 +10,10 @@ import {
     LineElement,
     TimeScale
 } from 'chart.js';
-import { Bar, Line } from 'react-chartjs-2';
+import { Line } from 'react-chartjs-2';
 import UserService from '../../services/UserService';
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import 'chartjs-adapter-spacetime'
 
 import "./functioncard.css";
@@ -46,6 +47,7 @@ const FunctionCard = ({ func }) => {
         case "presence": return <PresenceCard func={func} />
         case "level": return <LevelCard func={func} />
         case "waterquality": return <WaterQualityCard func={func} />
+        case "timer": return <TimerCard func={func} />
         default: return (<div>{func.id}</div>);
     }
 };
@@ -53,7 +55,7 @@ const FunctionCard = ({ func }) => {
 const CommonFunctionCard = ({ func }) => {
     return (
         <>
-            <div><strong>ID:</strong>{func.id}</div>
+            <div><strong>ID:</strong><Link to={func.id}>{func.id}</Link></div>
             <div><strong>Typ:</strong>{func.type}</div>
             <div><strong>Kategori:</strong>{func.subtype}</div>
             <hr />
@@ -88,6 +90,12 @@ const LevelCard = ({ func }) => {
 const WaterQualityCard = ({ func }) => {
     return (
         <LineCard f={func} titleText={func.waterquality.temperature + "\u2103"} label={"\u2103"} />
+    );
+};
+
+const TimerCard = ({ func }) => {
+    return (
+        <LineCard f={func} titleText={""} label={""} />
     );
 };
 

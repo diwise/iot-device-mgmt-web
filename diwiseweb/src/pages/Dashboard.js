@@ -12,8 +12,7 @@ const Dashboard = ({ devices, alarms }) => {
   const DeviceStateOK = 1
   const DeviceStateWarning = 2
   const DeviceStateError = 3
-
-
+  
   return (
     <Dash>
       <DashCard
