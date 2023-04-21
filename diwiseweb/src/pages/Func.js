@@ -18,7 +18,7 @@ const Funcs = ({ functions }) => {
 
     return (
         <FunctionContainer>
-            <div>
+            <div className="content card functionCard">
                 <FunctionCard func={f} />
             </div>
             <div>
