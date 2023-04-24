@@ -43,7 +43,7 @@
 }
 
 .content a {
-    display: flex;
+    /*display: flex;*/
     justify-content: flex-end;
     margin-right: 2em;
     color: inherit;
@@ -54,7 +54,7 @@
 }
 
 .content {
-    display: flex;
+    /*display: flex;*/
     justify-content: space-between;
     flex-direction: column;
 }

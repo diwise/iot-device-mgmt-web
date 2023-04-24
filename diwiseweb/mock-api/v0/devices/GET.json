@@ -45,8 +45,8 @@
         "name": "05598373",
         "description": "",
         "location": {
-            "latitude": 62.36957,
-            "longitude": 17.27543,
+            "latitude": 62.436957,
+            "longitude": 17.37543,
             "altitude": 0
         },
         "environment": "",
@@ -70,7 +70,7 @@
             "state": 2,
             "observedAt": "2023-04-17T08:30:07.203001538Z"
         }
-    },   
+    },
     {
         "active": true,
         "sensorID": "03",
@@ -81,8 +81,8 @@
         "name": "05343296",
         "description": "",
         "location": {
-            "latitude": 62.36959,
-            "longitude": 17.27544,
+            "latitude": 62.66959,
+            "longitude": 17.11544,
             "altitude": 0
         },
         "environment": "",
@@ -106,7 +106,7 @@
             "state": 1,
             "observedAt": "2023-04-17T09:00:06.995187392Z"
         }
-    } ,    
+    },
     {
         "active": true,
         "sensorID": "04",
@@ -117,8 +117,8 @@
         "name": "05343296",
         "description": "",
         "location": {
-            "latitude": 62.36965,
-            "longitude": 17.27551,
+            "latitude": 62.16965,
+            "longitude": 16.27551,
             "altitude": 0
         },
         "environment": "",
@@ -142,7 +142,7 @@
             "state": 1,
             "observedAt": "2023-04-17T09:00:06.995187392Z"
         }
-    } ,       
+    },
     {
         "active": true,
         "sensorID": "temp-01",
@@ -153,8 +153,8 @@
         "name": "temp-03",
         "description": "Sidsjön",
         "location": {
-            "latitude": 62.36955,
-            "longitude": 17.27541,
+            "latitude": 63.36955,
+            "longitude": 15.17541,
             "altitude": 0
         },
         "environment": "water",
@@ -178,5 +178,5 @@
             "state": 1,
             "observedAt": "2023-04-17T09:08:47Z"
         }
-    }   
+    }
 ]

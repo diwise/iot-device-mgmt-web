@@ -4,7 +4,7 @@ module.exports = (request, response) => {
 
     let refID = request.query.refID;
 
-    if (refID === "") {
+    if (refID === undefined || refID === "") {        
         response.json(alarms);
         return
     }

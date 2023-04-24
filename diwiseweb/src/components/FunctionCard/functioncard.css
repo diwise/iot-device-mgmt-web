@@ -16,11 +16,21 @@
 }
 
 .presence-on {
-    color: coral;
+    justify-content: center;
+    display: flex;
 }
 
 .presence-off {
-    color: green;
+    display: flex;
+    justify-content: center;
+}
+
+.presence-on svg path {
+    fill: green;
+}
+
+.presence-off svg path {
+    fill: coral;
 }
 
 .presenceWrapper {
