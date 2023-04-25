@@ -166,11 +166,11 @@ const App = () => {
               break;
             case "function.updated":
               setFunctions((currentState) => {
-                return currentState.map((func) => {
-                  if (func.ID === data.ID) {
+                return currentState.map((f) => {
+                  if (f.id === data.id) {
                     return data;
                   } else {
-                    return func;
+                    return f;
                   }
                 });
               });
