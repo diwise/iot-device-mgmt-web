@@ -31,8 +31,8 @@ ChartJS.register(
     TimeScale
 );
 
-const loadHistory = async (funcID) => {
-    const res = await fetch(`/api/functions/${funcID}/history`, {
+const loadHistory = async (funcID, lastN) => {
+    const res = await fetch(`/api/functions/${funcID}/history?lastN=${lastN}`, {
         headers: {
             'Accept': 'application/json',
             'Authorization': `Bearer ${UserService.getToken()}`
@@ -88,29 +88,29 @@ const PresenceCard = ({ func }) => {
 
 const CounterCard = ({ func }) => {
     return (
-        <LineCard f={func} titleText="" label={func.counter.count} />
+        <LineCard f={func} titleText="" label={func.counter.count} lastN="10" />
     );
 };
 
 const LevelCard = ({ func }) => {
     return (
-        <LineCard f={func} titleText={func.level.current} label="" />
+        <LineCard f={func} titleText={func.level.current} label="" lastN="10" />
     );
 };
 
 const WaterQualityCard = ({ func }) => {
     return (
-        <LineCard f={func} titleText={func.waterquality.temperature + "\u2103"} label={"\u2103"} />
+        <LineCard f={func} titleText={func.waterquality.temperature + "\u2103"} label={"\u2103"} lastN="24" />
     );
 };
 
 const TimerCard = ({ func }) => {
     return (
-        <LineCard f={func} titleText={""} label={""} />
+        <LineCard f={func} titleText={""} label={""} lastN="50" />
     );
 };
 
-const LineCard = ({ f, titleText, label }) => {
+const LineCard = ({ f, titleText, label, lastN }) => {
     const [history, setHistory] = useState([]);
 
     const options = {
@@ -141,7 +141,7 @@ const LineCard = ({ f, titleText, label }) => {
 
     useEffect(() => {
         UserService.updateToken(async () => {
-            let h = await loadHistory(f.id);
+            let h = await loadHistory(f.id, lastN);
             setHistory(h.history.values);
         });
     }, [f.id]);
