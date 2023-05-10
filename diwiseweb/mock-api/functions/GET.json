@@ -182,5 +182,18 @@
             "duration": "3600000000000",
             "state": false
         }
+    },
+    {
+        "id": "uc_framat_vv1_em01",
+        "type": "building",
+        "subtype": "vv1",
+        "location": {
+            "latitude": 62.36955,
+            "longitude": 17.27541
+        },
+        "tenant": "default",
+        "building": {
+            "power": 90000.0
+        }
     }
 ]
