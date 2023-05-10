@@ -49,6 +49,7 @@ const FunctionCard = ({ func }) => {
         case "level": return <LevelCard func={func} />
         case "waterquality": return <WaterQualityCard func={func} />
         case "timer": return <TimerCard func={func} />
+        case "building": return <BuildingCard func={func} />
         default: return (<div>{func.id}</div>);
     }
 };
@@ -85,6 +86,11 @@ const PresenceCard = ({ func }) => {
     );
 };
 
+const BuildingCard = ({ func }) => {
+    return (
+        <LineCard f={func} titleText={func.building.power + "W"} label={""} lastN="10" />
+    );
+};
 
 const CounterCard = ({ func }) => {
     return (
@@ -170,5 +176,6 @@ export {
     CounterCard,
     PresenceCard,
     LevelCard,
-    WaterQualityCard
+    WaterQualityCard,
+    BuildingCard
 };
