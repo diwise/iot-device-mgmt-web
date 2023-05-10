@@ -88,7 +88,7 @@ const PresenceCard = ({ func }) => {
 
 const BuildingCard = ({ func }) => {
     return (
-        <LineCard f={func} titleText={func.building.power + "W"} label={""} lastN="10" />
+        <LineCard f={func} titleText={func.building.power + "W"} label={""} lastN="100" />
     );
 };
 
