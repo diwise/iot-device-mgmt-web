@@ -8,7 +8,7 @@ const DeviceCard = ({ device }) => {
       <DeviceInfo device={device} />
       <DeviceState device={device} />
       <Tenant device={device} />
-      <TypeIcons types={device.types.map((t) => { return t.urn })} />
+
     </>
   );
 };
