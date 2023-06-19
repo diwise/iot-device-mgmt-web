@@ -63,6 +63,42 @@
     flex-wrap: wrap;
 }
 
+.device-page {
+    width: 95%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.device-page strong {
+    margin-right: 10px;
+    margin-left: 5px;
+}
+
+.device-page button {
+    display: none;
+}
+
+.measurements {
+    scroll-behavior: auto;
+    overflow-y: scroll;
+    height: 200px;
+    width: 100%;
+}
+
+.device-page .alarms {
+    max-height: 200px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.device-page .blockWrapper {
+    width: 100%;
+}
+
+.device-page .blockWrapper .blockContainer {
+    width: 100%;
+}
+
 .break {
     flex-basis: 100%;
     height: 0;

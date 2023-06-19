@@ -1,10 +1,8 @@
-import { React, useState, useEffect } from "react";
-import ChangeHighlight from "react-change-highlight";
+import { React } from "react";
 import { useCollapse } from "@collapsed/react";
+import { Link } from "react-router-dom";
 import StatusIcon from "./statusicon";
 import "./deviceListCard.css";
-import UserService from "../../services/UserService";
-import AlarmListCard from "../AlarmListCard";
 
 const DeviceListCard = ({ defaultExpanded, collapsedHeight, device }) => {
   const config = {
@@ -48,9 +46,6 @@ const DeviceListCard = ({ defaultExpanded, collapsedHeight, device }) => {
             <Tenant device={device} />
             <Lwm2mTypes device={device} />
           </div>
-          <div>
-            <Alarms device={device} isExpanded={isExpanded} />
-          </div>
         </div>
       </div>
     </div>
@@ -61,7 +56,7 @@ const DeviceInfo = ({ device }) => {
   return (
     <>
       <div><strong>ID:</strong>{device.sensorID}</div>
-      <div><strong>DeviceID:</strong>{device.deviceID}</div>
+      <div><strong>DeviceID:</strong><Link to={"/device/" + device.deviceID}>{device.deviceID}</Link></div>
       <div><strong>Namn:</strong>{device.name}</div>
       <div><strong>Beskrivning:</strong>{device.description}</div>
       <div><strong>Miljö:</strong>{device.environment}</div>
@@ -132,47 +127,6 @@ const Tenant = ({ device }) => {
   );
 };
 
-const loadAlarms = async (deviceID) => {
-  const res = await fetch(`/api/v0/alarms?refID=${deviceID}`, {
-    headers: {
-      'Accept': 'application/json',
-      'Authorization': `Bearer ${UserService.getToken()}`
-    }
-  });
-  let result = [];
-
-  if (res.ok) {
-    result = await res.json();
-  }
-
-  return result;
-}
-
-const Alarms = ({ device, isExpanded }) => {
-  const [alarms, setAlarms] = useState([]);
-
-  useEffect(() => {
-    UserService.updateToken(async () => {
-      if (isExpanded) {
-        let alarms = await loadAlarms(device.deviceID);
-        setAlarms(alarms);
-      }
-    });
-  }, [device.deviceID, isExpanded]);
-
-  return (
-    <>
-      {alarms.map((a) => {
-        return (
-          <div key={a.id}>
-            <AlarmListCard alarm={a} />
-          </div>
-        );
-      })}
-    </>
-  )
-};
-
 export default DeviceListCard;
 
-export { DeviceInfo, DeviceState, Tenant }
+export { DeviceInfo, DeviceState, Tenant, DeviceProfile, Location, Lwm2mTypes }
