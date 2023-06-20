@@ -99,8 +99,37 @@ const CounterCard = ({ func }) => {
 };
 
 const LevelCard = ({ func }) => {
+    let options = {
+        responsive: true,
+        plugins: {
+            legend: {
+                position: 'top',
+                display: false,
+            },
+            title: {
+                display: true,
+                text: func.level.current,
+            },
+        },
+        scales: {
+            x: {
+                ticks: {
+                    maxRotation: 90,
+                    minRotation: 90,
+                },
+                type: 'time',
+                time: {
+                    unit: 'day'
+                }
+            },
+            y: {
+                min: 0
+            }
+        }
+    };
+
     return (
-        <LineCard f={func} titleText={func.level.current} label="" lastN="10" />
+        <LineCard f={func} titleText={func.level.current} label="" lastN="10" opts={options} />
     );
 };
 
@@ -116,10 +145,10 @@ const TimerCard = ({ func }) => {
     );
 };
 
-const LineCard = ({ f, titleText, label, lastN }) => {
+const LineCard = ({ f, titleText, label, lastN, opts }) => {
     const [history, setHistory] = useState([]);
 
-    const options = {
+    let options = {
         responsive: true,
         plugins: {
             legend: {
@@ -144,6 +173,10 @@ const LineCard = ({ f, titleText, label, lastN }) => {
             }
         }
     };
+
+    if (opts !== undefined) {
+        options = opts
+    }
 
     useEffect(() => {
         UserService.updateToken(async () => {
