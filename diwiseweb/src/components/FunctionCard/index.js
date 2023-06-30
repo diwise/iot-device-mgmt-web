@@ -58,6 +58,7 @@ const CommonFunctionCard = ({ func }) => {
     return (
         <>
             <div><strong>ID:</strong><Link to={func.id}>{func.id}</Link></div>
+            <div><strong>Namn:</strong>{func.name}</div>
             <div><strong>Typ:</strong>{func.type}</div>
             <div><strong>Kategori:</strong>{func.subtype}</div>
             <hr />
