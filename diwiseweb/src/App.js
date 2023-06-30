@@ -166,8 +166,6 @@ const App = () => {
             default:
               if (event.event.startsWith("alarms.")) {
                 loadAlarms();
-              } else {
-                console.log(`event: ${event.event} unhandled`);
               }
           };
         },
