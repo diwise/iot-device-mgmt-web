@@ -125,19 +125,6 @@ const App = () => {
                 });
               });
               break;
-            case "device-status":
-              device = await loadDevice(data.deviceID);
-
-              setDevices((current) => {
-                return current.map(d => {
-                  if (d.deviceID === data.deviceID) {
-                    return device;
-                  }
-                  return d;
-                });
-              });
-
-              break;
             case "device.statusUpdated":
               device = await loadDevice(data.deviceID);
 
