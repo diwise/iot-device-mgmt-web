@@ -8,8 +8,12 @@ const FunctionViewContainer = ({ children }) => {
 
 const FunctionView = ({ functions }) => {
   let funcs = functions.sort((a, b) => {
-    let ___a = a.type + ":" + a.subtype;
-    let ___b = b.type + ":" + b.subtype;
+    let na = a.name ? "a__" + a.name : "z__" + a.id
+    let nb = b.name ? "a__" + b.name : "z__" + b.id
+
+    let ___a = a.type + ":" + a.subtype + ":" + na;
+    let ___b = b.type + ":" + b.subtype + ":" + nb;
+
     if (___a < ___b) {
       return -1;
     } else if (___a > ___b) {
