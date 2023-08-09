@@ -142,6 +142,7 @@
     },
     {
         "id": "waterquality-0002",
+        "name": "vattenkvalitet",
         "type": "waterquality",
         "subtype": "beach",
         "location": {
