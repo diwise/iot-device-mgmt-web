@@ -1,4 +1,7 @@
-[
+{
+    "meta": {
+    },
+    "data": [
     {
         "active": true,
         "sensorID": "01",
@@ -178,5 +181,5 @@
             "state": 1,
             "observedAt": "2023-04-17T09:08:47Z"
         }
-    }
-]
+    }]
+}

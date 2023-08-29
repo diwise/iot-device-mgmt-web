@@ -32,7 +32,7 @@ const App = () => {
         }
       });
       let result = await res.json();
-      setDevices(result);
+      setDevices(result.data);
     };
 
     const loadAlarms = async () => {
