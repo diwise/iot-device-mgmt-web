@@ -196,5 +196,24 @@
         "building": {
             "power": 90000.0
         }
+    },
+    {
+        "id": "stopwatch-1-duration",
+        "name": "stopwatch-1-duration",
+        "type": "stopwatch",
+        "subtype": "overflow",
+        "location": {
+            "latitude": 62.3958,
+            "longitude": 17.3119
+        },
+        "tenant": "default",
+        "Stopwatch": {
+            "startTime": "2023-10-18T11:08:42Z",
+            "stopTime": "2023-10-18T11:11:32Z",
+            "duration": 170000000000,
+            "state": true,
+            "count": 36148,
+            "cumulativeTime": 7621000000000
+        }
     }
 ]
