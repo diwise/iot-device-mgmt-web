@@ -10,7 +10,7 @@ import {
     LineElement,
     TimeScale
 } from 'chart.js';
-import { Line } from 'react-chartjs-2';
+import { Bar, Line } from 'react-chartjs-2';
 import UserService from '../../services/UserService';
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
@@ -50,6 +50,7 @@ const FunctionCard = ({ func }) => {
         case "waterquality": return <WaterQualityCard func={func} />
         case "timer": return <TimerCard func={func} />
         case "building": return <BuildingCard func={func} />
+        case "stopwatch": return <StopwatchCard func={func} />
         default: return (<div>{func.id}</div>);
     }
 };
@@ -146,6 +147,74 @@ const TimerCard = ({ func }) => {
     );
 };
 
+const StopwatchCard = ({ func }) => {
+    return (
+        <BarCard f={func} titleText={func.Stopwatch.state} label={""} lastN="50" />
+    );
+};
+
+const BarCard = ({ f, titleText, label, lastN, opts }) => {
+    const [history, setHistory] = useState([]);
+
+    let options = {
+        responsive: true,
+        plugins: {
+            legend: {
+                position: 'top',
+                display: false,
+            },
+            title: {
+                display: true,
+                text: titleText,
+            },
+        },
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    };
+
+
+    if (opts !== undefined) {
+        options = opts
+    }
+
+    useEffect(() => {
+        UserService.updateToken(async () => {
+            let h = await loadHistory(f.id, lastN);
+            setHistory(h.history.values);
+        });
+    }, [f.id]);
+
+    const data = {
+        datasets: [
+            {
+                label: label,
+                data: history.map((h) => {
+
+                    const options = { month: 'numeric', day: 'numeric', year: 'numeric', hour: 'numeric', minute: 'numeric' };
+                    let d = new Date(h.ts);
+                    let l = d.toLocaleString('sv-SE', options);
+
+                    return {
+                        x: l, y: h.v / 60
+                    }
+                }),
+                borderColor: 'rgb(255, 99, 132)',
+                backgroundColor: 'rgba(255, 99, 132, 0.5)',
+            }
+        ],
+    };
+
+    return (
+        <>
+            <CommonFunctionCard func={f} />
+            <Bar options={options} data={data} />
+        </>
+    );
+};
+
 const LineCard = ({ f, titleText, label, lastN, opts }) => {
     const [history, setHistory] = useState([]);
 
@@ -211,5 +280,6 @@ export {
     PresenceCard,
     LevelCard,
     WaterQualityCard,
-    BuildingCard
+    BuildingCard,
+    StopwatchCard
 };
