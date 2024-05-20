@@ -23,25 +23,25 @@ const Dashboard = ({ devices, alarms }) => {
       />
       <DashCard
         stylename="active"
-        number={devices.filter((d) => d.deviceState.online === true).length}
+        number="0"
         url="/devices/online"
         text="online"
       />
       <DashCard
         stylename="warning"
-        number={devices.filter((d) => d.deviceState.state === DeviceStateWarning).length}
+        number="0"
         url="/devices/warning"
         text="varningar"
       />
       <DashCard
         stylename="error"
-        number={devices.filter((d) => d.deviceState.state === DeviceStateError).length}
+        number="0"
         url="/devices/error"
         text="fel"
       />
       <DashCard
         stylename="error"
-        number={alarms.length}
+        number="0"
         url="/alarms"
         text="larm"
       />
